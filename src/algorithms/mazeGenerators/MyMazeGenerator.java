@@ -2,11 +2,11 @@ package algorithms.mazeGenerators;
 import java.util.*;
 public class MyMazeGenerator extends AMazeGenerator {
 
-   /* The binary tree algorithm works by iterating over each cell in the maze and flipping a coin to decide whether to remove
-    the left or upper wall of the current cell. The upper-left corner of the maze is always part of the maze, and its wall is
-    removed to create an entrance. All other cells have either the left or upper wall removed, but not both, which creates a
-    maze with only horizontal and vertical paths. Finally, the start and goal positions are set to the upper-left and
-    lower-right corners of the maze, respectively.*/
+    /* The binary tree algorithm works by iterating over each cell in the maze and flipping a coin to decide whether to remove
+     the left or upper wall of the current cell. The upper-left corner of the maze is always part of the maze, and its wall is
+     removed to create an entrance. All other cells have either the left or upper wall removed, but not both, which creates a
+     maze with only horizontal and vertical paths. Finally, the start and goal positions are set to the upper-left and
+     lower-right corners of the maze, respectively.*/
     @Override
     public Maze generate(int rows, int columns) {
         int[][] maze = new int[rows][columns]; //create a new matrix

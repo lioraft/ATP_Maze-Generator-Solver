@@ -29,17 +29,21 @@ public class Maze { //the maze class
         for (int i = 0; i < theMaze.length; i++) {  //for each row in the matrix print the row and the column and the value of the cell in the matrix.
             System.out.print("{ ");
             for (int j = 0; j < theMaze[0].length; j++) {
+                // if start position, print S
                 if (i == startPosition.getRowIndex() && j == startPosition.getColumnIndex())
                     System.out.print('S' + " ");
+                // if end position, print E
                 else if (i == goalPosition.getRowIndex() && j == goalPosition.getColumnIndex())
                     System.out.print('E'+" ");
                 else
-                    System.out.print(theMaze[i][j]+" ");
+                    System.out.print(theMaze[i][j]+" "); // if regular position, print the value of the cell
             }
             System.out.println("}");
         }
     }
 
+    // function that takes in index of position: row & column, and a state, and set the input state as the new state of the cell
+    // of the position received
     public void setCell(int row, int col, int state) {
         theMaze[row][col] = state;
     }
@@ -49,6 +53,8 @@ public class Maze { //the maze class
         return theMaze[row][col];
     }
 
+    // function that takes in index of position, and returns true if its state is a wall, and false if its state
+    // is a passage
     public boolean isWall(int row, int col) {
         if(theMaze[row][col] == 1)
             return true;

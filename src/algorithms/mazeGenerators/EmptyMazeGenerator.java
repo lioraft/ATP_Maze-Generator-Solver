@@ -8,7 +8,7 @@ public class EmptyMazeGenerator extends AMazeGenerator {
         // Fill the maze with empty cells
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numColumns; col++) {
-                matrix[row][col] = 0; // Set the cell to be empty
+                matrix[row][col] = 0; // Set the cell to be 0 (only passages, no walls)
             }
         }
 

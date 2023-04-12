@@ -2,10 +2,9 @@ package algorithms.search;
 
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
- * class who represent a move in the maze solution
+ * class that represents a move in the maze solution
  */
 
 public class AState implements Serializable { //this class represents a state in the searchable problem.

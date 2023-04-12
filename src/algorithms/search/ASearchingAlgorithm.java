@@ -6,9 +6,9 @@ import java.util.LinkedList;
 
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm {
 
-    private HashMap<String, AState> visited; // Keep track of visited states
-    private HashSet<AState> solution; // Keep track of states in solution path
-    private int numNodesEvaluated; // Keep track of number of nodes evaluated during search
+    protected HashMap<String, AState> visited; // Keep track of visited states
+    protected HashSet<AState> solution; // Keep track of states in solution path
+    protected int numNodesEvaluated; // Keep track of number of nodes evaluated during search
 
     public ASearchingAlgorithm() {
         visited = new HashMap<>();

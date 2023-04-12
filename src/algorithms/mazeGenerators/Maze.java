@@ -21,9 +21,11 @@ public class Maze { //the maze class
     public Position getGoalPosition() {
         return this.goalPosition;
     } //get the goal position
-    public int[][] getMazeMatrix() {
+
+    /// get the matrix of the maze
+    public int[][] getMaze() {
         return this.theMaze;
-    } //get the matrix
+    }
 
     public void print () {  //print the maze
         for (int i = 0; i < theMaze.length; i++) {  //for each row in the matrix print the row and the column and the value of the cell in the matrix.

@@ -50,7 +50,8 @@ public class MyMazeGenerator extends AMazeGenerator {
 
         Position start = new Position(0, 0); //create a new start position that is always in the upper-left corner
         Position goal = new Position(rows - 1, columns - 1); //create a new goal position that is always in the lower-right corner
-
+        // set end to 0
+        maze[rows - 1][columns - 1] = 0;
         return new Maze(start, goal, maze); //return a new maze
     }
 }

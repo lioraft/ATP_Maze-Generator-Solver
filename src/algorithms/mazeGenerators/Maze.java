@@ -1,7 +1,5 @@
 package algorithms.mazeGenerators;
 
-import java.util.Map;
-
 public class Maze { //the maze class
     private Position startPosition; //the start position
     private Position goalPosition; //the goal position
@@ -61,11 +59,8 @@ public class Maze { //the maze class
         // if out of boundaries
         if (row >= theMaze.length || row < 0 || col >= theMaze[0].length || col <= 0)
             return false;
-        // if wall
-        if(theMaze[row][col] == 1)
-            return false;
-        // if valid passage
-        return true;
+        // if wall returns false, if passage returns true
+        return theMaze[row][col] != 1;
     }
 
 }

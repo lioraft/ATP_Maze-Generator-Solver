@@ -6,7 +6,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
 
     @Override
     public String getName() {
-        return "Depth-First Search";
+        return "Depth First Search";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
                     visited.put(successor.getState(), successor);  // Mark successor as visited
                     solution.add(successor);  // Add successor to solution path
                     stateStack.add(successor);  // Add successor to state stack
-                    numNodesEvaluated++;
+                    numNodesEvaluated++; // increase number of nodes evaluated
                 }
             }
         }

@@ -55,12 +55,17 @@ public class Maze { //the maze class
         return theMaze[row][col];
     }
 
-    // function that takes in index of position, and returns true if its state is a wall, and false if its state
-    // is a passage
-    public boolean isWall(int row, int col) {
+    // function that takes in index of position, and returns true if it's a valid move (inside the maze and a passage), or
+    // false if it's not (outside of maze boundaries or a wall)
+    public boolean isValidPassage(int row, int col) {
+        // if out of boundaries
+        if (row >= theMaze.length || row < 0 || col >= theMaze[0].length || col <= 0)
+            return false;
+        // if wall
         if(theMaze[row][col] == 1)
-            return true;
-        return false;
+            return false;
+        // if valid passage
+        return true;
     }
 
 }

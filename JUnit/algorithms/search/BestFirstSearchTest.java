@@ -1,3 +1,5 @@
+package algorithms.search;
+
 import algorithms.mazeGenerators.*;
 import algorithms.search.*;
 import org.junit.jupiter.api.Test;
@@ -19,8 +21,8 @@ class BestFirstSearchTest {
     @Test
     void solve() {
         int[][] armaze = {{0, 1, 1},
-                          {0, 0, 0},
-                          {0, 1, 0}}; // maze with no solution
+                {0, 0, 0},
+                {0, 1, 0}}; // maze with no solution
         Maze mazeobj = new Maze(new Position(0, 0), new Position(2, 2), armaze); // create maze object
         SearchableMaze maze = new SearchableMaze(mazeobj); // create searchable maze
         Solution sol = bfs.solve(maze); // get solution

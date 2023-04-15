@@ -12,7 +12,11 @@ public class MazeState extends AState{ //this class represents a state in the ma
 
     public MazeState(Position pos, int cost, MazeState cameFrom) {//constructor
         super(cost, cameFrom, pos.toString());
-        this.position = pos;
+        // if invalid position, set as null
+        if (pos.getRowIndex() < 0 || pos.getColumnIndex() < 0)
+            this.position = null;
+        else
+            this.position = pos;
     }
 
     public Position getPosition() {

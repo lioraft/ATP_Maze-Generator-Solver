@@ -1,9 +1,5 @@
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.Position;
-import algorithms.search.AState;
-import algorithms.search.BestFirstSearch;
-import algorithms.search.SearchableMaze;
-import algorithms.search.Solution;
+import algorithms.mazeGenerators.*;
+import algorithms.search.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,7 +8,7 @@ import java.util.PriorityQueue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BestFirstSearchTest {
-    BestFirstSearch bfs = new BestFirstSearch(); // creater search algorithm to test
+    BestFirstSearch bfs = new BestFirstSearch(); // create search algorithm to test
 
     // class methods:
     @Test
@@ -51,6 +47,28 @@ class BestFirstSearchTest {
         assertNotNull(sol); // test it's not returning null
         ArrayList<AState> solutionPath = sol.getSolutionPath(); // get solution path
         assertEquals("No solution found", solutionPath.get(0).toString()); // assert it's returning valid value
+    }
+
+    // test that the program is not throwing exceptions when there are invalid parameters, but sends no solution found message
+    // to the user. if there is solution (path of 0) even with other invalid cells, the program will return the solution
+    @Test
+    void testInvalidValues() {
+        int[][] mazeArr = {{-1, -1, 1}, {0, 1, 0}, {1,1,0}}; // maze with invalid values and no solution
+        Maze mazeobj = new Maze(new Position(0, 0), new Position(2, 2), mazeArr); // create maze object
+        SearchableMaze maze = new SearchableMaze(mazeobj); // create searchable maze
+        Solution sol = bfs.solve(maze); // get solution
+        assertNotNull(sol); // test it's not returning null
+        ArrayList<AState> solutionPath = sol.getSolutionPath(); // get solution path
+        assertEquals("No solution found", solutionPath.get(0).toString()); // assert it's returning no solution
+
+        int[][] mazeArr2 = {{0, -1}, {1, 0}}; // maze with some invalid values that has a solution
+        Maze mazeobj2 = new Maze(new Position(0, 0), new Position(1, 1), mazeArr2); // create maze object
+        SearchableMaze maze2 = new SearchableMaze(mazeobj2); // create searchable maze
+        Solution sol2 = bfs.solve(maze2); // get solution
+        assertNotNull(sol2); // test it's not returning null
+        ArrayList<AState> solutionPath2 = sol2.getSolutionPath(); // get solution path
+        assertEquals("{0,0}", solutionPath2.get(0).toString()); // assert it's returning right position
+        assertEquals("{1,1}", solutionPath2.get(1).toString());
     }
 
 }

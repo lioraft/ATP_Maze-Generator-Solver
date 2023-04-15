@@ -1,5 +1,4 @@
 package algorithms.maze3D;
-import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
 
 import java.util.Objects;
@@ -8,7 +7,11 @@ public class Maze3DState extends AState {
     Position3D position;
     public Maze3DState(Position3D pos, int cost, Maze3DState cameFrom) {//constructor
         super(cost, cameFrom, pos.toString());
-        this.position = pos;
+        // if invalid position, set as null
+        if (pos.getRowIndex() < 0 || pos.getColumnIndex() < 0 || pos.getDepthIndex() < 0)
+            this.position = null;
+        else
+            this.position = pos;
     }
 
     public Position3D getPosition() {

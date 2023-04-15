@@ -57,7 +57,7 @@ public class Maze { //the maze class
     // false if it's not (outside of maze boundaries or a wall)
     public boolean isValidPassage(int row, int col) {
         // if out of boundaries
-        if (row >= theMaze.length || row < 0 || col >= theMaze[0].length || col <= 0)
+        if (row >= theMaze.length || row < 0 || col >= theMaze[0].length || col < 0)
             return false;
         // if wall returns false, if passage returns true
         return theMaze[row][col] != 1;

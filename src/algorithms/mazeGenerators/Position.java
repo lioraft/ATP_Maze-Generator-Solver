@@ -2,20 +2,20 @@ package algorithms.mazeGenerators;
 
 public class Position {
 
-    private int row;
-    private int column;
+    protected int rows;
+    protected int columns;
 
     // constructor
     public Position(int row, int column) {
-        this.row = row;
-        this.column = column;
+        this.rows = row;
+        this.columns = column;
     }
-    public int getRowIndex() {return this.row;}
-    public int getColumnIndex() {return this.column;}
+    public int getRowIndex() {return this.rows;}
+    public int getColumnIndex() {return this.columns;}
 
     // print function
     @Override
-    public String toString() { return ("{" + row + "," + column + "}"); }
+    public String toString() { return ("{" + rows + "," + columns + "}"); }
     // overriding equals: function that takes in another object, and returns true if it's a position that has equal coordinates
     // to current position. if not, returns false
     @Override
@@ -27,7 +27,7 @@ public class Position {
         if (o.getClass() != Position.class)
             return false;
         // if identical coordinates, return true
-        if (((Position) o).getColumnIndex() == column && ((Position) o).getRowIndex() == row)
+        if (((Position) o).getColumnIndex() == columns && ((Position) o).getRowIndex() == rows)
             return true;
         return false;
     }

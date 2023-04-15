@@ -1,5 +1,6 @@
 package algorithms.search;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -35,7 +36,8 @@ public class BreadthFirstSearch extends ASearchingAlgorithm { // Breadth-First S
                 }
             }
         }
-        return null; // No solution found
+        // if not found solution, return not found solution
+        return new Solution(null);
     }
 
     // this function returns a queue, which is the collection that will be used to store the states

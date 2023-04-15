@@ -1,4 +1,5 @@
 package algorithms.maze3D;
+import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
 
 import java.util.Objects;

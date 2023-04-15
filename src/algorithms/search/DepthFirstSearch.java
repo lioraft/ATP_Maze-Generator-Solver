@@ -34,7 +34,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
                 }
             }
         }
-
-        return null;  // No solution found
+        // if not found solution, return not found solution
+        return new Solution(null);
     }
 }

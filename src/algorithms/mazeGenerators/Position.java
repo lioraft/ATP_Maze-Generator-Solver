@@ -1,7 +1,8 @@
 package algorithms.mazeGenerators;
 
-public class Position {
+import algorithms.maze3D.Position3D;
 
+public class Position {
     protected int rows;
     protected int columns;
 
@@ -31,7 +32,5 @@ public class Position {
             return true;
         return false;
     }
-
-
 
 }

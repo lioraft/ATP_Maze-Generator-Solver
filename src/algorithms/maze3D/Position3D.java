@@ -15,7 +15,8 @@ public class Position3D extends Position {
 
     // print function
     @Override
-    public String toString() { return ("{" + this.rows + "," + this.columns + "," + this.depth + "}"); }
+    public String toString() {
+        return ("{" + this.rows + "," + this.columns + "," + this.depth + "}"); }
     // overriding equals: function that takes in another object, and returns true if it's a position that has equal coordinates
     // to current position. if not, returns false
     @Override

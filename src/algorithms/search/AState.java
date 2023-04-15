@@ -49,4 +49,9 @@ public class AState implements Serializable { //this class represents a state.
         return Objects.equals(state, other.state);
     }
 
+    public String toString() {
+        //returns a string that represents the state.
+        return this.state;
+    }
+
 }

@@ -11,6 +11,12 @@ public class Solution implements Serializable { //the class represents a solutio
         path = CreateAPath(Goal);
     }
     public ArrayList<AState> CreateAPath(AState Goal){ //the function gets a goal state and returns the path from the start state to the goal state.
+        // if null is sent, send a state representing that a solution was not found
+        if (Goal == null) {
+            ArrayList<AState> nullSolution = new ArrayList<>();
+            nullSolution.add(new AState(0,null, "No solution found"));
+            return nullSolution;
+        }
         ArrayList<AState> ReverseSolution = new ArrayList<AState>(); //path
         ReverseSolution.add(Goal); //add the goal state to the path
         AState curr = Goal.getCameFrom(); //get the state that we came from to the goal state

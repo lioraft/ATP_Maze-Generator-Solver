@@ -33,7 +33,8 @@ public class MazeState extends AState{ //this class represents a state in the ma
     }
 
     public String toString() {
+        //returns a string that represents the state.
         return this.getPosition().toString();
-    } //returns a string that represents the state.
+    }
 
 }

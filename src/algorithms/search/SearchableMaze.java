@@ -16,12 +16,6 @@ public class SearchableMaze implements ISearchable{
         return new MazeState(maze.getStartPosition(), 0, null); //return the start state of the maze.
     }
 
-    //set start state
-    public void setStartState(AState startState) {
-        this.getStartState().setCost(startState.getCost());
-        this.getStartState().setCameFrom((MazeState) startState.getCameFrom());
-    }
-
     @Override
     public AState getGoalState() {
         return new MazeState(maze.getGoalPosition(), 0, null); //return the goal state of the maze.

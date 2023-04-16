@@ -73,4 +73,20 @@ class BestFirstSearchTest {
         assertEquals("{1,1}", solutionPath2.get(1).toString());
     }
 
+    void testOutOfRangePosition() {
+        int[][] mazeArr = {{0, 1, 1},
+                {0, 0, 0},
+                {0, 1, 0}}; // valid maze
+        Maze mazeobj = new Maze(new Position(0, 0), new Position(2, 2), mazeArr); // create maze object
+        SearchableMaze maze = new SearchableMaze(mazeobj); // create searchable maze
+
+        // create out-of-range position
+        Position outOfRange = new Position(4, 4);
+        AState outOfRangeState = new MazeState(outOfRange, 0, null);
+        maze.setStartState(outOfRangeState); // set the start position to out-of-range
+        Solution sol = bfs.solve(maze); // get solution
+        assertNotNull(sol); // test it's not returning null
+        ArrayList<AState> solutionPath = sol.getSolutionPath(); // get solution path
+        assertEquals("No solution found", solutionPath.get(0).toString()); // assert it's returning no solution
+    }
 }

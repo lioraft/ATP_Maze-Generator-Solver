@@ -14,10 +14,10 @@ public class Maze { //the maze class
 
     // constructor that takes in a byte array and creates a maze
     public Maze(byte[] maze) {
-        int rows = maze[0] * 256; // get the number of rows
-        int columns = maze[1] * 256; // get the number of columns
-        int startColumn = maze[2] * 256; // get the start column
-        int goalColumn = maze[3] * 256; // get the end column
+        int rows = maze[0]; // get the number of rows
+        int columns = maze[1]; // get the number of columns
+        int startColumn = maze[2]; // get the start column
+        int goalColumn = maze[3]; // get the end column
         this.startPosition = new Position(0, startColumn); // set the start position
         this.goalPosition = new Position(rows - 1, goalColumn); // set the goal position
         int[][] theMaze = new int[rows][columns]; // create a new matrix with the number of rows and columns

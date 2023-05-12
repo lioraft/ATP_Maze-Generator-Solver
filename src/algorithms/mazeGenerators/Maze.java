@@ -63,4 +63,33 @@ public class Maze { //the maze class
         return theMaze[row][col] != 1;
     }
 
+    // function that takes in a maze represented in int (0 and 1) and convert it to flat byte array
+    public byte[] toByteArray() {
+        // get the number of rows and columns of the maze
+        int rows = theMaze.length;
+        int cols = theMaze[0].length;
+        // in all mazes the start row is 0 and the end row is the last row, so we don't need to save them.
+        // we only need to save the start and end column
+        byte startColByte = (byte)startPosition.getColumnIndex();
+        byte endColByte = (byte)goalPosition.getColumnIndex();
+        // create a byte array representing the maze
+        byte[] flatMaze = new byte[rows * cols + 4];
+        // convert rows and cols to byte and add to array. also add start and end columns
+        flatMaze[0] = (byte)rows;
+        flatMaze[1] = (byte)cols;
+        flatMaze[2] = startColByte;
+        flatMaze[3] = endColByte;
+        // iterate the 2d array and convert each cell to a byte and add to array of bytes
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (theMaze[i][j] == 0)
+                    flatMaze[i * cols + j + 4] = (byte)0;
+                else
+                    flatMaze[i * cols + j + 4] = (byte)1;
+            }
+        }
+        // return result
+        return flatMaze;
+    }
+
 }

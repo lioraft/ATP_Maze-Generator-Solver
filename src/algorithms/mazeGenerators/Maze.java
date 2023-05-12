@@ -1,5 +1,7 @@
 package algorithms.mazeGenerators;
 
+import java.util.ArrayList;
+
 public class Maze { //the maze class
     private Position startPosition; //the start position
     private Position goalPosition; //the goal position
@@ -82,33 +84,115 @@ public class Maze { //the maze class
         return theMaze[row][col] != 1;
     }
 
-    // function that takes in a maze represented in int (0 and 1) and convert it to flat byte array
+    // function that takes in a maze represented in int (0 and 1) and convert it to flat byte array:
+    // representation structure:
+    // <number of bytes for rows><number of rows><number of bytes for columns><number of columns><number of bytes for start column><start position column><number of bytes for end column><end position column><maze>
     public byte[] toByteArray() {
-        // get the number of rows and columns of the maze
+        ArrayList<Byte> byteList = new ArrayList<>(); // create an arraylist of bytes
+
+        // get the number of rows in the maze
         int rows = theMaze.length;
+        // indicate how many bytes will be needed to represent the number of rows
+        if (rows < 256) {
+            // if number of rows is smaller than 256, we only need one byte to represent it
+            byteList.add((byte)1);
+        }
+        else {
+            // if number of rows is bigger than 256, we need more than one byte to represent it
+            if (rows % 256 != 0) { // adding extra byte if necessary
+                byteList.add((byte)(1 + rows / 256));
+            }
+            else { // not adding extra byte if result is a natural number
+                byteList.add((byte)(rows / 256));
+            }
+        }
+        // add the number of rows to the byte array
+        while (rows > 256) {
+            byteList.add((byte)255);
+            rows = rows - 255;
+        }
+        // add remainder of rows number to the byte array
+        byteList.add((byte)rows);
+
+        // get the number of columns in the maze
         int cols = theMaze[0].length;
+        if (cols < 256) {
+            // if number of columns is smaller than 256, we only need one byte to represent it
+            byteList.add((byte)1);
+        }
+        else {
+            // if number of columns is bigger than 256, we need more than one byte to represent it
+            if (cols % 256 != 0) { // adding extra byte if necessary
+                byteList.add((byte)(1 + cols / 256));
+            }
+            else { // not adding extra byte if result is a natural number
+                byteList.add((byte)(cols / 256));
+            }
+        }
+        // add the number of columns to the byte array
+        while (cols > 256) {
+            byteList.add((byte)255);
+            cols = cols - 255;
+        }
+        // add remainder of columns number to the byte array
+        byteList.add((byte)cols);
+
         // in all mazes the start row is 0 and the end row is the last row, so we don't need to save them.
         // we only need to save the start and end column
-        byte startColByte = (byte)startPosition.getColumnIndex();
-        byte endColByte = (byte)goalPosition.getColumnIndex();
-        // create a byte array representing the maze
-        byte[] flatMaze = new byte[rows * cols + 4];
-        // convert rows and cols to byte and add to array. also add start and end columns
-        flatMaze[0] = (byte)rows;
-        flatMaze[1] = (byte)cols;
-        flatMaze[2] = startColByte;
-        flatMaze[3] = endColByte;
+        // repeat same insertion process as above for the start column
+        int startColByte = startPosition.getColumnIndex();
+        if (startColByte < 256)
+            byteList.add((byte)1);
+        else {
+            if (startColByte % 256 != 0) { // adding extra byte if necessary
+                byteList.add((byte)(1 + startColByte / 256));
+            }
+            else { // not adding extra byte if result is a natural number
+                byteList.add((byte)(startColByte / 256));
+            }
+        }
+        // add the start column index to the byte array
+        while (startColByte > 256) {
+            byteList.add((byte)255);
+            startColByte = startColByte - 255;
+        }
+        // add remainder of columns number to the byte array
+        byteList.add((byte)startColByte);
+
+        // for end column
+        int endColByte = (byte)goalPosition.getColumnIndex();
+        if (endColByte < 256)
+            byteList.add((byte)endColByte);
+        else {
+            if (endColByte % 256 != 0) { // adding extra byte if necessary
+                byteList.add((byte)(1 + endColByte / 256));
+            }
+            else { // not adding extra byte if result is a natural number
+                byteList.add((byte)(endColByte / 256));
+            }
+        }
+        // add the end column index to the byte array
+        while (endColByte > 256) {
+            byteList.add((byte)255);
+            endColByte = endColByte - 255;
+        }
+        // add remainder of columns number to the byte array
+        byteList.add((byte)endColByte);
+
         // iterate the 2d array and convert each cell to a byte and add to array of bytes
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (theMaze[i][j] == 0)
-                    flatMaze[i * cols + j + 4] = (byte)0;
+                    byteList.add((byte)0);
                 else
-                    flatMaze[i * cols + j + 4] = (byte)1;
+                    byteList.add((byte)1);
             }
         }
-        // return result
-        return flatMaze;
+        // return result as byte array
+        byte [] result = new byte[byteList.size()];
+        for (int i = 0; i < byteList.size(); i++) {
+            result[i] = byteList.get(i);
+        }
+        return result;
     }
-
 }

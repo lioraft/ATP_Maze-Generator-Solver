@@ -50,10 +50,7 @@ public class SimpleCompressorOutputStream extends OutputStream {
 
     public void write(byte [] b) { // write the compressed maze to the underlying output stream
         try {
-            for (int i = 0; i < 10; i++) { // write the first 10 bytes of the maze
-                out.write(b[i]); // write the byte
-            }
-            for(int i = 10; i < b.length; i++){ // write the rest of the maze
+            for(int i = 0; i < b.length; i++){ // write the maze
                 write(b[i]); // write the byte
             }
             if(count !=0){ // if the number of occurrences of the current byte is not 0

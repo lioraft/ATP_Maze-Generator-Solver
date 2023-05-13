@@ -60,49 +60,57 @@ public class SimpleCompressorOutputStream extends OutputStream {
                 // if looking for zero, increment the counter
                 if (currentByte == 0) {
                     if (count == 255) { // if reached 255, we need to split
-                        if (i == b.length - 1) { // if reached the end of the maze, write the count and exit
+                        if (i == b.length - 1) { // if reached the end of the array, add the count of 0 to the arraylist
                             out.write(count);
-                            break;
                         } else {
-                            if (b[i + 1] == 0) { // if the next byte is another 0, we need to write that there are 0 1s and then continue writing
+                            // if not reached the end of the array, check next digit. if it's another 0, we need to mark 0 1s between them
+                            if (b[i + 1] == 0) {
                                 out.write(count);
                                 out.write(0);
                                 count = 1;
-                            }
-                        } // if didn't reach 255, we don't need to split
-                        count++;
-                    } else {
-                        // if found 0 and was looking for 1, write to out the count of 1, reset counter for 0 and change current byte indicator
-                        out.write(count);
-                        currentByte = 0;
-                        count = 1;
-                    }
-                } else {
-                    // if found 1 and was looking for 0, write to out the count of 0, reset counter for 1 and change current byte indicator
-                    if (currentByte == 0) {
-                        out.write(count);
-                        currentByte = 1;
-                        count = 1;
-                    } else {
-                        // if looking for 1, increment the counter
-                        if (count == 255) { // if reached 255, we need to split
-                            if (i == b.length - 1) { // if reached the end of the maze, write the count and exit
-                                out.write(count);
-                                break;
-                            } else {
-                                if (b[i + 1] == 1) { // if the next byte is another 1, we need to write that there are 0 0s and then continue writing
-                                    out.write(count);
-                                    out.write(0);
-                                    count = 1;
-                                }
+                            } else { // if it's 1, just reset counter
                                 out.write(count);
                                 count = 1;
                             }
-                            count++;
                         }
                     }
+                    else { // if normal count, just increase counter
+                        count++;
+                    }
+                } else {
+                    // if found 0 and was looking for 1, write out counter of 1, reset counter for 0 and change indicator
+                    out.write(count);
+                    currentByte = 0;
+                    count = 1;
+                }
+            } else {
+                // if looking for 1, increment the counter
+                if (currentByte == 1) {
+                    if (count == 255) { // if reached 255, we need to split
+                        if (i == b.length - 1) { // if reached the end of the array, add the count of 0 to the arraylist
+                            out.write(count);
+                        } else {
+                            // if not reached the end of the array, check next digit. if it's another 1, we need to mark 0 1s between them
+                            if (b[i + 1] == 1) {
+                                out.write(count);
+                                out.write(0);
+                                count = 1;
+                            } else { // if it's 0, just reset counter
+                                out.write(count);
+                                count = 1;
+                            }
+                        }
+                    }
+                    else { // if normal count, just increase counter
+                        count++;
+                    }
+                } else {
+                    // if found 1 and was looking for 0, write out counter of 0, reset counter for 1 and change indicator
+                    out.write(count);
+                    currentByte = 1;
+                    count = 1;
                 }
             }
         }
-    }
+        }
 }

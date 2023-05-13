@@ -68,10 +68,10 @@ public class SimpleDecompressorInputStream extends InputStream {
         }
         // finally, get the maze index
         int mazeStartIndex = bytesForEndCol + bytesForStartCol + bytesForColumns + bytesForRows;
-
-
         while (mazeStartIndex < b.length) { // as long as there are elements in the maze
+            count = b[mazeStartIndex]; // get the count
             while (count > 0) { // while the count is positive
+                // if current byte is 0, write 0 to the array b, otherwise write 1
                 tempBytesList.add((byte) currerntBit); // write the current bit to the array b
                 count--; // decrement the count
             }

@@ -3,6 +3,7 @@ package IO;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class SimpleDecompressorInputStream extends InputStream {
     private InputStream in; // the underlying input stream
@@ -37,16 +38,54 @@ public class SimpleDecompressorInputStream extends InputStream {
      */
 
     public int read(byte[] b) throws IOException {
-        int i = 0; // the index of the array b
-        while ((count = read()) != -1) { // read the count of the current byte
+        // read input stream into byte array
+        int bytes = in.read(b);
+        // create temporary bytes list that will be used to convert the maze from hexadecimal to binary
+        ArrayList<Byte> tempBytesList = new ArrayList<>();
+        // get number of bytes for rows
+        int bytesForRows = b[0] + 1;
+        // write the rows information
+        for (int i = 0; i < bytesForRows; i++) {
+            tempBytesList.add(b[i]);
+        }
+        // get number of columns bytes
+        int bytesForColumns = b[bytesForRows] + 1;
+        // write the columns information
+        for (int i = bytesForRows; i < bytesForRows + bytesForColumns; i++) {
+            tempBytesList.add(b[i]);
+        }
+        // get the start col bytes
+        int bytesForStartCol = b[bytesForColumns] + 1;
+        // write the start col information
+        for (int i = bytesForRows + bytesForColumns; i < bytesForRows + bytesForColumns + bytesForStartCol; i++) {
+            tempBytesList.add(b[i]);
+        }
+        // get the end col bytes
+        int bytesForEndCol = b[bytesForStartCol] + 1;
+        // write the end col information
+        for (int i = bytesForRows + bytesForColumns + bytesForStartCol; i < bytesForRows + bytesForColumns + bytesForStartCol + bytesForEndCol; i++) {
+            tempBytesList.add(b[i]);
+        }
+        // finally, get the maze index
+        int mazeStartIndex = bytesForEndCol + bytesForStartCol + bytesForColumns + bytesForRows;
+
+
+        while (mazeStartIndex < b.length) { // as long as there are elements in the maze
             while (count > 0) { // while the count is positive
-                b[i] = (byte) currerntBit; // write the current bit to the array b
+                tempBytesList.add((byte) currerntBit); // write the current bit to the array b
                 count--; // decrement the count
-                i++;
             }
+            mazeStartIndex++; // increment the maze index
             currerntBit = (currerntBit == 0) ? 1 : 0; // switch the current bit between 0 and 1
         }
-        return i;
+        // convert the array list to bytes array
+        byte[] newBytes = new byte[tempBytesList.size()];
+        for (int i = 0; i < tempBytesList.size(); i++) {
+            newBytes[i] = tempBytesList.get(i);
+        }
+        // set b as the new bytes array
+        System.arraycopy(newBytes, 0, b, 0, Math.min(newBytes.length, b.length)); // copy bytes back into b
+        return bytes;
     }
 
 }

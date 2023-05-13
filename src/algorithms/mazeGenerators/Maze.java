@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 public class Maze { //the maze class
@@ -16,16 +17,47 @@ public class Maze { //the maze class
 
     // constructor that takes in a byte array and creates a maze
     public Maze(byte[] maze) {
-        int rows = maze[0]; // get the number of rows
-        int columns = maze[1]; // get the number of columns
-        int startColumn = maze[2]; // get the start column
-        int goalColumn = maze[3]; // get the end column
-        this.startPosition = new Position(0, startColumn); // set the start position
-        this.goalPosition = new Position(rows - 1, goalColumn); // set the goal position
-        int[][] theMaze = new int[rows][columns]; // create a new matrix with the number of rows and columns
-        int index = 4; //set the index to 4
-        for (int i = 0; i < rows; i++) { // for each row
-            for (int j = 0; j < columns; j++) { // for each column
+        // calculate maze start index
+        int bytesForRows = maze[0] + 1;
+        // get number of rows
+        byte[] rows = new byte[maze[0]];
+        for (int i = 1; i < bytesForRows; i++) {
+            rows[i - 1] = maze[i];
+        }
+        int bytesForColumns = maze[bytesForRows] + 1;
+        // get number of columns
+        byte[] columns = new byte[maze[bytesForRows]];
+        for (int i = bytesForRows + 1; i < bytesForRows + bytesForColumns; i++) {
+            columns[i - bytesForRows - 1] = maze[i];
+        }
+        int bytesForStartCol = maze[bytesForColumns] + 1;
+        // get the start col index
+        byte[] startCol = new byte[maze[bytesForColumns]];
+        for (int i = bytesForRows + bytesForColumns + 1; i < bytesForRows + bytesForColumns + bytesForStartCol; i++) {
+            startCol[i - bytesForRows - bytesForColumns - 1] = maze[i];
+        }
+        int bytesForEndCol = maze[bytesForStartCol] + 1;
+        // get the end index
+        byte[] endCol = new byte[maze[bytesForStartCol]];
+        for (int i = bytesForRows + bytesForColumns + bytesForStartCol + 1; i < bytesForRows + bytesForColumns + bytesForStartCol + bytesForEndCol; i++) {
+            endCol[i - bytesForRows - bytesForColumns - bytesForStartCol - 1] = maze[i];
+        }
+        int mazeStartIndex = bytesForEndCol + bytesForStartCol + bytesForColumns + bytesForRows;
+        // now convert the bytes to integers
+        ByteBuffer buffer = ByteBuffer.wrap(rows); // wrap the bytes array with buffer
+        int rowsNum = buffer.getInt(); // get the number of rows
+        buffer = ByteBuffer.wrap(columns); // wrap the bytes array with buffer
+        int columnsNum = buffer.getInt(); // get the number of columns
+        buffer = ByteBuffer.wrap(startCol); // wrap the bytes array with buffer
+        int startColumnNumber = buffer.getInt(); // get the start column
+        buffer = ByteBuffer.wrap(endCol); // wrap the bytes array with buffer
+        int goalColumnNumber = buffer.getInt(); // get the end column
+        this.startPosition = new Position(0, startColumnNumber); // set the start position
+        this.goalPosition = new Position(rowsNum, goalColumnNumber); // set the goal position
+        int[][] theMaze = new int[rowsNum][columnsNum]; // create a new matrix with the number of rows and columns
+        int index = mazeStartIndex; //set the index to maze start index
+        for (int i = 0; i < rowsNum; i++) { // for each row
+            for (int j = 0; j < columnsNum; j++) { // for each column
                 theMaze[i][j] = maze[index]; // set the value of the cell in the matrix to the value in the byte array
                 index++; // increase the index
             }

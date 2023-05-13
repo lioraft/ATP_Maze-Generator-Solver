@@ -4,18 +4,23 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class MyCompressorOutputStream extends OutputStream {
-    OutputStream out;
+    OutputStream out; // output stream object
 
+    // constructor
     public MyCompressorOutputStream(OutputStream out) {
         this.out = out;
     }
 
 
-    // function that takes an integer and converts it to a byte array
+    // function that takes an integer and writes it to the output stream as a binary number
     @Override
-    public void write(int b) {
-        // TODO Auto-generated method stub
-
+    public void write(int b) throws IOException {
+        // convert int to string
+        String binary = Integer.toBinaryString(b);
+        // write out the string
+        for (int i = 0; i < binary.length(); i++) {
+            out.write((byte) binary.charAt(i));
+        }
     }
 
     // the compression method we chose is hexadecimal conversion - we convert 4 bits to a hexadecimal number,
@@ -51,32 +56,21 @@ public class MyCompressorOutputStream extends OutputStream {
         // from this index on, this is the maze. therefore, we are going to convert every 4 bits to hexadecimal
         for (int i = mazeStartIndex; i < b.length; i=i+4) {
             // convert 4 bits to hexadecimal
-            String hex = "";
+            StringBuilder hex = new StringBuilder();
             for (int j = 0; j < 4; j++) {
-                hex += b[i + j];
+                hex.append(b[i + j]);
             }
-            // convert the hexadecimal to a byte
-            byte byteToWrite = (byte) Integer.parseInt(hex, 2);
-            // write the byte
-            out.write(byteToWrite);
+            // convert to decimal
+            int decimal = Integer.parseInt(hex.toString(), 2);
+            // convert decimal to hexadecimal
+            String hexNumber = Integer.toHexString(decimal);
+            // convert to byte array
+            for (int j = 0; j < hexNumber.length(); j++) {
+                // convert to byte
+                byte byteToWrite = (byte) hexNumber.charAt(j);
+                // write the byte
+                out.write(byteToWrite);
+            }
         }
-    }
-
-    @Override
-    public void write(byte[] b, int off, int len) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void flush() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void close() {
-        // TODO Auto-generated method stub
-
     }
 }

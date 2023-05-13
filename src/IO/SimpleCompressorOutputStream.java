@@ -9,13 +9,11 @@ public class SimpleCompressorOutputStream extends OutputStream {
     private int count; // the number of occurrences of the current byte
 
 
-
     /**
-     * @param out
-     * The SimpleCompressorOutputStream class extends the OutputStream class.
-     * It is used to compress a maze into a byte array.
-     * The compression is done by counting the number of occurrences of each byte value in a row.
-     * The compressed maze is written to the underlying output stream.
+     * @param out The SimpleCompressorOutputStream class extends the OutputStream class.
+     *            It is used to compress a maze into a byte array.
+     *            The compression is done by counting the number of occurrences of each byte value in a row.
+     *            The compressed maze is written to the underlying output stream.
      */
 
     public SimpleCompressorOutputStream(OutputStream out) {
@@ -24,45 +22,87 @@ public class SimpleCompressorOutputStream extends OutputStream {
         this.count = 0; // the number of occurrences of the current byte
     }
 
-    /**
-     *
-     * The write method is overridden from the OutputStream class. It writes a single byte to the output stream.
-     * If the byte b is different from the current byte, it means a new byte is encountered.
-     * In that case, it writes the count of the previous byte occurrences to the output stream, sets the current byte to b, and resets the count to 1.
-     * If the byte b is the same as the current byte, it increments the count. If the count reaches 255 (the maximum value for a byte),
-     * it writes the count to the output stream and resets it to 0.
-     */
+    // method that writes a single byte to the underlying output stream
     public void write(int b) throws IOException {
-        try {
-            if (b != currentByte) { // if the byte value is different from the current byte
-                out.write((byte) count); // write the number of occurrences of the current byte
-                currentByte = b; // update the current byte
-                count = 1; // reset the number of occurrences of the current byte
-            } else {
-                count++; // increment the number of occurrences of the current byte
-                if (count == 255) { // if the number of occurrences of the current byte is 255
-                    out.write((byte) count); // write the number of occurrences of the current byte
-                    count = 0; // reset the number of occurrences of the current byte
+        out.write(b);
+    }
+
+    public void write(byte[] b) throws IOException { // write the compressed maze to the underlying output stream
+        // get number of bytes for rows
+        int bytesForRows = b[0] + 1;
+        // write the rows information
+        for (int i = 0; i < bytesForRows; i++) {
+            out.write(b[i]);
+        }
+        // get number of columns bytes
+        int bytesForColumns = b[bytesForRows] + 1;
+        // write the columns information
+        for (int i = bytesForRows; i < bytesForRows + bytesForColumns; i++) {
+            out.write(b[i]);
+        }
+        // get the start col bytes
+        int bytesForStartCol = b[bytesForColumns] + 1;
+        // write the start col information
+        for (int i = bytesForRows + bytesForColumns; i < bytesForRows + bytesForColumns + bytesForStartCol; i++) {
+            out.write(b[i]);
+        }
+        // get the end col bytes
+        int bytesForEndCol = b[bytesForStartCol] + 1;
+        // write the end col information
+        for (int i = bytesForRows + bytesForColumns + bytesForStartCol; i < bytesForRows + bytesForColumns + bytesForStartCol + bytesForEndCol; i++) {
+            out.write(b[i]);
+        }
+        // finally, get the maze index
+        int mazeStartIndex = bytesForEndCol + bytesForStartCol + bytesForColumns + bytesForRows;
+        // iterate the maze, count frequencies and write to the output stream
+        for (int i = mazeStartIndex; i < b.length; i++) {
+            if (b[i] == 0) {
+                // if looking for zero, increment the counter
+                if (currentByte == 0) {
+                    if (count == 255) { // if reached 255, we need to split
+                        if (i == b.length - 1) { // if reached the end of the maze, write the count and exit
+                            out.write(count);
+                            break;
+                        } else {
+                            if (b[i + 1] == 0) { // if the next byte is another 0, we need to write that there are 0 1s and then continue writing
+                                out.write(count);
+                                out.write(0);
+                                count = 1;
+                            }
+                        } // if didn't reach 255, we don't need to split
+                        count++;
+                    } else {
+                        // if found 0 and was looking for 1, write to out the count of 1, reset counter for 0 and change current byte indicator
+                        out.write(count);
+                        currentByte = 0;
+                        count = 1;
+                    }
+                } else {
+                    // if found 1 and was looking for 0, write to out the count of 0, reset counter for 1 and change current byte indicator
+                    if (currentByte == 0) {
+                        out.write(count);
+                        currentByte = 1;
+                        count = 1;
+                    } else {
+                        // if looking for 1, increment the counter
+                        if (count == 255) { // if reached 255, we need to split
+                            if (i == b.length - 1) { // if reached the end of the maze, write the count and exit
+                                out.write(count);
+                                break;
+                            } else {
+                                if (b[i + 1] == 1) { // if the next byte is another 1, we need to write that there are 0 0s and then continue writing
+                                    out.write(count);
+                                    out.write(0);
+                                    count = 1;
+                                }
+                                out.write(count);
+                                count = 1;
+                            }
+                            count++;
+                        }
+                    }
                 }
             }
-        } catch (IOException e) {}
-    }
-
-    public void write(byte [] b) { // write the compressed maze to the underlying output stream
-        try {
-            for(int i = 0; i < b.length; i++){ // write the maze
-                write(b[i]); // write the byte
-            }
-            if(count !=0){ // if the number of occurrences of the current byte is not 0
-                out.write(count); // write the number of occurrences of the current byte
-            }
-        } catch (IOException e) {}
+        }
     }
 }
-
-/**
- * By processing one byte at a time, the method (write(int b)) can keep track of the current byte being processed and count the number of occurrences of that byte in a row.
- * This allows for efficient compression by storing the count of consecutive occurrences instead of repeating the same byte multiple times.
- * The write(byte[] b) method is responsible for writing the compressed maze to the output stream. It iterates over the byte array representing the maze and calls the
- * write(int b) method for each byte. This ensures that the compression logic is applied to each byte in the maze individually, resulting in an optimized compressed representation.
- */

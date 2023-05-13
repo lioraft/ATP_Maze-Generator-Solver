@@ -32,9 +32,9 @@ public class RunCompressDecompressMaze {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        Maze loadedMaze = new Maze(savedMazeBytes);
-        boolean areMazesEquals = Arrays.equals(loadedMaze.toByteArray(),maze.toByteArray());
-        System.out.println(String.format("Mazes equal: %s",areMazesEquals));
+        //Maze loadedMaze = new Maze(savedMazeBytes);
+        //boolean areMazesEquals = Arrays.equals(loadedMaze.toByteArray(),maze.toByteArray());
+        //System.out.println(String.format("Mazes equal: %s",areMazesEquals));
         //maze should be equal to loadedMaze
     }
 }

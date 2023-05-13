@@ -3,19 +3,35 @@ package IO;
 import java.io.Serializable;
 
 // a serializable class that represents a huffman node
-public class HuffmanNode implements Serializable {
-    byte freqCounter; // the frequency in
-    byte flag; // represents if it's a sequence of 0 and 1
+public class HuffmanNode implements Serializable, Comparable<HuffmanNode> {
+    int freqCounter; // the frequency counter of the node
+    byte flag; // represents if it's a sequence of 0 and 1. if it's a combined node, will be marked as '\0'
     byte length; // the length of the sequence
     HuffmanNode left;
     HuffmanNode right;
 
     public HuffmanNode(int freqCounter, byte flag, byte length) {
-        this.freqCounter = (byte)freqCounter;
+        this.freqCounter = freqCounter;
         this.flag = flag;
         this.length = length;
         this.left = null;
         this.right = null;
+    }
+
+    // compare two nodes by their frequency counter.
+    // if the frequency counter of this node is bigger than the other node, returns a positive number.
+    // if the frequency counter of this node is smaller than the other node, returns a negative number.
+    @Override
+    public int compareTo(HuffmanNode other) {
+        return this.freqCounter - other.freqCounter;
+    }
+
+    // function that returns if the node is leaf
+    public boolean isLeaf() {
+        if (this.left == null && this.right == null) {
+            return true;
+        }
+        return false;
     }
 
     // getter of flag
@@ -29,12 +45,12 @@ public class HuffmanNode implements Serializable {
     }
 
     // getter of frequency counter
-    public byte getFreqCounter() {
+    public int getFreqCounter() {
         return freqCounter;
     }
 
     // setter of frequency counter
-    public void setFreqCounter(byte freqCounter) {
+    public void setFreqCounter(int freqCounter) {
         this.freqCounter = freqCounter;
     }
 

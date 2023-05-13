@@ -75,7 +75,7 @@ public class MyDecompressorInputStream extends InputStream {
             newBytes[i] = tempBytesList.get(i);
         }
         // set b as the new bytes array
-        System.arraycopy(newBytes, 0, b, 0, newBytes.length); // copy bytes back into b
+        System.arraycopy(newBytes, 0, b, 0, Math.min(newBytes.length, b.length)); // copy bytes back into b
         return bytes;
     }
 }

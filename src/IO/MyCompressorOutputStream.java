@@ -63,7 +63,10 @@ public class MyCompressorOutputStream extends OutputStream {
             // convert 4 bits to binary string
             StringBuilder binary = new StringBuilder();
             for (int j = 0; j < 4; j++) {
+                if (i + j < b.length)
                     binary.append(b[i + j]);
+                else
+                    binary.append(0);
             }
             // convert to decimal
             int decimal = Integer.parseInt(binary.toString(), 2);

@@ -162,7 +162,7 @@ public class Maze { //the maze class
         // for end column
         int endColByte = (byte)goalPosition.getColumnIndex();
         if (endColByte < 256)
-            byteList.add((byte)endColByte);
+            byteList.add((byte)1);
         else {
             if (endColByte % 256 != 0) { // adding extra byte if necessary
                 byteList.add((byte)(1 + endColByte / 256));

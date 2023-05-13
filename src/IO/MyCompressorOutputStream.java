@@ -45,6 +45,7 @@ public class MyCompressorOutputStream extends OutputStream {
                     } else {
                         // if found 0 and was looking for 1, add the count of 1 to the arraylist, reset counter for 0 and change indicator
                         freqArrays.get(1).add(curCount);
+                        freqArrays.get(2).add(curCount);
                         isLookingForZero = true;
                         curCount = 1;
                     }
@@ -52,6 +53,7 @@ public class MyCompressorOutputStream extends OutputStream {
                     // if found 1 and was looking for 0, add the count of 0 to the arraylist, reset counter for 1 and change indicator
                     if (isLookingForZero) {
                         freqArrays.get(0).add(curCount);
+                        freqArrays.get(2).add(curCount);
                         isLookingForZero = false;
                         curCount = 1;
                     } else {

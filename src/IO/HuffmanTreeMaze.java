@@ -68,6 +68,8 @@ public class HuffmanTreeMaze implements Serializable {
         ArrayList<Byte> huffCode = new ArrayList<Byte>();
         // get current node
         HuffmanNode currentNode = this.root;
+        // make tree rules map
+        traverse(currentNode, huffCode);
         // create the bytes arraylist
         for (Integer currentFreq : freqMaze) {
                 byte length = (byte)(int)currentFreq;

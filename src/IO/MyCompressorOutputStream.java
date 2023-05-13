@@ -1,5 +1,6 @@
 package IO;
 
+import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -15,12 +16,16 @@ public class MyCompressorOutputStream extends OutputStream {
     // function that takes an integer and writes it to the output stream as a binary number
     @Override
     public void write(int b) throws IOException {
-        // convert int to string
+        out.write(b);
+
+        /* still not sure how to use
+                // convert int to string
         String binary = Integer.toBinaryString(b);
         // write out the string
         for (int i = 0; i < binary.length(); i++) {
             out.write((byte) binary.charAt(i));
         }
+         */
     }
 
     // the compression method we chose is hexadecimal conversion - we convert 4 bits to a hexadecimal number,
@@ -55,21 +60,19 @@ public class MyCompressorOutputStream extends OutputStream {
         int mazeStartIndex = bytesForEndCol + bytesForStartCol + bytesForColumns + bytesForRows;
         // from this index on, this is the maze. therefore, we are going to convert every 4 bits to hexadecimal
         for (int i = mazeStartIndex; i < b.length; i=i+4) {
-            // convert 4 bits to hexadecimal
-            StringBuilder hex = new StringBuilder();
+            // convert 4 bits to binary string
+            StringBuilder binary = new StringBuilder();
             for (int j = 0; j < 4; j++) {
-                hex.append(b[i + j]);
+                    binary.append(b[i + j]);
             }
             // convert to decimal
-            int decimal = Integer.parseInt(hex.toString(), 2);
-            // convert decimal to hexadecimal
-            String hexNumber = Integer.toHexString(decimal);
-            // convert to byte array
-            for (int j = 0; j < hexNumber.length(); j++) {
-                // convert to byte
-                byte byteToWrite = (byte) hexNumber.charAt(j);
-                // write the byte
-                out.write(byteToWrite);
+            int decimal = Integer.parseInt(binary.toString(), 2);
+            // convert to hexadecimal
+            String hex = Integer.toHexString(decimal);
+            // write to output stream
+            for (int j = 0; j < hex.length(); j++) {
+                byte curByte = (byte) hex.charAt(j);
+                out.write(curByte);
             }
         }
     }

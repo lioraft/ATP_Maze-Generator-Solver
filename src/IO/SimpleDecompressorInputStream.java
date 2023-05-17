@@ -79,7 +79,10 @@ public class SimpleDecompressorInputStream extends InputStream {
                 count--; // decrement the count
             }
             mazeStartIndex++; // increment the maze index
-            currentBit = (currentBit == 0) ? 1 : 0; // switch the current bit between 0 and 1
+            if (currentBit == 0)
+                currentBit = 1;
+            else
+                currentBit = 0;
         }
         // convert the array list to bytes array
         byte[] newBytes = new byte[tempBytesList.size()];

@@ -155,7 +155,7 @@ public class Maze { //the maze class
             }
         }
         // add the number of rows to the byte array
-        while (rows >= 255) {
+        while (rows > 255) {
             byteList.add((byte)-128);
             rows = rows - 255;
         }
@@ -183,7 +183,7 @@ public class Maze { //the maze class
             }
         }
         // add the number of columns to the byte array
-        while (cols >= 255) {
+        while (cols > 255) {
             byteList.add((byte)-128);
             cols = cols - 255;
         }
@@ -210,7 +210,7 @@ public class Maze { //the maze class
             }
         }
         // add the start column index to the byte array
-        while (startColByte >= 255) {
+        while (startColByte > 255) {
             byteList.add((byte)-128);
             startColByte = startColByte - 255;
         }
@@ -236,7 +236,7 @@ public class Maze { //the maze class
             }
         }
         // add the end column index to the byte array
-        while (endColByte >= 255) {
+        while (endColByte > 255) {
             byteList.add((byte)-128);
             endColByte = endColByte - 255;
         }

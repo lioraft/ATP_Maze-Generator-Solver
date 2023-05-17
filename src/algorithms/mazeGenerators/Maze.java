@@ -16,9 +16,9 @@ public class Maze { //the maze class
         this.theMaze = maze; //set the matrix
     }
 
-    // TO DO: FIX constructor that takes in a byte array and creates a maze
+    // constructor that takes in a byte array and creates a maze
     public Maze(byte[] maze) {
-        // calculate maze start index
+        // calculate maze indexes
         int bytesForRows = maze[0] + 1;
         // get number of rows
         int rowsNum = 0;
@@ -43,7 +43,7 @@ public class Maze { //the maze class
             else
                 columnsNum+= maze[i]; // if positive, add as is
         }
-        int bytesForStartCol = maze[bytesForColumns] + 1;
+        int bytesForStartCol = maze[bytesForColumns+bytesForRows] + 1;
         // get the start col index
         int startColumnNumber = 0;
         for (int i = bytesForRows + bytesForColumns + 1; i < bytesForRows + bytesForColumns + bytesForStartCol; i++) {
@@ -55,7 +55,7 @@ public class Maze { //the maze class
             else
                 startColumnNumber+= maze[i]; // if positive, add as is
         }
-        int bytesForEndCol = maze[bytesForStartCol] + 1;
+        int bytesForEndCol = maze[bytesForStartCol+bytesForColumns+bytesForRows] + 1;
         // get the end index
         int goalColumnNumber = 0;
         for (int i = bytesForRows + bytesForColumns + bytesForStartCol + 1; i < bytesForRows + bytesForColumns + bytesForStartCol + bytesForEndCol; i++) {
@@ -155,7 +155,7 @@ public class Maze { //the maze class
             }
         }
         // add the number of rows to the byte array
-        while (rows > 255) {
+        while (rows >= 255) {
             byteList.add((byte)-128);
             rows = rows - 255;
         }
@@ -183,7 +183,7 @@ public class Maze { //the maze class
             }
         }
         // add the number of columns to the byte array
-        while (cols > 255) {
+        while (cols >= 255) {
             byteList.add((byte)-128);
             cols = cols - 255;
         }
@@ -210,7 +210,7 @@ public class Maze { //the maze class
             }
         }
         // add the start column index to the byte array
-        while (startColByte > 255) {
+        while (startColByte >= 255) {
             byteList.add((byte)-128);
             startColByte = startColByte - 255;
         }
@@ -224,19 +224,19 @@ public class Maze { //the maze class
         }
 
         // for end column
-        int endColByte = (byte)goalPosition.getColumnIndex();
+        int endColByte = goalPosition.getColumnIndex();
         if (endColByte < 256)
             byteList.add((byte)1);
         else {
             if (endColByte % 256 != 0) { // adding extra byte if necessary
-                byteList.add((byte)(1 + endColByte / 256));
+                byteList.add((byte)(1 + endColByte / 255));
             }
             else { // not adding extra byte if result is a natural number
-                byteList.add((byte)(endColByte / 256));
+                byteList.add((byte)(endColByte / 255));
             }
         }
         // add the end column index to the byte array
-        while (endColByte > 256) {
+        while (endColByte >= 255) {
             byteList.add((byte)-128);
             endColByte = endColByte - 255;
         }
@@ -248,8 +248,8 @@ public class Maze { //the maze class
             byteList.add((byte)endColByte);
         }
         // iterate the 2d array and convert each cell to a byte and add to array of bytes
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < theMaze.length; i++) {
+            for (int j = 0; j < theMaze[0].length; j++) {
                 if (theMaze[i][j] == 0)
                     byteList.add((byte)0);
                 else

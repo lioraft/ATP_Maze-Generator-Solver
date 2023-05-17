@@ -55,13 +55,13 @@ public class SimpleDecompressorInputStream extends InputStream {
             tempBytesList.add(b[i]);
         }
         // get the start col bytes
-        int bytesForStartCol = b[bytesForColumns] + 1;
+        int bytesForStartCol = b[bytesForColumns+bytesForRows] + 1;
         // write the start col information
         for (int i = bytesForRows + bytesForColumns; i < bytesForRows + bytesForColumns + bytesForStartCol; i++) {
             tempBytesList.add(b[i]);
         }
         // get the end col bytes
-        int bytesForEndCol = b[bytesForStartCol] + 1;
+        int bytesForEndCol = b[bytesForStartCol+bytesForColumns+bytesForRows] + 1;
         // write the end col information
         for (int i = bytesForRows + bytesForColumns + bytesForStartCol; i < bytesForRows + bytesForColumns + bytesForStartCol + bytesForEndCol; i++) {
             tempBytesList.add(b[i]);
@@ -70,6 +70,9 @@ public class SimpleDecompressorInputStream extends InputStream {
         int mazeStartIndex = bytesForEndCol + bytesForStartCol + bytesForColumns + bytesForRows;
         while (mazeStartIndex < b.length) { // as long as there are elements in the maze
             count = b[mazeStartIndex]; // get the count
+            if (count < 0) {
+                count = 127 - count;
+            }
             while (count > 0) { // while the count is positive
                 // if current byte is 0, write 0 to the array b, otherwise write 1
                 tempBytesList.add((byte) currerntBit); // write the current bit to the array b

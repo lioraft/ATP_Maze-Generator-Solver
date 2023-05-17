@@ -21,7 +21,7 @@ public class compareObjectSize {
         // testing simpleCompressorOutputStream and simpleDecompressorInputStream
         String mazeFileName = "savedMaze.maze";
         AMazeGenerator mazeGenerator = new MyMazeGenerator();
-            Maze maze = mazeGenerator.generate(256, 256); // Generate new maze
+            Maze maze = mazeGenerator.generate(300, 1000); // Generate new maze
         try {
             // save maze to a file
             OutputStream simpleOut = new SimpleCompressorOutputStream(new FileOutputStream(mazeFileName));
@@ -47,6 +47,16 @@ public class compareObjectSize {
                 Arrays.equals(simpleLoadedMaze.toByteArray(), maze.toByteArray());
         System.out.println(String.format("SimpleCompressor: Mazes equal: %s", areMazesEquals));
         //maze should be equal to simpleLoadedMaze
+        if (!areMazesEquals) {
+            int[][] originalMazeArr = maze.getMaze();
+            int[][] loadedMazeArr = simpleLoadedMaze.getMaze();
+            for (int i = 0; i < originalMazeArr.length; i++) {
+                for (int j = 0; j < originalMazeArr[i].length; j++) {
+                    if (originalMazeArr[i][j] != loadedMazeArr[i][j])
+                        System.out.println("i: " + i + " j: " + j + " original: " + originalMazeArr[i][j] + ", loaded: " + loadedMazeArr[i][j]);
+                }
+            }
+        }
 
         // testing sizes of objects
         long size = ObjectSizeCalculator.getObjectSize(maze);
@@ -92,6 +102,17 @@ public class compareObjectSize {
                 Arrays.equals(loadedMaze.toByteArray(), maze.toByteArray());
         System.out.println(String.format("MyCompressor: Mazes equal: %s", areMazesEquals));
         //maze should be equal to loadedMaze
+
+        if (!areMazesEquals) {
+            int[][] originalMazeArr = maze.getMaze();
+            int[][] loadedMazeArr = loadedMaze.getMaze();
+            for (int i = 0; i < originalMazeArr.length; i++) {
+                for (int j = 0; j < originalMazeArr[i].length; j++) {
+                    if (originalMazeArr[i][j] != loadedMazeArr[i][j])
+                        System.out.println("i: " + i + " j: " + j + " original: " + originalMazeArr[i][j] + ", loaded: " + loadedMazeArr[i][j]);
+                }
+            }
+        }
 
         // testing sizes of objects
         // get size of maze in file

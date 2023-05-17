@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class SimpleDecompressorInputStream extends InputStream {
     private InputStream in; // the underlying input stream
-    int currerntBit; // the current bit
+    int currentBit; // the current bit
     int count; // the current count
 
     public SimpleDecompressorInputStream(InputStream in) {
         this.in = in; // the underlying input stream
-        currerntBit = 0;
+        currentBit = 0;
         count = 0;
     }
 
@@ -75,11 +75,11 @@ public class SimpleDecompressorInputStream extends InputStream {
             }
             while (count > 0) { // while the count is positive
                 // if current byte is 0, write 0 to the array b, otherwise write 1
-                tempBytesList.add((byte) currerntBit); // write the current bit to the array b
+                tempBytesList.add((byte) currentBit); // write the current bit to the array b
                 count--; // decrement the count
             }
             mazeStartIndex++; // increment the maze index
-            currerntBit = (currerntBit == 0) ? 1 : 0; // switch the current bit between 0 and 1
+            currentBit = (currentBit == 0) ? 1 : 0; // switch the current bit between 0 and 1
         }
         // convert the array list to bytes array
         byte[] newBytes = new byte[tempBytesList.size()];

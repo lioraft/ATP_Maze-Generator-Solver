@@ -45,13 +45,13 @@ public class MyCompressorOutputStream extends OutputStream {
             out.write(b[i]);
         }
         // get the start col bytes
-        int bytesForStartCol = b[bytesForColumns] + 1;
+        int bytesForStartCol = b[bytesForColumns+bytesForRows] + 1;
         // write the start col information
         for (int i = bytesForRows + bytesForColumns; i < bytesForRows + bytesForColumns + bytesForStartCol; i++) {
             out.write(b[i]);
         }
         // get the end col bytes
-        int bytesForEndCol = b[bytesForStartCol] + 1;
+        int bytesForEndCol = b[bytesForStartCol+bytesForColumns+bytesForRows] + 1;
         // write the end col information
         for (int i = bytesForRows + bytesForColumns + bytesForStartCol; i < bytesForRows + bytesForColumns + bytesForStartCol + bytesForEndCol; i++) {
             out.write(b[i]);

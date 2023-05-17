@@ -72,7 +72,7 @@ public class SimpleCompressorOutputStream extends OutputStream {
                                     out.write(count);
                                 }
                                 out.write(0);
-                                count = 1;
+                                count = 0;
                             } else { // if it's 1, just reset counter
                                 if (count > 127) {
                                     out.write(127-count);
@@ -80,7 +80,7 @@ public class SimpleCompressorOutputStream extends OutputStream {
                                 else {
                                     out.write(count);
                                 }
-                                count = 1;
+                                count = 0;
                             }
                         }
                     }
@@ -114,7 +114,7 @@ public class SimpleCompressorOutputStream extends OutputStream {
                                     out.write(count);
                                 }
                                 out.write(0);
-                                count = 1;
+                                count = 0;
                             } else { // if it's 0, just reset counter
                                 if (count > 127) {
                                     out.write(127-count);
@@ -122,7 +122,7 @@ public class SimpleCompressorOutputStream extends OutputStream {
                                 else {
                                     out.write(count);
                                 }
-                                count = 1;
+                                count = 0;
                             }
                         }
                     }

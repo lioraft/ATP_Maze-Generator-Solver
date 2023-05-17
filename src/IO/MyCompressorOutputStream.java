@@ -17,15 +17,6 @@ public class MyCompressorOutputStream extends OutputStream {
     @Override
     public void write(int b) throws IOException {
         out.write(b);
-
-        /* still not sure how to use
-                // convert int to string
-        String binary = Integer.toBinaryString(b);
-        // write out the string
-        for (int i = 0; i < binary.length(); i++) {
-            out.write((byte) binary.charAt(i));
-        }
-         */
     }
 
     // the compression method we chose is hexadecimal conversion - we convert 4 bits to a hexadecimal number,

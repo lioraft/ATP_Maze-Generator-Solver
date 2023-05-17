@@ -61,39 +61,36 @@ public class SimpleCompressorOutputStream extends OutputStream {
                 if (currentByte == 0) {
                     if (count == 255) { // if reached 255, we need to split
                         if (i == b.length - 1) { // if reached the end of the array, add the count of 0 to the arraylist
-                            out.write(-128);
+                            out.write((byte)-128);
                         } else {
                             // if not reached the end of the array, check next digit. if it's another 0, we need to mark 0 1s between them
+                                if (count > 127) {
+                                    out.write((byte)(127-count));
+                                }
+                                else {
+                                    out.write((byte)count);
+                                }
                             if (b[i + 1] == 0) {
-                                if (count > 127) {
-                                    out.write(127-count);
-                                }
-                                else {
-                                    out.write(count);
-                                }
-                                out.write(0);
-                                count = 0;
-                            } else { // if it's 1, just reset counter
-                                if (count > 127) {
-                                    out.write(127-count);
-                                }
-                                else {
-                                    out.write(count);
-                                }
+                                out.write((byte)0);
+                            }
+                            else {
+                                // if there is 1, change the indicator
+                                currentByte = 1;
+                            }
+                            // reset the counter
                                 count = 0;
                             }
                         }
-                    }
                     else { // if normal count, just increase counter
                         count++;
                     }
                 } else {
                     // if found 0 and was looking for 1, write out counter of 1, reset counter for 0 and change indicator
                     if (count > 127) {
-                        out.write(127-count);
+                        out.write((byte)(127-count));
                     }
                     else {
-                        out.write(count);
+                        out.write((byte)count);
                     }
                     currentByte = 0;
                     count = 1;
@@ -103,27 +100,23 @@ public class SimpleCompressorOutputStream extends OutputStream {
                 if (currentByte == 1) {
                     if (count == 255) { // if reached 255, we need to split
                         if (i == b.length - 1) { // if reached the end of the array, add the count of 0 to the arraylist
-                            out.write(-128);
+                            out.write((byte)-128);
                         } else {
                             // if not reached the end of the array, check next digit. if it's another 1, we need to mark 0 1s between them
+                                if (count > 127) {
+                                    out.write((byte)(127-count));
+                                }
+                                else {
+                                    out.write((byte)count);
+                                }
                             if (b[i + 1] == 1) {
-                                if (count > 127) {
-                                    out.write(127-count);
-                                }
-                                else {
-                                    out.write(count);
-                                }
                                 out.write(0);
-                                count = 0;
-                            } else { // if it's 0, just reset counter
-                                if (count > 127) {
-                                    out.write(127-count);
-                                }
-                                else {
-                                    out.write(count);
-                                }
-                                count = 0;
+                            } else {
+                                // if there is 0, change the indicator
+                                currentByte = 0;
                             }
+                            // reset the counter
+                            count = 0;
                         }
                     }
                     else { // if normal count, just increase counter
@@ -132,10 +125,10 @@ public class SimpleCompressorOutputStream extends OutputStream {
                 } else {
                     // if found 1 and was looking for 0, write out counter of 0, reset counter for 1 and change indicator
                     if (count > 127) {
-                        out.write(127-count);
+                        out.write((byte)(127-count));
                     }
                     else {
-                        out.write(count);
+                        out.write((byte)count);
                     }
                     currentByte = 1;
                     count = 1;

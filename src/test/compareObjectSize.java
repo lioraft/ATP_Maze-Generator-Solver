@@ -21,7 +21,7 @@ public class compareObjectSize {
         // testing simpleCompressorOutputStream and simpleDecompressorInputStream
         String mazeFileName = "savedMaze.maze";
         AMazeGenerator mazeGenerator = new MyMazeGenerator();
-        Maze maze = mazeGenerator.generate(256, 256); //Generate new maze
+            Maze maze = mazeGenerator.generate(256, 256); // Generate new maze
         try {
             // save maze to a file
             OutputStream simpleOut = new SimpleCompressorOutputStream(new FileOutputStream(mazeFileName));

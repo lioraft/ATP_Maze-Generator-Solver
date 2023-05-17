@@ -64,7 +64,7 @@ public class MyDecompressorInputStream extends InputStream {
                 for (int k = 0; k < binary.length(); k++) {
                     if (binary.charAt(k) == '0') {
                         tempBytesList.add((byte) 0);
-                    } else {
+                    } else if (binary.charAt(k) == '1'){
                         tempBytesList.add((byte) 1);
                     }
                 }

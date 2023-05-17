@@ -1,5 +1,10 @@
 package algorithms.maze3D;
 
+/**
+ * The maze is a 3D maze, which means that it has depth, rows and columns.
+ * The maze is represented by a matrix of 0's and 1's, where 0's are passages and 1's are walls.
+ * The maze has a start position and a goal position.
+ */
 public class Maze3D {
     private Position3D startPosition; //the start position
     private Position3D goalPosition; //the goal position

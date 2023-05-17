@@ -2,8 +2,14 @@ package IO;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigInteger;
 import java.util.ArrayList;
+
+/**
+ *  MyDecompressorInputStream class extends the InputStream class.
+ *  It is used to decompress a maze from a byte array.
+ *  The decompression is done by converting every hexadecimal value to its binary representation.
+ *  The decompressed maze is read from the underlying input stream.
+ */
 
 public class MyDecompressorInputStream extends InputStream {
     InputStream in; // input stream object
@@ -13,11 +19,13 @@ public class MyDecompressorInputStream extends InputStream {
         this.in = in;
     }
 
+    // read method override
     @Override
     public int read() throws IOException {
         return in.read();
     }
 
+    // function that takes in array of bytes, reads the maze from the input stream and decompresses it into a byte array
     @Override
     public int read(byte[] b) throws IOException {
         // read input stream into byte array
@@ -70,11 +78,12 @@ public class MyDecompressorInputStream extends InputStream {
                 }
             }
         }
+        // copy all values from arraylist to a new byte array
         byte[] newBytes = new byte[tempBytesList.size()];
         for (int i = 0; i < tempBytesList.size(); i++) {
             newBytes[i] = tempBytesList.get(i);
         }
-        // set b as the new bytes array
+        // set b as the new bytes array and return the number of bytes read
         System.arraycopy(newBytes, 0, b, 0, Math.min(newBytes.length, b.length)); // copy bytes back into b
         return bytes;
     }

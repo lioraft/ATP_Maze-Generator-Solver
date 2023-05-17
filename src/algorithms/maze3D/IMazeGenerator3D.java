@@ -1,7 +1,9 @@
 package algorithms.maze3D;
 
+/**
+ * This interface represents the methods that should be implemented for 3D maze generators.
+ */
 public interface IMazeGenerator3D {
-    // this interface represents the methods that should be implemented for 3D maze generators
 
     // generate a 3D maze
     public Maze3D generate(int depth, int row, int column);

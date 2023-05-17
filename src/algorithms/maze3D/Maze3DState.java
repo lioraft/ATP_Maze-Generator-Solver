@@ -3,6 +3,11 @@ import algorithms.search.AState;
 
 import java.util.Objects;
 
+/**
+ * This class represents a state in a 3D maze.
+ * The state is represented by a position in the maze.
+ * The class extends AState.
+ */
 public class Maze3DState extends AState {
     Position3D position;
     public Maze3DState(Position3D pos, int cost, Maze3DState cameFrom) {//constructor

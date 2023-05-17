@@ -2,6 +2,9 @@ package algorithms.maze3D;
 
 import java.util.Random;
 
+/**
+ * This class represents a maze generator that generates a 3D maze using the algorithm of the 2D maze generator.
+ */
 public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     // this algorithm modifies the algorithm of the generating algorithm of 2D maze by adding another

@@ -3,14 +3,23 @@ package algorithms.search;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * The class represents a solution to a problem.
+ * the class will have a function that gets a goal state and returns the path from the start
+ * state to the goal state.
+ */
 public class Solution implements Serializable { //the class represents a solution to a problem.
     // the class will have a function that gets a goal state and returns the path from the start
     // state to the goal state.
     ArrayList<AState> path; //the path from the start state to the goal state.
+
     Solution(AState Goal){ //the constructor gets a goal state and creates the path from the start state to the goal state.
         path = CreateAPath(Goal);
     }
-    public ArrayList<AState> CreateAPath(AState Goal){ //the function gets a goal state and returns the path from the start state to the goal state.
+
+
+    //the function gets a goal state and returns the path from the start state to the goal state.
+    public ArrayList<AState> CreateAPath(AState Goal){
         // if null is sent, send a state representing that a solution was not found
         if (Goal == null) {
             ArrayList<AState> nullSolution = new ArrayList<>();
@@ -30,6 +39,9 @@ public class Solution implements Serializable { //the class represents a solutio
         }
         return FinalSolution; //return the final path
     }
+
+
+    // function that returns the solution path
     public ArrayList<AState> getSolutionPath(){
         return this.path;
     }

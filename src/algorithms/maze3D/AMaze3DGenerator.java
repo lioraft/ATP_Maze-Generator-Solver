@@ -1,7 +1,9 @@
 package algorithms.maze3D;
 
+/**
+ * This abstract class implements the 3D maze generator interface.
+ */
 public abstract class AMaze3DGenerator implements IMazeGenerator3D {
-    // this abstract class implements the 3D maze generator interface
 
     // this method takes in the length of dimensions of the 3D maze, and returns the time it
     // takes to generate it

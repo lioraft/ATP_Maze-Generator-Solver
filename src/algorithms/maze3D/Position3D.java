@@ -2,6 +2,9 @@ package algorithms.maze3D;
 
 import algorithms.mazeGenerators.Position;
 
+/**
+ * This class represents a 3D Position in the maze. it extends Position class by adding depth to existing 2D Position.
+ */
 public class Position3D extends Position {
     // this class represents a 3D Position in the maze. it extends Position class by adding depth to existing 2D Position.
     int depth; // the depth of the position

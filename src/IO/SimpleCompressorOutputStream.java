@@ -3,18 +3,18 @@ package IO;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * SimpleCompressorOutputStream class extends the OutputStream class.
+ *  It is used to compress a maze into a byte array.
+ *  The compression is done by counting the number of occurrences of each byte value in a row.
+ *  The compressed maze is written to the underlying output stream.
+ */
+
 public class SimpleCompressorOutputStream extends OutputStream {
     private OutputStream out; // the underlying output stream
     private int currentByte; // the current byte being processed
     private int count; // the number of occurrences of the current byte
 
-
-    /**
-     * @param out The SimpleCompressorOutputStream class extends the OutputStream class.
-     *            It is used to compress a maze into a byte array.
-     *            The compression is done by counting the number of occurrences of each byte value in a row.
-     *            The compressed maze is written to the underlying output stream.
-     */
 
     public SimpleCompressorOutputStream(OutputStream out) {
         this.out = out; // the underlying output stream
@@ -27,7 +27,8 @@ public class SimpleCompressorOutputStream extends OutputStream {
         out.write(b);
     }
 
-    public void write(byte[] b) throws IOException { // write the compressed maze to the underlying output stream
+    // function that write the compressed maze to the underlying output stream
+    public void write(byte[] b) throws IOException {
         // get number of bytes for rows
         int bytesForRows = b[0] + 1;
         // write the rows information

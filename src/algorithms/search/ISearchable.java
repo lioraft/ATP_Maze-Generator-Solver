@@ -2,6 +2,11 @@ package algorithms.search;
 
 import java.util.ArrayList;
 
+
+/**
+ * ISearchable interface.
+ * the class that implements this interface will be searchable by the search algorithms.
+ */
 public interface ISearchable { //the class that implements this interface
     // will be searchable by the search algorithms. the class will have a start state, a goal state and a
     // function that returns all the possible states from a given state.

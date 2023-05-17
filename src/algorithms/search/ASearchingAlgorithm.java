@@ -2,6 +2,11 @@ package algorithms.search;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Abstract class that implements ISearchingAlgorithm interface.
+ * This class is the base class for all searching algorithms.
+ * It contains the visited states, solution path and number of nodes evaluated.
+ */
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm {
 
     protected HashMap<String, AState> visited; // Keep track of visited states

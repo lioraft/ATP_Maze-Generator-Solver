@@ -1,6 +1,11 @@
 package algorithms.mazeGenerators;
 import java.util.Random;
 
+/**
+ * This class represents a simple maze generator.
+ * It extends AMazeGenerator, and has one method: generate.
+ * The generate method generates a simple randomized maze.
+ */
 public class SimpleMazeGenerator extends AMazeGenerator {
 
     @Override

@@ -5,7 +5,10 @@ import algorithms.mazeGenerators.Position;
 import java.util.Objects;
 
 /**
- * class that represents a state in the maze
+ * class that represents a state in the maze.
+ * the state is the position in the maze.
+ * the state has a cost, a cameFrom state, and a position.
+ * the state is a subclass of AState.
  */
 public class MazeState extends AState{ //this class represents a state in the maze. the state is the position in the maze.
     private Position position; //the position of the state in the maze.

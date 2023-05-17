@@ -1,7 +1,10 @@
 package algorithms.mazeGenerators;
 
-import algorithms.maze3D.Position3D;
 
+/**
+ * Position class represents a position in a maze.
+ * It has two fields: rows and columns.
+ */
 public class Position {
     protected int rows;
     protected int columns;

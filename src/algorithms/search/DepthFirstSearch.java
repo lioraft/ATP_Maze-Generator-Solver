@@ -2,6 +2,11 @@ package algorithms.search;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+
+/**
+ * DepthFirstSearch class extends ASearchingAlgorithm.
+ * This class is responsible for the Depth-First Search algorithm.
+ */
 public class DepthFirstSearch extends ASearchingAlgorithm {
 
     @Override
@@ -9,6 +14,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
         return "Depth First Search";
     }
 
+    // function takes in searchable, and uses a stack to sort states by their cost.
     @Override
     public Solution solve(ISearchable searchable) { // Depth-First Search. Uses a stack to sort states by their cost.
         AState startState = searchable.getStartState(); // Initialize state stack with start state

@@ -1,16 +1,22 @@
 package algorithms.mazeGenerators;
 
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
+
+/**
+ * The Maze class represents a maze.
+ * A maze is a 2D array of integers, where 0 represents a passage and 1 represents a wall.
+ * The maze has a start position and an end position.
+ * The maze can be converted to a byte array.
+ * The maze can be created from a byte array.
+ */
 public class Maze { //the maze class
     private Position startPosition; //the start position
     private Position goalPosition; //the goal position
     private int[][] theMaze; //a matrix
 
-
-    public Maze(Position startPosition, Position goalPosition, int[][] maze) { //the constructor of the maze
+    //the constructor of the maze
+    public Maze(Position startPosition, Position goalPosition, int[][] maze) {
         this.startPosition = startPosition; //set the start position
         this.goalPosition = goalPosition; //set the goal position
         this.theMaze = maze; //set the matrix
@@ -89,10 +95,9 @@ public class Maze { //the maze class
         return this.goalPosition;
     } //get the goal position
 
-    /// get the matrix of the maze
     public int[][] getMaze() {
         return this.theMaze;
-    }
+    } // get the matrix of the maze
 
     public void print () {  //print the maze
         for (int i = 0; i < theMaze.length; i++) {  //for each row in the matrix print the row and the column and the value of the cell in the matrix.

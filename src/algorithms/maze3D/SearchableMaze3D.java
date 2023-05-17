@@ -1,10 +1,13 @@
 package algorithms.maze3D;
 import algorithms.search.AState;
 import algorithms.search.ISearchable;
-import algorithms.search.MazeState;
 
 import java.util.ArrayList;
 
+/**
+ * SearchableMaze3D class represents a searchable maze3D.
+ * The class has a maze3D object and implements the methods of ISearchable interface.
+ */
 public class SearchableMaze3D implements ISearchable {
     private Maze3D maze;
     public SearchableMaze3D(Maze3D maze) {
@@ -75,6 +78,7 @@ public class SearchableMaze3D implements ISearchable {
         return successors;
     }
 
+    // function that checks if a given state is the goal state
     @Override
     public boolean FoundSolution(AState state) {
         //check if the given state is the goal state.

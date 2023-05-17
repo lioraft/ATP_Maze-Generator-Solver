@@ -1,9 +1,14 @@
 package IO;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ *  MyCompressorOutputStream class extends the OutputStream class.
+ *  It is used to compress a maze into a byte array.
+ *  The compression is done by converting 4 bits to a hexadecimal number.
+ *  The compressed maze is written to the underlying output stream.
+ */
 public class MyCompressorOutputStream extends OutputStream {
     OutputStream out; // output stream object
 
@@ -20,7 +25,7 @@ public class MyCompressorOutputStream extends OutputStream {
     }
 
     // the compression method we chose is hexadecimal conversion - we convert 4 bits to a hexadecimal number,
-    // which will result in less bytes than the original maze.
+    // which will result in less bytes than the original maze - saves about 75% of the original size
     @Override
     public void write(byte[] b) throws IOException {
         // get number of bytes for rows

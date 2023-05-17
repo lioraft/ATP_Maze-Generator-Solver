@@ -1,5 +1,9 @@
 package algorithms.mazeGenerators;
 import java.util.*;
+
+/**
+ * This class represents a maze generator that uses the binary tree algorithm to generate a maze.
+ */
 public class MyMazeGenerator extends AMazeGenerator {
 
     /* The binary tree algorithm works by iterating over each cell in the maze and flipping a coin to decide whether to remove

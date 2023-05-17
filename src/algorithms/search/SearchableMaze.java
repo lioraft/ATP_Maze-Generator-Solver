@@ -4,6 +4,12 @@ import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.Position;
 import java.util.ArrayList;
 
+
+/**
+ * SearchableMaze class implements ISearchable interface.
+ * This class represents a maze that can be searched.
+ * The class has a maze field and implements the methods of the ISearchable interface.
+ */
 public class SearchableMaze implements ISearchable{
     private Maze maze;
 

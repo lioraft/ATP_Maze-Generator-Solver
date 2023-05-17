@@ -1,5 +1,9 @@
 package algorithms.mazeGenerators;
 
+
+/**
+ * This abstract class implements the IMazeGenerator interface.
+ */
 public abstract class AMazeGenerator implements IMazeGenerator {
 
     // this method takes in the number of rows and number of columns of the maze, and returns the time it

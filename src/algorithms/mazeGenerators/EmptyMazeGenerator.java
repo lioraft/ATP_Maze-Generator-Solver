@@ -1,5 +1,10 @@
 package algorithms.mazeGenerators;
 
+
+/**
+ * This abstract class implements the IMazeGenerator interface.
+ * This class is responsible for generating an empty maze, which is filled with 0's only.
+ */
 public class EmptyMazeGenerator extends AMazeGenerator {
     @Override
     public Maze generate(int numRows, int numColumns) {

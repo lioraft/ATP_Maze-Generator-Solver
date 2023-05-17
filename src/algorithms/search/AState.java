@@ -5,6 +5,7 @@ import java.util.Objects;
 
 /**
  * class that represents a state in the searchable problem.
+ * the class implements the Serializable interface so we can save the state in a file.
  */
 
 public class AState implements Serializable { //this class represents a state.

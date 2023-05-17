@@ -2,11 +2,12 @@ package algorithms.search;
 
 import java.util.*;
 
+/**
+ *  This class extends BreadthFirstSearch, and uses the same method to solve the maze. the only difference
+ *  is that this class uses priority queue sorted by cost, instead of a regular queue. this method
+ *  finds the lowest cost path from start goal to end goal.
+ */
 public class BestFirstSearch extends BreadthFirstSearch {
-    // this class extends BreadthFirstSearch, and uses the same method to solve the maze. the only difference
-    // is that this class uses priority queue sorted by cost, instead of a regular queue. this method
-    // finds the lowest cost path from start goal to end goal.
-
 
     // function that returns the name of the search algorithm
     @Override

@@ -1,9 +1,13 @@
 package algorithms.search;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
+
+/**
+ * BreadthFirstSearch class extends ASearchingAlgorithm and implements the solve method.
+ * This class is used to solve a maze by implementing the Breadth-First Search algorithm.
+ */
 
 public class BreadthFirstSearch extends ASearchingAlgorithm { // Breadth-First Search algorithm
 

@@ -269,4 +269,21 @@ public class Maze implements Serializable { //the maze class
         }
         return result;
     }
+
+    // function that takes in another maze, and checks if it is equal to the current maze
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Maze))
+            return false;
+        Maze other = (Maze)obj;
+        if (other.theMaze.length != this.theMaze.length || other.theMaze[0].length != this.theMaze[0].length)
+            return false;
+        for (int i = 0; i < theMaze.length; i++) {
+            for (int j = 0; j < theMaze[0].length; j++) {
+                if (theMaze[i][j] != other.theMaze[i][j])
+                    return false;
+            }
+        }
+        return true;
+    }
 }

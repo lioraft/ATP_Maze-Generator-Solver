@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * The Server class is responsible for the server's logic.
@@ -20,14 +21,15 @@ public class Server {
     private int listeningIntervalMS; // listening interval
     private IServerStrategy strategy; // strategy to be applied with each client
     private boolean stop; // boolean to stop the server
-    private ExecutorService executor; // thread pool for the server
+
+    // thread pool is static variable of the class. each time a server is being initialized, it will use the same thread pool
+    private static ExecutorService executor = Executors.newFixedThreadPool(Configurations.getInstance().getThreadPoolSize());
 
     // constructor of server
     public Server(int port, int listeningIntervalMS, IServerStrategy strategy) {
         this.port = port; // initialize the port
         this.listeningIntervalMS = listeningIntervalMS; // initialize the listening interval
         this.strategy = strategy; // initialize the strategy
-        this.executor = Executors.newFixedThreadPool(Configurations.getInstance().getThreadPoolSize()); // initialize the thread pool
     }
 
     // start the server
@@ -56,7 +58,6 @@ public class Server {
                         };
                         executor.execute(runnable); // execute the strategy
                         clientSocket.close(); // close socket when finish
-                        executor.shutdown(); // shutdown the thread pool when finish
                     } catch (IOException e){
                         e.printStackTrace();
                     }
@@ -66,6 +67,14 @@ public class Server {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+            // check if there are active threads in the thread pool
+            if (executor instanceof ThreadPoolExecutor) {
+                ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executor;
+                if (threadPoolExecutor.getActiveCount() == 0) // if there are no active threads in the thread pool, shut it down
+                    executor.shutdown();
+            }
         }
     }
 

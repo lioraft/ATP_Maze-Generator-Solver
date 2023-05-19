@@ -1,7 +1,5 @@
 package Server;
 
-import org.junit.jupiter.api.ClassOrderer;
-
 import java.io.*;
 import java.util.Properties;
 
@@ -109,5 +107,10 @@ public class Configurations {
         } catch (IOException io) {
             io.printStackTrace();
         }
+    }
+
+    // main that writes the properties to the properties file
+    public static void main(String[] args) {
+        Configurations.getInstance().writeProperties();
     }
 }

@@ -48,7 +48,7 @@ public class RunCommunicateWithServers {
                     catch (Exception e) { e.printStackTrace(); }
                 }
             });
-            //client.communicateWithServer();
+            client.communicateWithServer();
         }
         catch (UnknownHostException e) {
             e.printStackTrace(); } }
@@ -73,7 +73,7 @@ public class RunCommunicateWithServers {
                         }
                     }
                     catch (Exception e) { e.printStackTrace(); } } });
-            //client.communicateWithServer();
+            client.communicateWithServer();
         }
         catch (UnknownHostException e) {
             e.printStackTrace();
@@ -97,7 +97,7 @@ public class RunCommunicateWithServers {
                     } catch (Exception e) {
                         e.printStackTrace();
                     } } });
-                        //client.communicateWithServer();
+                        client.communicateWithServer();
         } catch (UnknownHostException e) {
             e.printStackTrace(); } }
 }

@@ -20,8 +20,8 @@ public class Client {
         this.strategy = strategy;
     }
 
-    // start client
-    public void start(){
+    // connect client so it can communicate with the server
+    public void communicateWithServer(){
         try(Socket serverSocket = new Socket(serverIP, serverPort)){
             System.out.println("connected to server - IP = " + serverIP + ", Port = " + serverPort);
             strategy.clientStrategy(serverSocket.getInputStream(), serverSocket.getOutputStream());

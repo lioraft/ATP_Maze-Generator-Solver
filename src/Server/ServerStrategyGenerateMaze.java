@@ -1,10 +1,9 @@
 package Server;
 
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.MyMazeGenerator;
+import IO.MyCompressorOutputStream;
+import algorithms.mazeGenerators.*;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 
 /**
@@ -29,8 +28,41 @@ public class ServerStrategyGenerateMaze implements IServerStrategy {
         for (int i = 0; i < mazeDimensions.length; i++) {
             intArray[i] = mazeDimensions[i] & 0xFF;
         }
-        // generate a maze with the given dimensions
-        MyMazeGenerator myMazeGenerator = new MyMazeGenerator();
-        Maze maze = myMazeGenerator.generate(intArray[0], intArray[1]);
+        // generate a maze with the given dimensions and algorithm retrieved from properties
+        String generator = Configurations.getInstance().getMazeGeneratingAlgorithm();
+        // generate the maze
+        try {
+            // try to get the class of the generator
+            Class<?> generatingClass = Class.forName(generator);
+            // Create an instance of the class
+            Object instanceOfGenerator = generatingClass.newInstance();
+            // cast the instance to AMazeGenerator subclass
+            AMazeGenerator mazeGenerator;
+            if (generator.equals("EmptyMazeGenerator")) {
+                mazeGenerator = (EmptyMazeGenerator) instanceOfGenerator;
+            }
+            else if (generator.equals("SimpleMazeGenerator")) {
+                mazeGenerator = (SimpleMazeGenerator) instanceOfGenerator;
+            }
+            else if (generator.equals("MyMazeGenerator")) {
+                mazeGenerator = (MyMazeGenerator) instanceOfGenerator;
+            }
+            else {
+                throw new RuntimeException("Invalid generator name");
+            }
+            // generate the maze
+            Maze maze = mazeGenerator.generate(intArray[0], intArray[1]);
+            // compress maze
+            String mazeFileName = "savedMaze.maze";
+            outToClient = new MyCompressorOutputStream(new FileOutputStream(mazeFileName));
+            // write the compressed maze to the output stream
+            outToClient.write(maze.toByteArray());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

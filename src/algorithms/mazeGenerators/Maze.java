@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * The maze can be converted to a byte array.
  * The maze can be created from a byte array.
  */
-public class Maze { //the maze class
+public class Maze implements Serializable { //the maze class
     private Position startPosition; //the start position
     private Position goalPosition; //the goal position
     private int[][] theMaze; //a matrix

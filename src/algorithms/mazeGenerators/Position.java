@@ -1,11 +1,13 @@
 package algorithms.mazeGenerators;
 
 
+import java.io.Serializable;
+
 /**
  * Position class represents a position in a maze.
  * It has two fields: rows and columns.
  */
-public class Position {
+public class Position implements Serializable {
     protected int rows;
     protected int columns;
 

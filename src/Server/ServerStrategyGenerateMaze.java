@@ -58,6 +58,7 @@ public class ServerStrategyGenerateMaze implements IServerStrategy {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            // flush & close
             toClient.flush();
             toClient.close();
             fromClient.close();

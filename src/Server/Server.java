@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * The Server class is responsible for the server's logic.
@@ -18,12 +20,14 @@ public class Server {
     private int listeningIntervalMS; // listening interval
     private IServerStrategy strategy; // strategy to be applied with each client
     private boolean stop; // boolean to stop the server
+    private ExecutorService executor; // thread pool for the server
 
     // constructor of server
     public Server(int port, int listeningIntervalMS, IServerStrategy strategy) {
         this.port = port;
         this.listeningIntervalMS = listeningIntervalMS;
         this.strategy = strategy;
+        this.executor = Executors.newFixedThreadPool(Configurations.getInstance().getThreadPoolSize());
     }
 
     // start the server

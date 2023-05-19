@@ -44,8 +44,8 @@ public class Configurations {
         return poolSize;
     }
 
-    // get the maze generating algorithm
-    public String getMazeGeneratingAlgorithm() {
+    // get the maze searching algorithm
+    public String getMazeSearchingAlgorithm() {
         // initialize string of maze searcher
         String searchAlg = "";
         try (InputStream input = new FileInputStream("C:\\Users\\Lior\\OneDrive\\שולחן העבודה\\שנה ב\\סמסטר ד\\נושאים מתקדמים בתכנות\\ATP-Project-PartA\\resources\\config.properties")) {
@@ -65,8 +65,8 @@ public class Configurations {
         return searchAlg;
     }
 
-    // get the maze searching algorithm
-    public String getMazeSearchingAlgorithm() {
+    // get the maze generating algorithm
+    public String getMazeGeneratingAlgorithm() {
         // initialize string of maze generator
         String generateAlg = "";
         try (InputStream input = new FileInputStream("C:\\Users\\Lior\\OneDrive\\שולחן העבודה\\שנה ב\\סמסטר ד\\נושאים מתקדמים בתכנות\\ATP-Project-PartA\\resources\\config.properties")) {

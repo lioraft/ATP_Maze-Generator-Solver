@@ -12,6 +12,7 @@ import java.io.OutputStream;
 public class ServerStrategySolveSearchProblem implements IServerStrategy {
     @Override
     public void applyStrategy(InputStream inFromClient, OutputStream outToClient) {
-
+        // path to the directory where the temporary files will be saved
+        String tempDirectoryPath = System.getProperty("java.io.tmpdir");
     }
 }

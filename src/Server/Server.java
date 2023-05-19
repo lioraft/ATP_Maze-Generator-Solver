@@ -7,6 +7,10 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 
 /**
  * The Server class is responsible for the server's logic.
@@ -20,7 +24,9 @@ public class Server {
     private int port; // port number
     private int listeningIntervalMS; // listening interval
     private IServerStrategy strategy; // strategy to be applied with each client
-    private boolean stop; // boolean to stop the server
+    private volatile boolean stop;
+    private final Logger LOG = LogManager.getLogger(); //Log4j2
+
 
     // thread pool is static variable of the class. each time a server is being initialized, it will use the same thread pool
     private static ExecutorService executor = Executors.newFixedThreadPool(Configurations.getInstance().getThreadPoolSize());
@@ -35,38 +41,13 @@ public class Server {
     // start the server
     public void start(){
         try {
-            // initialize server socket based on the port, and set time out based on the listening interval
-            ServerSocket serverSocket = new ServerSocket(port);
-            serverSocket.setSoTimeout(listeningIntervalMS);
-            // let user know the server is starting
-            System.out.println("Starting server at port = " + port);
-
-            // while the server is not stopped, accept clients and apply the strategy
-            while (!stop) {
-                try { // try to accept a client
-                    Socket clientSocket = serverSocket.accept();
-                    System.out.println("Client accepted: " + clientSocket.toString());
-
-                    try {
-                        // apply the strategy with the client, using the thread pool, and close the client socket
+            // try to make new connection, as runnable
                         Runnable runnable = () -> {
-                            try {
-                                strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+                            this.communicateWithServer();
                         };
                         executor.execute(runnable); // execute the strategy
-                        clientSocket.close(); // close socket when finish
-                    } catch (IOException e){
-                        e.printStackTrace();
-                    }
-                } catch (SocketTimeoutException e){ // if the server times out, let user know
-                    System.out.println("Socket timeout");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            LOG.error("Failed to execute connection", e);
         }
         finally {
             // check if there are active threads in the thread pool
@@ -76,6 +57,37 @@ public class Server {
                     executor.shutdown();
             }
         }
+    }
+
+    // function that initializes new communication with the server, using the strategy and the port
+    // it writes to the log file every accepted client, and any exception that occurs
+    public void communicateWithServer() {
+        try {
+            ServerSocket serverSocket = new ServerSocket(port);
+            serverSocket.setSoTimeout(listeningIntervalMS);
+            LOG.info("Starting server at port = " + port);
+
+            while (!stop) {
+                try {
+                    Socket clientSocket = serverSocket.accept();
+                    LOG.info("Client accepted: " + clientSocket.toString());
+                    try {
+                        strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    finally {
+                        clientSocket.close();
+                    }
+
+                } catch (SocketTimeoutException e){
+                    LOG.debug("Socket timeout");
+                }
+            }
+        } catch (IOException e) {
+            LOG.error("IOException", e);
+        }
+
     }
 
     // stop the server

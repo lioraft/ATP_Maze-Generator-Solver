@@ -18,22 +18,15 @@ public class ServerStrategyGenerateMaze implements IServerStrategy {
     // applyStrategy method
     @Override
     public void applyStrategy(InputStream inFromClient, OutputStream outToClient) {
-        // try to read the maze dimensions from the client
-        byte[] mazeDimensions = new byte[8]; // 8 bytes for 2 integers
         try {
-            inFromClient.read(mazeDimensions);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // convert the maze dimensions from byte array to int array
-        int[] intArray = new int[mazeDimensions.length];
-        for (int i = 0; i < mazeDimensions.length; i++) {
-            intArray[i] = mazeDimensions[i] & 0xFF;
-        }
-        // generate a maze with the given dimensions and algorithm retrieved from properties
-        String generator = Configurations.getInstance().getMazeGeneratingAlgorithm();
-        // generate the maze
-        try {
+            // create input and output stream of objects
+            ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
+            ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
+            // get the array of integers from client (for maze dimensions)
+            int[] dim = (int[]) fromClient.readObject();
+            // retrieve algorithm from properties
+            String generator = Configurations.getInstance().getMazeGeneratingAlgorithm();
+            // create maze generator according to the algorithm
             AMazeGenerator mazeGenerator;
             if (generator.equals("EmptyMazeGenerator")) {
                 mazeGenerator = new EmptyMazeGenerator();
@@ -48,15 +41,17 @@ public class ServerStrategyGenerateMaze implements IServerStrategy {
                 throw new RuntimeException("Invalid generator name");
             }
             // generate the maze
-            Maze maze = mazeGenerator.generate(intArray[0], intArray[1]);
-            // compress maze
-            String mazeFileName = "savedMaze.maze";
-            outToClient = new MyCompressorOutputStream(new FileOutputStream(mazeFileName));
-            // write the compressed maze to the output stream
-            outToClient.write(maze.toByteArray());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            Maze maze = mazeGenerator.generate(dim[0], dim[1]);
+            // write to the client the compressed maze
+            OutputStream compressor = new MyCompressorOutputStream(outToClient);
+            byte[] mazeBytes = maze.toByteArray();
+            compressor.write(mazeBytes);
+            toClient.flush();
+            fromClient.close();
+            toClient.close();
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

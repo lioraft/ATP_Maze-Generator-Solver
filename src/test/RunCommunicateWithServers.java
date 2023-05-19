@@ -33,7 +33,8 @@ public class RunCommunicateWithServers {
     private static void CommunicateWithServer_MazeGenerating() {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5400, new IClientStrategy() {
-                @Override public void clientStrategy(InputStream inFromServer, OutputStream outToServer) {
+                @Override
+                public void clientStrategy(InputStream inFromServer, OutputStream outToServer) {
                     try {
                         ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
                         ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
@@ -51,8 +52,7 @@ public class RunCommunicateWithServers {
                         Maze maze = new Maze(decompressedMaze);
                         maze.print(); }
                     catch (Exception e) { e.printStackTrace(); }
-                }
-            });
+                }});
             client.communicateWithServer();
         }
         catch (UnknownHostException e) {

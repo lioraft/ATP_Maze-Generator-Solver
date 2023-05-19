@@ -43,7 +43,31 @@ public class Server {
         try {
             // try to make new connection, as runnable
                         Runnable runnable = () -> {
-                            this.communicateWithServer();
+                            try {
+                                ServerSocket serverSocket = new ServerSocket(port);
+                                serverSocket.setSoTimeout(listeningIntervalMS);
+                                LOG.info("Starting server at port = " + port);
+
+                                while (!stop) {
+                                    try {
+                                        Socket clientSocket = serverSocket.accept();
+                                        LOG.info("Client accepted: " + clientSocket.toString());
+                                        try {
+                                                strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
+                                        } catch (IOException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                        finally {
+                                            clientSocket.close();
+                                        }
+                                    } catch (SocketTimeoutException e){
+                                        LOG.debug("Socket timeout");
+                                    }
+
+                                }
+                            } catch (IOException e) {
+                                LOG.error("IOException", e);
+                            }
                         };
                         executor.execute(runnable); // execute the strategy
         } catch (Exception e) {
@@ -57,41 +81,12 @@ public class Server {
                     executor.shutdown();
             }
         }
-    }
+     }
 
-    // function that initializes new communication with the server, using the strategy and the port
-    // it writes to the log file every accepted client, and any exception that occurs
-    public void communicateWithServer() {
-        try {
-            ServerSocket serverSocket = new ServerSocket(port);
-            serverSocket.setSoTimeout(listeningIntervalMS);
-            LOG.info("Starting server at port = " + port);
-
-            while (!stop) {
-                try {
-                    Socket clientSocket = serverSocket.accept();
-                    LOG.info("Client accepted: " + clientSocket.toString());
-                    try {
-                        strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    finally {
-                        clientSocket.close();
-                    }
-
-                } catch (SocketTimeoutException e){
-                    LOG.debug("Socket timeout");
-                }
-            }
-        } catch (IOException e) {
-            LOG.error("IOException", e);
-        }
-
-    }
 
     // stop the server
     public void stop(){
+        LOG.info("Stopping server...");
         stop = true;
     }
 }

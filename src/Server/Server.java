@@ -88,5 +88,7 @@ public class Server {
     public void stop(){
         LOG.info("Stopping server...");
         stop = true;
+        // Shutdown the executor service
+        executor.shutdown();
     }
 }

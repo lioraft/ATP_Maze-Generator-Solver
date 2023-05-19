@@ -48,7 +48,8 @@ public class RunCommunicateWithServers {
                     catch (Exception e) { e.printStackTrace(); }
                 }
             });
-            client.communicateWithServer(); }
+            //client.communicateWithServer();
+        }
         catch (UnknownHostException e) {
             e.printStackTrace(); } }
     private static void CommunicateWithServer_SolveSearchProblem() {
@@ -72,7 +73,8 @@ public class RunCommunicateWithServers {
                         }
                     }
                     catch (Exception e) { e.printStackTrace(); } } });
-            client.communicateWithServer(); }
+            //client.communicateWithServer();
+        }
         catch (UnknownHostException e) {
             e.printStackTrace();
         } }
@@ -88,14 +90,14 @@ public class RunCommunicateWithServers {
                         toServer.write(message + "\n");
                         toServer.flush();
                         serverResponse = fromServer.readLine();
-                        System.out.println(String.format("Server response: %s", serverResponse);
+                        System.out.println(String.format("Server response: %s", serverResponse));
                         toServer.flush();
                         fromServer.close();
                         toServer.close();
                     } catch (Exception e) {
                         e.printStackTrace();
                     } } });
-                        client.communicateWithServer();
+                        //client.communicateWithServer();
         } catch (UnknownHostException e) {
             e.printStackTrace(); } }
 }

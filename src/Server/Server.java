@@ -27,15 +27,15 @@ public class Server {
     private volatile boolean stop;
     private final Logger LOG = LogManager.getLogger(); //Log4j2
 
-
-    // thread pool is static variable of the class. each time a server is being initialized, it will use the same thread pool
-    private static ExecutorService executor = Executors.newFixedThreadPool(Configurations.getInstance().getThreadPoolSize());
+    // thread pool. each time a server is being initialized, it will use a thread pool
+    private ExecutorService executor;
 
     // constructor of server
     public Server(int port, int listeningIntervalMS, IServerStrategy strategy) {
         this.port = port; // initialize the port
         this.listeningIntervalMS = listeningIntervalMS; // initialize the listening interval
         this.strategy = strategy; // initialize the strategy
+        executor = Executors.newFixedThreadPool(Configurations.getInstance().getThreadPoolSize()); // initialize the thread pool
     }
 
     // start the server
@@ -78,7 +78,7 @@ public class Server {
             if (executor instanceof ThreadPoolExecutor) {
                 ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executor;
                 if (threadPoolExecutor.getActiveCount() == 0) // if there are no active threads in the thread pool, shut it down
-                    executor.shutdown();
+                    executor.shutdownNow();
             }
         }
      }

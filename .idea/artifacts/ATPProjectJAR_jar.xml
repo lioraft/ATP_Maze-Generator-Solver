@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="ATPProjectJAR">
-    <output-path>$PROJECT_DIR$/out/artifacts/ATPProjectJAR</output-path>
+  <artifact type="jar" name="ATPProjectJAR:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ATPProjectJAR_jar</output-path>
     <root id="archive" name="ATP-Project-PartA.jar">
       <element id="module-output" name="ATP-Project-PartA" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-core/2.14.1/log4j-core-2.14.1.jar" path-in-jar="/" />

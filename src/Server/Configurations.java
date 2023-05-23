@@ -27,7 +27,7 @@ public class Configurations {
     public int getThreadPoolSize() {
         // initialize pool size
         int poolSize = 0;
-        try (InputStream input = new FileInputStream("C:\\Users\\Lior\\OneDrive\\שולחן העבודה\\שנה ב\\סמסטר ד\\נושאים מתקדמים בתכנות\\ATP-Project-PartA\\resources\\config.properties")) {
+        try (InputStream input = new FileInputStream("resources/config.properties")) {
 
             Properties prop = new Properties();
 
@@ -48,7 +48,7 @@ public class Configurations {
     public String getMazeSearchingAlgorithm() {
         // initialize string of maze searcher
         String searchAlg = "";
-        try (InputStream input = new FileInputStream("C:\\Users\\Lior\\OneDrive\\שולחן העבודה\\שנה ב\\סמסטר ד\\נושאים מתקדמים בתכנות\\ATP-Project-PartA\\resources\\config.properties")) {
+        try (InputStream input = new FileInputStream("resources/config.properties")) {
 
             Properties prop = new Properties();
 

@@ -27,7 +27,7 @@ public class Configurations {
     public int getThreadPoolSize() {
         // initialize pool size
         int poolSize = 0;
-        try (InputStream input = new FileInputStream("resources/config.properties")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
 
             Properties prop = new Properties();
 
@@ -48,7 +48,7 @@ public class Configurations {
     public String getMazeSearchingAlgorithm() {
         // initialize string of maze searcher
         String searchAlg = "";
-        try (InputStream input = new FileInputStream("resources/config.properties")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
 
             Properties prop = new Properties();
 
@@ -69,7 +69,7 @@ public class Configurations {
     public String getMazeGeneratingAlgorithm() {
         // initialize string of maze generator
         String generateAlg = "";
-        try (InputStream input = new FileInputStream("resources/config.properties")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
 
             Properties prop = new Properties();
 
@@ -89,7 +89,7 @@ public class Configurations {
     // write the properties to the properties file
     public void writeProperties() {
         // create outputstream with the path (path of the properties file is the local path on my laptop)
-        try (OutputStream output = new FileOutputStream("resources/config.properties")) {
+        try (OutputStream output = new FileOutputStream("config.properties")) {
 
             // set new properties object
             Properties prop = new Properties();

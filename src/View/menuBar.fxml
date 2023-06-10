@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<MenuBar prefWidth="1000.0">
+    <Menu text="File">
+        <MenuItem text="New" />
+        <MenuItem text="Save" />
+        <MenuItem text="Load" />
+    </Menu>
+    <Menu text="Options">
+        <MenuItem text="Properties" />
+    </Menu>
+    <Menu text="Exit">
+        <MenuItem text="Exit" />
+    </Menu>
+    <Menu text="Help">
+        <MenuItem text="Help" />
+    </Menu>
+    <Menu text="About">
+        <MenuItem text="About" />
+    </Menu>
+</MenuBar>

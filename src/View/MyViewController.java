@@ -156,15 +156,20 @@ public class MyViewController extends Application implements IView {
 
             // Create the hint button
             Button hintButton = (Button) mazeDisplayer.lookup("#hint_button");
+            hintButton.getStyleClass().add("hint-button");
             hintButton.setOnAction(this::handleHintButtonClick);
 
             // Create the solve button
             Button solveButton = (Button) mazeDisplayer.lookup("#solve_button");
+            solveButton.getStyleClass().add("hint-button");
             solveButton.setOnAction(this::handleSolveButtonClick);
 
 
             // create a new scene with the loaded FXML content
             Scene mazeDisplayScene = new Scene(mazeDisplayer, 1000.0, 1000.0);
+
+            // load css file
+            mazeDisplayScene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
 
             // set the new scene as the scene of the primary stage
             primaryStage.setScene(mazeDisplayScene);

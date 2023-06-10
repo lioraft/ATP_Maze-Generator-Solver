@@ -12,7 +12,7 @@
 }
 
 .alert .content {
-    -fx-font-family: Arial;
+    -fx-font-family: "Poppins", sans-serif;
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: black;
@@ -22,3 +22,16 @@
 .alert .button-bar {
     -fx-background-color: pink;
 }
+
+.hint-button {
+    -fx-background-color: #e76378;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-family: "Poppins", sans-serif;
+}
+
+.hint-button:hover {
+    -fx-background-color: lightpink;
+    -fx-text-fill: yellow;
+}
+
+

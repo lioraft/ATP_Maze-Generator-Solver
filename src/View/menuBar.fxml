@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<MenuBar prefWidth="1000.0">
-    <Menu text="File">
-        <MenuItem text="New" />
-        <MenuItem text="Save" />
-        <MenuItem text="Load" />
+
+<MenuBar fx:id="menuBar" styleClass="menu-bar" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <Menu fx:id="fileMenu" text="File">
+        <MenuItem fx:id="newMenuItem" text="New" />
+        <MenuItem fx:id="saveMenuItem" text="Save" />
+        <MenuItem fx:id="loadMenuItem" text="Load" />
     </Menu>
-    <Menu text="Options">
-        <MenuItem text="Properties" />
+    <Menu fx:id="optionsMenu" text="Options">
+        <MenuItem fx:id="propMenuItem" text="Properties" />
     </Menu>
-    <Menu text="Exit">
-        <MenuItem text="Exit" />
+    <Menu fx:id="exitMenu" text="Exit">
+        <MenuItem fx:id="exitMenuItem" text="Exit" />
     </Menu>
-    <Menu text="Help">
-        <MenuItem text="Help" />
+    <Menu fx:id="helpMenu" text="Help">
+        <MenuItem fx:id="helpMenuItem" text="Help" />
     </Menu>
-    <Menu text="About">
-        <MenuItem text="About" />
+    <Menu fx:id="aboutMenu" text="About">
+        <MenuItem fx:id="aboutMenuItem" text="About" />
     </Menu>
 </MenuBar>

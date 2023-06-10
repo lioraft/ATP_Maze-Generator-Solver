@@ -34,4 +34,46 @@
     -fx-text-fill: yellow;
 }
 
+.title {
+    -fx-font-family: "SansSerif", sans-serif;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e76378;
+}
+
+.sub-label {
+    -fx-font-family: "SansSerif", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+.menu-bar {
+    -fx-background-color: #F5F5F5;
+}
+
+.menu-bar .menu {
+    -fx-text-fill: #333333;
+}
+
+.menu-bar .menu:hover {
+    -fx-background-color: #00b2c5;
+}
+
+.menu-bar .menu .menu-item {
+    -fx-text-fill: #333333;
+}
+
+.menu-bar .menu .menu-item:hover {
+    -fx-background-color: #e76378;
+}
+
+.menu-bar .menu .menu-item:focused {
+    -fx-background-color: #e76378;
+}
+
+.menu-bar .menu .menu-item:pressed {
+    -fx-background-color: #e76378;
+}
+
 

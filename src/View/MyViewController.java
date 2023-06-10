@@ -50,44 +50,42 @@ public class MyViewController extends Application implements IView {
         mainScene.setStyle("-fx-background-image: url('" + backgroundImage.getUrl() + "'); " + "-fx-background-position: center center; " + "-fx-background-repeat: stretch;");
         // set title
         primaryStage.setTitle("Maze Game");
+        // get main title and set design
+        Label mainTitle = (Label) mainScene.lookup("#mainTitle");
+        mainTitle.getStyleClass().add("title");
+        // get labels and set designs from css
+        Label widthLabel = (Label) mainScene.lookup("#widthTitle");
+        widthLabel.getStyleClass().add("sub-label");
+        Label heightLabel = (Label) mainScene.lookup("#heightTitle");
+        heightLabel.getStyleClass().add("sub-label");
         // initialize view model
         viewModel = new MyViewModel();
         // initialize menu bar
-        MenuBar menuBar = new MenuBar();
+        MenuBar menuBar = (MenuBar) mainScene.lookup("#menuBar");
         // initialize file menu
-        Menu fileMenu = new Menu("File");
+        Menu fileMenu = menuBar.getMenus().get(0);
         // initialize file menu items
-        MenuItem newGame = new MenuItem("New");
-        MenuItem saveGame = new MenuItem("Save");
-        MenuItem loadGame = new MenuItem("Load");
-        // add file menu items to file menu
-        fileMenu.getItems().addAll(newGame, saveGame, loadGame);
+        MenuItem newGame = fileMenu.getItems().get(0);
+        MenuItem saveGame = fileMenu.getItems().get(1);
+        MenuItem loadGame = fileMenu.getItems().get(2);
         // initialize options menu
-        Menu optionsMenu = new Menu("Options");
+        Menu optionsMenu =  menuBar.getMenus().get(1);
         // initialize options menu items
-        MenuItem properties = new MenuItem("Properties");
-        // add options menu items to options menu
-        optionsMenu.getItems().addAll(properties);
+        MenuItem properties = optionsMenu.getItems().get(0);
         // initialize exit menu
-        Menu exitMenu = new Menu("Exit");
+        Menu exitMenu = menuBar.getMenus().get(2);
         // initialize exit menu items
-        MenuItem exit = new MenuItem("Exit");
-        // add exit menu items to exit menu
-        exitMenu.getItems().addAll(exit);
+        MenuItem exit = exitMenu.getItems().get(0);
         // initialize help menu
-        Menu helpMenu = new Menu("Help");
+        Menu helpMenu = menuBar.getMenus().get(3);
         // initialize help menu items
-        MenuItem help = new MenuItem("Help");
-        // add help menu items to help menu
-        helpMenu.getItems().addAll(help);
+        MenuItem help = helpMenu.getItems().get(0);
         // initialize about menu
-        Menu aboutMenu = new Menu("About");
+        Menu aboutMenu = menuBar.getMenus().get(4);
         // initialize about menu items
-        MenuItem about = new MenuItem("About");
-        // add about menu items to about menu
-        aboutMenu.getItems().addAll(about);
-        // set menu bar
-        menuBar.getMenus().addAll(fileMenu, optionsMenu, exitMenu, helpMenu, aboutMenu);
+        MenuItem about = aboutMenu.getItems().get(0);
+        // set designs for menu bar
+        menuBar.getStyleClass().add("menu-bar");
         // set width and height comboboxes
         width = (ComboBox<Integer>) mainScene.lookup("#width");
         height = (ComboBox<Integer>) mainScene.lookup("#height");
@@ -110,6 +108,7 @@ public class MyViewController extends Application implements IView {
         start_button.setOnAction(this::handleStartButtonClick);
         // set scene
         Scene scene = new Scene(mainScene, 1000.0, 1000.0);
+        scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         // show stage
         primaryStage.show();

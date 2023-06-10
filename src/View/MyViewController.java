@@ -178,4 +178,18 @@ public class MyViewController extends Application implements IView {
         return cell;
     }
 
+    // function that takes the position of the player and sets the picture from resources in this position in the maze (which is the gridpane)
+    private void setPlayerPosition(int row, int col) {
+        GridPane gridPane = (GridPane) mazeDisplayer.lookup("#mazeGrid");
+        ImageView player = new ImageView(new Image(getClass().getResource("/resources/spongebob.png").toExternalForm()));
+        gridPane.add(player, col, row);
+    }
+
+    // function that takes the position of the exit and sets the picture from resources in this position in the maze (which is the gridpane)
+    private void setExitItemPosition(int row, int col) {
+        GridPane gridPane = (GridPane) mazeDisplayer.lookup("#mazeGrid");
+        ImageView exit = new ImageView(new Image(getClass().getResource("/resources/jellyfish.png").toExternalForm()));
+        gridPane.add(exit, col, row);
+    }
+
 }

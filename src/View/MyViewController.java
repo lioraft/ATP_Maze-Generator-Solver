@@ -1,5 +1,6 @@
 package View;
 
+import ViewModel.MyViewModel;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class MyViewController extends Application implements IView {
     @FXML
     ComboBox<Integer> height;
     AnchorPane mazeDisplayer;
-
+    MyViewModel viewModel;
     int sizeOfCell = 0;
 
 
@@ -46,6 +47,8 @@ public class MyViewController extends Application implements IView {
         mainScene.setStyle("-fx-background-image: url('" + backgroundImage.getUrl() + "'); " + "-fx-background-position: center center; " + "-fx-background-repeat: stretch;");
         // set title
         primaryStage.setTitle("Maze Game");
+        // initialize view model
+        viewModel = new MyViewModel();
         // initialize menu bar
         MenuBar menuBar = new MenuBar();
         // initialize file menu
@@ -125,6 +128,12 @@ public class MyViewController extends Application implements IView {
             int mazeWidth = width.getValue();
             int mazeHeight = height.getValue();
 
+            // generate maze
+            viewModel.generateMaze(mazeWidth, mazeHeight);
+
+            // get current maze
+            int[][] maze = viewModel.getMaze();
+
             // create maze in sizes and display it
             GridPane gridPane =(GridPane) mazeDisplayer.lookup("#mazeGrid");
 
@@ -136,11 +145,18 @@ public class MyViewController extends Application implements IView {
             // create the maze
             for (int i = 0; i < mazeWidth; i++) {
                 for (int j = 0; j < mazeHeight; j++) {
-                    int mathRandom = (int) (Math.random() * 2);
-                    Rectangle cell = createCell(mathRandom, mazeWidth, mazeHeight);
+                    Rectangle cell = createCell(maze[i][j], mazeWidth, mazeHeight);
                     gridPane.add(cell, j, i);
                 }
             }
+
+            // set player position
+            int playerCol = viewModel.getStartColumn();
+            setPlayerPosition(0, playerCol, sizeOfCell);
+            // set goal position
+            int goalCol = viewModel.getGoalColumn();
+            setExitItemPosition(mazeHeight - 1, goalCol, sizeOfCell);
+
 
             // set the constraints for the GridPane to fit within the AnchorPane
             gridPane.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
@@ -179,17 +195,21 @@ public class MyViewController extends Application implements IView {
     }
 
     // function that takes the position of the player and sets the picture from resources in this position in the maze (which is the gridpane)
-    private void setPlayerPosition(int row, int col) {
+    private void setPlayerPosition(int row, int col, int size) {
         GridPane gridPane = (GridPane) mazeDisplayer.lookup("#mazeGrid");
         ImageView player = new ImageView(new Image(getClass().getResource("/resources/spongebob.png").toExternalForm()));
-        gridPane.add(player, col, row);
+        player.setFitWidth(size); // set width
+        player.setFitHeight(size); // set height
+        gridPane.add(player, row, col);
     }
 
     // function that takes the position of the exit and sets the picture from resources in this position in the maze (which is the gridpane)
-    private void setExitItemPosition(int row, int col) {
+    private void setExitItemPosition(int row, int col, int size) {
         GridPane gridPane = (GridPane) mazeDisplayer.lookup("#mazeGrid");
         ImageView exit = new ImageView(new Image(getClass().getResource("/resources/jellyfish.png").toExternalForm()));
-        gridPane.add(exit, col, row);
+        exit.setFitWidth(size); // set width
+        exit.setFitHeight(size); // set height
+        gridPane.add(exit, row, col);
     }
 
 }

@@ -60,7 +60,7 @@ public class MyModel implements IModel{
                         byte[] compressedMaze = (byte[]) fromServer.readObject();
                         // read generated maze (compressed with MyCompressor) from server
                         InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze));
-                        byte[] decompressedMaze = new byte[3000 /*giving more space*/];
+                        byte[] decompressedMaze = new byte[15000 /*giving max space*/];
                         // allocating byte[] for the decompressed maze
                         is.read(decompressedMaze); // fill decompressedMaze with bytes
                         Maze maze = new Maze(decompressedMaze);

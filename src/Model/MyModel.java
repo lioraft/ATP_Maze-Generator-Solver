@@ -211,18 +211,18 @@ public class MyModel implements IModel{
             }
         }
         AState next;
-        // if found next step and not in last place, get next step
-        if (newStep != 0 && newStep != solutionSteps.size()-1) {
-            // if player is on right path, give him hint to next step in map
-            currentStep = newStep + 1;
-            next = solutionSteps.get(currentStep + 1);
-
+        // if reached end of solution, return -1
+        if (newStep >= solutionSteps.size() - 1 || currentStep >= solutionSteps.size() - 1) {
+            nextStep[0] = -1;
+            nextStep[1] = -1;
+            return nextStep;
         }
         else {
-            // if player is not in right path, give him hint to next step from beginning (or since last asked hint)
-            if (currentStep == solutionSteps.size()) {
-                currentStep -= 1;
+            // if player is in right path, get next step
+            if (newStep != 0) {
+                currentStep = newStep;
             }
+            // if player is not in right path, give him hint to next step from beginning (or since last asked hint)
             currentStep++;
             next = solutionSteps.get(currentStep);
         }

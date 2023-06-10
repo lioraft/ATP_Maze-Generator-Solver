@@ -194,7 +194,7 @@ public class MyViewController extends Application implements IView {
     // Handle the solve button click event
     public void handleSolveButtonClick(ActionEvent actionEvent) {
         int[] nextStep = {0, 0};
-        while (nextStep[0] != viewModel.getMazeRows()-1 && nextStep[1] != viewModel.getGoalColumn()) {
+        while (nextStep[0] != -1 && nextStep[1] != -1 ) {
             // get the next step in the solution
             nextStep = viewModel.getNextStepInSolution();
             // update the maze display accordingly

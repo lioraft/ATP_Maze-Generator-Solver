@@ -5,8 +5,6 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /*
@@ -32,7 +29,7 @@ public class MyViewController extends Application implements IView {
     ComboBox<Integer> height;
     AnchorPane mazeDisplayer;
     MyViewModel viewModel;
-    int sizeOfCell = 0;
+    String css;
 
 
     public static void main(String[] args) {
@@ -44,8 +41,10 @@ public class MyViewController extends Application implements IView {
         // initialize fxml loader
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MyView.fxml"));
         mainScene = loader.load(); // load main anchor pane
+        // load css file
+        css = getClass().getResource("/stylesheet.css").toExternalForm();
         // load background image
-        Image backgroundImage = new Image(getClass().getResource("/resources/spongebob-jellyfish-1000.jpg").toExternalForm());
+        Image backgroundImage = new Image(getClass().getResource("/spongebob-jellyfish-1000.jpg").toExternalForm());
         // set background image
         mainScene.setStyle("-fx-background-image: url('" + backgroundImage.getUrl() + "'); " + "-fx-background-position: center center; " + "-fx-background-repeat: stretch;");
         // set title
@@ -101,7 +100,7 @@ public class MyViewController extends Application implements IView {
         Button start_button = (Button) mainScene.lookup("#start_button");
         start_button.setStyle("-fx-background-color: transparent;");
         // create an image
-        Image image = new Image(getClass().getResource("/resources/start-button-100.png").toExternalForm());
+        Image image = new Image(getClass().getResource("/start-button-100.png").toExternalForm());
         // convert the image to an ImageView
         ImageView imageView = new ImageView(image);
         // set the ImageView as the graphic of the button
@@ -146,12 +145,12 @@ public class MyViewController extends Application implements IView {
             // set player position
             int playerCol = viewModel.getStartColumn();
             // get image from resources
-            Image spongebob = new Image(getClass().getResource("/resources/spongebob.png").toExternalForm());
+            Image spongebob = new Image(getClass().getResource("/spongebob.png").toExternalForm());
             drawPlayer(gc, spongebob, 0, playerCol, maze);
             // set goal position
             int goalCol = viewModel.getGoalColumn();
             // get image from resources
-            Image jellyfish = new Image(getClass().getResource("/resources/jellyfish.png").toExternalForm());
+            Image jellyfish = new Image(getClass().getResource("/jellyfish.png").toExternalForm());
             drawPlayer(gc,jellyfish,maze.length-1, goalCol, maze);
 
             // create a new scene with the loaded FXML content
@@ -276,6 +275,21 @@ public class MyViewController extends Application implements IView {
 
             // Draw the player in the new position
             drawPlayer(gc, playerImage, newRow, newCol, maze);
+
+            // if player reached goal, show alert
+            if (viewModel.getGoalColumn() == viewModel.getPlayerCol() && viewModel.getPlayerRow() == viewModel.getMazeRows()-1) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Maze solved!");
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.setHeaderText(null);
+                dialogPane.setGraphic(null);
+
+                // apply the CSS to the alert dialog
+                alert.getDialogPane().getStylesheets().add(css);
+
+                alert.show();
+            }
         }
     }
 

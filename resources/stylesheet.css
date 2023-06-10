@@ -1,0 +1,24 @@
+.alert {
+    -fx-background-color: pink;
+}
+
+.alert .dialog-pane {
+    -fx-background-color: pink;
+    -fx-border-color: pink;
+}
+
+.alert .header-panel {
+    -fx-background-color: pink;
+}
+
+.alert .content {
+    -fx-font-family: Arial;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-alignment: top-center;
+}
+
+.alert .button-bar {
+    -fx-background-color: pink;
+}

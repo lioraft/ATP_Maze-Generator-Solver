@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -135,38 +137,22 @@ public class MyViewController extends Application implements IView {
             // get current maze
             int[][] maze = viewModel.getMaze();
 
-            // create maze in sizes and display it
-            GridPane gridPane =(GridPane) mazeDisplayer.lookup("#mazeGrid");
+            // get canvas in order to create maze in sizes and display it
+            Canvas mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
+            GraphicsContext gc = mazeCanvas.getGraphicsContext2D();
+            drawMaze(gc, maze);
 
-            gridPane.setHgap(0); // remove horizontal gap between cells
-            gridPane.setVgap(0); // remove vertical gap between cells
-            gridPane.setPadding(new Insets(30));
-            gridPane.setAlignment(Pos.TOP_LEFT);
-
-            // create the maze
-            for (int i = 0; i < mazeWidth; i++) {
-                for (int j = 0; j < mazeHeight; j++) {
-                    Rectangle cell = createCell(maze[i][j], mazeWidth, mazeHeight);
-                    gridPane.add(cell, j, i);
-                }
-            }
 
             // set player position
             int playerCol = viewModel.getStartColumn();
-            setPlayerPosition(0, playerCol, sizeOfCell);
+            // get image from resources
+            Image spongebob = new Image(getClass().getResource("/resources/spongebob.png").toExternalForm());
+            drawPlayer(gc, spongebob, 0, playerCol, maze);
             // set goal position
             int goalCol = viewModel.getGoalColumn();
-            setExitItemPosition(mazeHeight - 1, goalCol, sizeOfCell);
-
-
-            // set the constraints for the GridPane to fit within the AnchorPane
-            gridPane.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-            gridPane.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-
-            AnchorPane.setTopAnchor(gridPane, 0.0);
-            AnchorPane.setBottomAnchor(gridPane, 0.0);
-            AnchorPane.setLeftAnchor(gridPane, 0.0);
-            AnchorPane.setRightAnchor(gridPane, 0.0);
+            // get image from resources
+            Image jellyfish = new Image(getClass().getResource("/resources/jellyfish.png").toExternalForm());
+            drawPlayer(gc,jellyfish,maze.length-1, goalCol, maze);
 
             // create a new scene with the loaded FXML content
             Scene mazeDisplayScene = new Scene(mazeDisplayer, 1000.0, 1000.0);
@@ -194,38 +180,42 @@ public class MyViewController extends Application implements IView {
     }
 
     // helper method to create a cell in the maze:
-    // 0 - passage as transparent cell, has no walls
-    // 1 - wall as a cell with a thin border
-    private Rectangle createCell(int value, int mazeWidth, int mazeHeight) {
-        int cellSize = Math.min(900 / mazeWidth, 900 / mazeHeight); // get minimum cell size so it fits the screen
-        Rectangle cell = new Rectangle(cellSize, cellSize); // adjust the size of the cell
-        cell.setFill(value == 0 ? Color.WHITE : Color.TRANSPARENT); // set the cell background color: if passage, white. if wall, transparent
+    // 0 - passage
+    // 1 - wall
+    private void drawMaze(GraphicsContext gc, int[][] maze) {
+        double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
+        double cellHeight = gc.getCanvas().getHeight() / maze.length;
 
-        // set the border width to 0 for all cells
-        cell.setStrokeWidth(0);
+        for (int row = 0; row < maze.length; row++) {
+            for (int col = 0; col < maze[row].length; col++) {
+                double x = col * cellWidth;
+                double y = row * cellHeight;
 
-        // save the size of the cell for later use
-        sizeOfCell = cellSize;
-
-        return cell;
+                if (maze[row][col] == 1) {
+                    gc.setFill(Color.TRANSPARENT);
+                    gc.fillRect(x, y, cellWidth, cellHeight);
+                } else {
+                    gc.setFill(Color.WHITE);
+                    gc.fillRect(x, y, cellWidth, cellHeight);
+                }
+            }
+        }
     }
 
     // function that takes the position of the player and sets the picture from resources in this position in the maze (which is the gridpane)
-    private void setPlayerPosition(int row, int col, int size) {
-        GridPane gridPane = (GridPane) mazeDisplayer.lookup("#mazeGrid");
-        ImageView player = new ImageView(new Image(getClass().getResource("/resources/spongebob.png").toExternalForm()));
-        player.setFitWidth(size); // set width
-        player.setFitHeight(size); // set height
-        gridPane.add(player, row, col);
-    }
+    private void drawPlayer(GraphicsContext gc, Image playerImage, int row, int col, int[][] maze) {
+        double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
+        double cellHeight = gc.getCanvas().getHeight() / maze.length;
 
-    // function that takes the position of the exit and sets the picture from resources in this position in the maze (which is the gridpane)
-    private void setExitItemPosition(int row, int col, int size) {
-        GridPane gridPane = (GridPane) mazeDisplayer.lookup("#mazeGrid");
-        ImageView exit = new ImageView(new Image(getClass().getResource("/resources/jellyfish.png").toExternalForm()));
-        exit.setFitWidth(size); // set width
-        exit.setFitHeight(size); // set height
-        gridPane.add(exit, row, col);
+        double x = col * cellWidth;
+        double y = row * cellHeight;
+
+        if (playerImage != null) {
+            gc.drawImage(playerImage, x, y, cellWidth, cellHeight);
+        } else {
+            gc.setFill(Color.BLUE);
+            gc.fillRect(x, y, cellWidth, cellHeight);
+        }
     }
 
     // function that check if cell player wants to move to is a passage

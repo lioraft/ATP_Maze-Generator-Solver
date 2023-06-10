@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.layout.*?>
+
 <AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
     <fx:include source="menuBar.fxml" />
-    <VBox layoutX="25.0" layoutY="49.0" spacing="0">
-        <GridPane fx:id="mazeGrid" style="-fx-padding: 0;" />
-    </VBox>
+   <Canvas fx:id="mazeCanvas" height="903.0" layoutX="28.0" layoutY="49.0" width="952.0" />
 </AnchorPane>

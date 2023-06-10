@@ -246,7 +246,7 @@ public class MyModel implements IModel{
         solveSearchProblemServer.stop();
     }
 
-    // function that saves the current maze to file
+    // function that saves maze to file
     public boolean saveCurrentMazeToFile(String fileName) {
         try {
             // create file output stream
@@ -263,6 +263,32 @@ public class MyModel implements IModel{
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean loadCurrentMazeFromFile(String fileName) {
+        try {
+            // create file input stream
+            FileInputStream file = new FileInputStream(fileName);
+            // create object input stream
+            ObjectInputStream in = new ObjectInputStream(file);
+            // read object from file
+            currentMaze = (Maze) in.readObject();
+            // close streams
+            in.close();
+            file.close();
+            return true;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // function that checks if the given row and column are a wall
+    public boolean isPassage(int row, int col) {
+        if (currentMaze == null) {
+            return false;
+        }
+        return currentMaze.isValidPassage(row, col);
     }
 
 }

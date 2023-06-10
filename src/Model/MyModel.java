@@ -76,6 +76,8 @@ public class MyModel implements IModel{
         }
         // set current maze to the generated maze
         currentMaze = mazeRef.get(); // set the current maze
+        // set starting position
+        setCharacterPosition(currentMaze.getStartPosition().getRowIndex(), currentMaze.getStartPosition().getColumnIndex());
     }
 
     // function to solve maze and return solution

@@ -162,17 +162,12 @@ public class MyViewController extends Application implements IView {
 
             mazeDisplayer.requestFocus(); // set focus on the maze
 
-            // while solution is not found, keep playing
-            //boolean solutionFound = false;
-            //while(!solutionFound) {
-                mazeDisplayer.setOnKeyPressed(event -> {
-                    KeyCode keyCode = event.getCode();
-                    if (keyCode.isKeypadKey()) {
-                        String keyText = keyCode.getName();
-                        handlePlayMove(keyText);
-                    }
-                });
-          //  }
+            mazeDisplayer.setOnKeyPressed(event -> {
+                KeyCode keyCode = event.getCode();
+                if (keyCode.isLetterKey()) {
+                    handlePlayMove(keyCode.getName().toLowerCase(), gc, spongebob);
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -221,79 +216,68 @@ public class MyViewController extends Application implements IView {
     // function that check if cell player wants to move to is a passage
     // if it is, move player to this cell
     // if it isn't, do nothing
-    public void handlePlayMove(String activator) {
-        switch (activator) {
-            case "1": {
-                if (viewModel.isPassage(viewModel.getPlayerRow() -1, viewModel.getPlayerCol() - 1)) {
-                    moveOnBoard(viewModel.getPlayerRow() - 1, viewModel.getPlayerCol() - 1, viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow() - 1, viewModel.getPlayerCol() - 1);
-                }
+    public void handlePlayMove(String key, GraphicsContext gc, Image playerImage) {
+        int[][] maze = viewModel.getMaze();
+
+        int currentRow = viewModel.getPlayerRow();
+        int currentCol = viewModel.getPlayerCol();
+
+        int newRow = currentRow;
+        int newCol = currentCol;
+
+        switch (key) {
+            case "w":
+                newRow--;
                 break;
-            }
-            case "2": {
-                if (viewModel.isPassage(viewModel.getPlayerRow() -1, viewModel.getPlayerCol())) {
-                    moveOnBoard(viewModel.getPlayerRow() - 1, viewModel.getPlayerCol(), viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow() - 1, viewModel.getPlayerCol());
-                }
+            case "q":
+                newRow--;
+                newCol--;
                 break;
-            }
-            case "3": {
-                if (viewModel.isPassage(viewModel.getPlayerRow() -1, viewModel.getPlayerCol() + 1)) {
-                    moveOnBoard(viewModel.getPlayerRow() - 1, viewModel.getPlayerCol() + 1, viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow() - 1, viewModel.getPlayerCol() + 1);
-                }
+            case "s":
+                newRow++;
                 break;
-            }
-            case "4": {
-                if (viewModel.isPassage(viewModel.getPlayerRow(), viewModel.getPlayerCol() - 1)) {
-                    moveOnBoard(viewModel.getPlayerRow(), viewModel.getPlayerCol() - 1, viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol() - 1);
-                }
+            case "a":
+                newCol--;
                 break;
-            }
-            case "6": {
-                if (viewModel.isPassage(viewModel.getPlayerRow(), viewModel.getPlayerCol() + 1)) {
-                    moveOnBoard(viewModel.getPlayerRow(), viewModel.getPlayerCol() + 1, viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol() + 1);
-                }
+            case "d":
+                newCol++;
                 break;
-            }
-            case "7": {
-                if (viewModel.isPassage(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol() - 1)) {
-                    moveOnBoard(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol() - 1, viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol() - 1);
-                }
+            case "e":
+                newRow--;
+                newCol++;
                 break;
-            }
-            case "8": {
-                if (viewModel.isPassage(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol())) {
-                    moveOnBoard(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol(), viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol());
-                }
+            case "x":
+                newRow++;
+                newCol--;
                 break;
-            }
-            case "9": {
-                if (viewModel.isPassage(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol() + 1)) {
-                    moveOnBoard(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol() + 1, viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                    viewModel.setPlayerPosition(viewModel.getPlayerRow() + 1, viewModel.getPlayerCol() + 1);
-                }
+            case "z":
+                newRow++;
+                newCol++;
                 break;
-            }
-            default: {
+            default:
                 // Handle unrecognized key
                 break;
-            }
+        }
+
+        if (viewModel.isPassage(newRow, newCol)) {
+            viewModel.setPlayerPosition(newRow, newCol);
+
+            double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
+            double cellHeight = gc.getCanvas().getHeight() / maze.length;
+
+            // Clear the current cell
+            double currentX = currentCol * cellWidth;
+            double currentY = currentRow * cellHeight;
+            gc.clearRect(currentX, currentY, cellWidth, cellHeight);
+
+            // Redraw the white background in the current cell
+            gc.setFill(Color.WHITE);
+            gc.fillRect(currentX, currentY, cellWidth, cellHeight);
+
+            // Draw the player in the new position
+            drawPlayer(gc, playerImage, newRow, newCol, maze);
         }
     }
 
-    // function that takes the position of the player and sets the picture from resources in this position in the maze (which is the gridpane)
-    public void moveOnBoard(int destRow, int destCol, int sourceRow, int sourceCol) {
-        GridPane gridPane = (GridPane) mazeDisplayer.lookup("#mazeGrid");
-        ImageView player = new ImageView(new Image(getClass().getResource("/resources/spongebob.png").toExternalForm()));
-        player.setFitWidth(sizeOfCell); // set width
-        player.setFitHeight(sizeOfCell); // set height
-        gridPane.add(player, destCol, destRow); // swap destRow and destCol
-        gridPane.getChildren().remove(gridPane.getChildren().size() - 1);
-    }
 
 }

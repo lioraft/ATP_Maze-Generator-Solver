@@ -4,12 +4,13 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -26,6 +27,8 @@ public class MyViewController extends Application implements IView {
     @FXML
     ComboBox<Integer> height;
     AnchorPane mazeDisplayer;
+
+    int sizeOfCell = 0;
 
 
     public static void main(String[] args) {
@@ -83,7 +86,7 @@ public class MyViewController extends Application implements IView {
         width = (ComboBox<Integer>) mainScene.lookup("#width");
         height = (ComboBox<Integer>) mainScene.lookup("#height");
         // set width and height comboboxes values
-        for (int i = 100; i <= 1000; i += 100) {
+        for (int i = 10; i <= 100; i += 10) {
             width.getItems().add(i);
             height.getItems().add(i);
         }
@@ -118,24 +121,35 @@ public class MyViewController extends Application implements IView {
             // set background color
             mazeDisplayer.setStyle("-fx-background-color: #6dcff6;");
 
-            // get input dimensionms from user
+            // get input dimensions from user
             int mazeWidth = width.getValue();
             int mazeHeight = height.getValue();
 
             // create maze in sizes and display it
             GridPane gridPane =(GridPane) mazeDisplayer.lookup("#mazeGrid");
+
+            gridPane.setHgap(0); // remove horizontal gap between cells
+            gridPane.setVgap(0); // remove vertical gap between cells
+            gridPane.setPadding(new Insets(30));
+            gridPane.setAlignment(Pos.TOP_LEFT);
+
+            // create the maze
             for (int i = 0; i < mazeWidth; i++) {
                 for (int j = 0; j < mazeHeight; j++) {
-                    Rectangle cell = createCell(1);
+                    int mathRandom = (int) (Math.random() * 2);
+                    Rectangle cell = createCell(mathRandom, mazeWidth, mazeHeight);
                     gridPane.add(cell, j, i);
                 }
             }
 
             // set the constraints for the GridPane to fit within the AnchorPane
-            AnchorPane.setTopAnchor(gridPane, 20.0);
-            AnchorPane.setBottomAnchor(gridPane, 20.0);
-            AnchorPane.setLeftAnchor(gridPane, 20.0);
-            AnchorPane.setRightAnchor(gridPane, 20.0);
+            gridPane.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+            gridPane.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+
+            AnchorPane.setTopAnchor(gridPane, 0.0);
+            AnchorPane.setBottomAnchor(gridPane, 0.0);
+            AnchorPane.setLeftAnchor(gridPane, 0.0);
+            AnchorPane.setRightAnchor(gridPane, 0.0);
 
             // create a new scene with the loaded FXML content
             Scene mazeDisplayScene = new Scene(mazeDisplayer, 1000.0, 1000.0);
@@ -150,17 +164,16 @@ public class MyViewController extends Application implements IView {
     // helper method to create a cell in the maze:
     // 0 - passage as transparent cell, has no walls
     // 1 - wall as a cell with a thin border
-    private Rectangle createCell(int value) {
-        Rectangle cell = new Rectangle(10, 10); // Adjust the size of the cell here
-        cell.setFill(Color.TRANSPARENT); // Set the cell background to transparent
-        cell.setStroke(Color.BLACK); // Set the border color
+    private Rectangle createCell(int value, int mazeWidth, int mazeHeight) {
+        int cellSize = Math.min(900 / mazeWidth, 900 / mazeHeight); // get minimum cell size so it fits the screen
+        Rectangle cell = new Rectangle(cellSize, cellSize); // adjust the size of the cell
+        cell.setFill(value == 0 ? Color.WHITE : Color.TRANSPARENT); // set the cell background color: if passage, white. if wall, transparent
 
-        // Set different border width based on cell value
-        if (value == 0) {
-            cell.setStrokeWidth(0); // Transparent border
-        } else {
-            cell.setStrokeWidth(1); // Thin border
-        }
+        // set the border width to 0 for all cells
+        cell.setStrokeWidth(0);
+
+        // save the size of the cell for later use
+        sizeOfCell = cellSize;
 
         return cell;
     }

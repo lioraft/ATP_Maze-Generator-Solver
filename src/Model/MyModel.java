@@ -178,6 +178,9 @@ public class MyModel implements IModel{
         if (currentMaze == null) {
             return null;
         }
+        if (solToMaze == null) {
+            solveGame();
+        }
         return solToMaze;
     }
 
@@ -186,11 +189,15 @@ public class MyModel implements IModel{
     // if doesn't find, return solution next step from beginning
     public int[] getHint() {
         int[] nextStep = new int[2];
-        // if there is no current maze or solution, return -1
-        if (currentMaze == null || solToMaze == null) {
+        // if there is no current maze, return -1
+        if (currentMaze == null) {
             nextStep[0] = -1;
             nextStep[1] = -1;
             return nextStep;
+        }
+        // if there is game but no solution, solve maze
+        if (solToMaze == null) {
+            solveGame();
         }
         // get solution steps
         ArrayList<AState> solutionSteps = solToMaze.getSolutionPath();
@@ -222,7 +229,7 @@ public class MyModel implements IModel{
         // get next position in string format
         String nextPos = next.toString();
         // remove brackets from string
-        if (nextPos.startsWith("[") && nextPos.endsWith("]")) {
+        if (nextPos.startsWith("{") && nextPos.endsWith("}")) {
             nextPos = nextPos.substring(1, nextPos.length() - 1);
         }
         // split string to get row and column indexes

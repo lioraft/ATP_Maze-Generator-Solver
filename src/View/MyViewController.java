@@ -31,6 +31,7 @@ public class MyViewController extends Application implements IView {
     MyViewModel viewModel;
     String css;
 
+    GraphicsContext gc;
 
     public static void main(String[] args) {
         launch(args);
@@ -138,20 +139,29 @@ public class MyViewController extends Application implements IView {
 
             // get canvas in order to create maze in sizes and display it
             Canvas mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
-            GraphicsContext gc = mazeCanvas.getGraphicsContext2D();
-            drawMaze(gc, maze);
+            gc = mazeCanvas.getGraphicsContext2D();
+            drawMaze(maze);
 
 
             // set player position
             int playerCol = viewModel.getStartColumn();
             // get image from resources
             Image spongebob = new Image(getClass().getResource("/spongebob.png").toExternalForm());
-            drawPlayer(gc, spongebob, 0, playerCol, maze);
+            drawPlayer(spongebob, 0, playerCol, maze);
             // set goal position
             int goalCol = viewModel.getGoalColumn();
             // get image from resources
             Image jellyfish = new Image(getClass().getResource("/jellyfish.png").toExternalForm());
-            drawPlayer(gc,jellyfish,maze.length-1, goalCol, maze);
+            drawPlayer(jellyfish,maze.length-1, goalCol, maze);
+
+            // Create the hint button
+            Button hintButton = (Button) mazeDisplayer.lookup("#hint_button");
+            hintButton.setOnAction(this::handleHintButtonClick);
+
+            // Create the solve button
+            Button solveButton = (Button) mazeDisplayer.lookup("#solve_button");
+            solveButton.setOnAction(this::handleSolveButtonClick);
+
 
             // create a new scene with the loaded FXML content
             Scene mazeDisplayScene = new Scene(mazeDisplayer, 1000.0, 1000.0);
@@ -164,7 +174,7 @@ public class MyViewController extends Application implements IView {
             mazeDisplayer.setOnKeyPressed(event -> {
                 KeyCode keyCode = event.getCode();
                 if (keyCode.isLetterKey()) {
-                    handlePlayMove(keyCode.getName().toLowerCase(), gc, spongebob);
+                    handlePlayMove(keyCode.getName().toLowerCase(), spongebob);
                 }
             });
 
@@ -173,10 +183,41 @@ public class MyViewController extends Application implements IView {
         }
     }
 
+    // Handle the hint button click event
+    public void handleHintButtonClick(ActionEvent actionEvent) {
+        // get the next step in the solution
+        int[] nextStep = viewModel.getNextStepInSolution();
+        // update the maze display accordingly
+        markCell(nextStep[0], nextStep[1]);
+    }
+
+    // Handle the solve button click event
+    public void handleSolveButtonClick(ActionEvent actionEvent) {
+        int[] nextStep = {0, 0};
+        while (nextStep[0] != viewModel.getMazeRows()-1 && nextStep[1] != viewModel.getGoalColumn()) {
+            // get the next step in the solution
+            nextStep = viewModel.getNextStepInSolution();
+            // update the maze display accordingly
+            markCell(nextStep[0], nextStep[1]);
+        }
+    }
+
+    // function takes in row and column, and fills the cell in the maze with yellow color
+    public void markCell(int row, int col) {
+        double cellWidth = gc.getCanvas().getWidth() / viewModel.getMaze()[0].length;
+        double cellHeight = gc.getCanvas().getHeight() / viewModel.getMaze().length;
+
+        double x = col * cellWidth;
+        double y = row * cellHeight;
+
+        gc.setFill(Color.YELLOW);
+        gc.fillRect(x, y, cellWidth, cellHeight);
+    }
+
     // helper method to create a cell in the maze:
     // 0 - passage
     // 1 - wall
-    private void drawMaze(GraphicsContext gc, int[][] maze) {
+    private void drawMaze(int[][] maze) {
         double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
         double cellHeight = gc.getCanvas().getHeight() / maze.length;
 
@@ -197,7 +238,7 @@ public class MyViewController extends Application implements IView {
     }
 
     // function that takes the position of the player and sets the picture from resources in this position in the maze (which is the gridpane)
-    private void drawPlayer(GraphicsContext gc, Image playerImage, int row, int col, int[][] maze) {
+    private void drawPlayer(Image playerImage, int row, int col, int[][] maze) {
         double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
         double cellHeight = gc.getCanvas().getHeight() / maze.length;
 
@@ -215,7 +256,7 @@ public class MyViewController extends Application implements IView {
     // function that check if cell player wants to move to is a passage
     // if it is, move player to this cell
     // if it isn't, do nothing
-    public void handlePlayMove(String key, GraphicsContext gc, Image playerImage) {
+    public void handlePlayMove(String key,Image playerImage) {
         int[][] maze = viewModel.getMaze();
 
         int currentRow = viewModel.getPlayerRow();
@@ -274,7 +315,7 @@ public class MyViewController extends Application implements IView {
             gc.fillRect(currentX, currentY, cellWidth, cellHeight);
 
             // Draw the player in the new position
-            drawPlayer(gc, playerImage, newRow, newCol, maze);
+            drawPlayer(playerImage, newRow, newCol, maze);
 
             // if player reached goal, show alert
             if (viewModel.getGoalColumn() == viewModel.getPlayerCol() && viewModel.getPlayerRow() == viewModel.getMazeRows()-1) {

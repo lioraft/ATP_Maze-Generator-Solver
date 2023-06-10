@@ -5,6 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public interface IView {
-    void handleStartButtonClick(ActionEvent actionEvent); // handle start button click
-    void handlePlayMove(String activator, GraphicsContext gc, Image playerImage); // handle player move: needs gameboard, player character to move, and the key pressed
+    void handleStartButtonClick(ActionEvent actionEvent); // handle start button click: a new game is generated
+    void handlePlayMove(String activator, Image playerImage); // handle player move: needs player character to move, and the key pressed
+    void handleSolveButtonClick(ActionEvent actionEvent); // handle solve button click: the solution is shown on the gameboard
+    void handleHintButtonClick(ActionEvent actionEvent); // handle hint button click: the next step in the solution is shown on the gameboard
 }

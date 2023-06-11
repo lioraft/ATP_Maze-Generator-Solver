@@ -18,7 +18,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,17 +29,15 @@ import java.io.IOException;
 
 public class MyViewController extends Application implements IView {
     AnchorPane mainScene;
-    @FXML
-    ComboBox<Integer> width;
-    @FXML
-    ComboBox<Integer> height;
-    int mazeWidth = 0;
-    int mazeHeight = 0;
+    Scene scene;
+    private ComboBox<Integer> width;
+    private ComboBox<Integer> height;
     AnchorPane mazeDisplayer;
     MyViewModel viewModel;
     String css;
 
     GraphicsContext gc;
+    private static Stage ps;
 
     public static void main(String[] args) {
         launch(args);
@@ -48,6 +45,7 @@ public class MyViewController extends Application implements IView {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        ps = primaryStage;
         // initialize view model
         viewModel = MyViewModel.getInstance();
         // set main scene
@@ -86,6 +84,8 @@ public class MyViewController extends Application implements IView {
         // handle save game menu item click
         saveGame.setOnAction(this::handleSaveGameButtonClick);
         MenuItem loadGame = fileMenu.getItems().get(2);
+        // handle load game menu item click
+        loadGame.setOnAction(this::handleLoadGameButtonClick);
         // initialize options menu
         Menu optionsMenu =  menuBar.getMenus().get(1);
         // initialize options menu items
@@ -107,6 +107,7 @@ public class MyViewController extends Application implements IView {
         // set designs for menu bar
         menuBar.getStyleClass().add("menu-bar");
         // set width and height comboboxes
+        // set width and height comboboxes
         width = (ComboBox<Integer>) mainScene.lookup("#width");
         height = (ComboBox<Integer>) mainScene.lookup("#height");
         // set width and height comboboxes values
@@ -114,12 +115,6 @@ public class MyViewController extends Application implements IView {
             width.getItems().add(i);
             height.getItems().add(i);
         }
-        /*
-        // add more width and height values
-        for (int i = 200; i <= 1000; i += 100) {
-            width.getItems().add(i);
-            height.getItems().add(i);
-        }*/
         // initialize start button
         // get the button from the FXML file
         Button start_button = (Button) mainScene.lookup("#start_button");
@@ -133,20 +128,24 @@ public class MyViewController extends Application implements IView {
         // Set the event handler for the button
         start_button.setOnAction(this::handleStartButtonClick);
         // set scene
-        Scene scene = new Scene(mainScene, 1000.0, 1000.0);
+        scene = new Scene(mainScene, 1000.0, 1000.0);
         scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         // show stage
         primaryStage.show();
     }
 
+    // handle start game button click
+    @Override
     public void handleStartButtonClick(ActionEvent actionEvent) {
         try {
             Stage primaryStage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
 
-            // load the FXML file for the new scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("mazeDisplayer.fxml"));
-            mazeDisplayer = loader.load();
+            if (mazeDisplayer == null) {
+                // load the FXML file for the new scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("mazeDisplayer.fxml"));
+                mazeDisplayer = loader.load();
+            }
 
             // set background color
             mazeDisplayer.setStyle("-fx-background-color: #6dcff6;");
@@ -156,18 +155,23 @@ public class MyViewController extends Application implements IView {
                 throw new Exception();
             }
             // get input dimensions from user
-            mazeWidth = width.getValue();
-            mazeHeight = height.getValue();
+            Integer mazeWidth = width.getValue();
+            Integer mazeHeight = height.getValue();
 
             // generate maze
+            if (viewModel == null) {
+                viewModel = MyViewModel.getInstance();
+            }
             viewModel.generateMaze(mazeWidth, mazeHeight);
 
             // get current maze
             int[][] maze = viewModel.getMaze();
 
-            // get canvas in order to create maze in sizes and display it
-            Canvas mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
-            gc = mazeCanvas.getGraphicsContext2D();
+            if (gc == null) {
+                // get canvas in order to create maze in sizes and display it
+                Canvas mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
+                gc = mazeCanvas.getGraphicsContext2D();
+            }
             drawMaze(maze);
 
 
@@ -219,6 +223,107 @@ public class MyViewController extends Application implements IView {
         }
     }
 
+    @Override
+    public void handleNewGameButtonClick(ActionEvent actionEvent) {
+        try {
+            setMainScene(ps);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    // handle load maze menu item click
+    @Override
+    public void handleLoadGameButtonClick(ActionEvent actionEvent) {
+        // open file chooser
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Load Maze");
+        // set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Maze files (*.maze)", "*.maze");
+        fileChooser.getExtensionFilters().add(extFilter);
+        // show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        // let user choose file to load
+        if (file != null) {
+            if (viewModel == null) {
+                viewModel = MyViewModel.getInstance();
+            }
+            viewModel.loadMaze(file);
+            // get current maze
+            int[][] maze = viewModel.getMaze();
+            // get player position
+            int playerRow = 0;
+            int playerCol = viewModel.getStartColumn();
+            // get goal position
+            int goalRow = maze.length-1;
+            int goalCol = viewModel.getGoalColumn();
+            viewModel.setPlayerPosition(playerRow, playerCol);
+            // get image from resources
+            Image spongebob = new Image(getClass().getResource("/spongebob.png").toExternalForm());
+            // if mazeDisplayer is null, get it
+            if (mazeDisplayer == null) {
+                // load the FXML file for the new scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("mazeDisplayer.fxml"));
+                try {
+                    mazeDisplayer = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            // if gc is null, get it
+            if (gc == null) {
+                Canvas mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
+                gc = mazeCanvas.getGraphicsContext2D();
+            }
+            // draw maze
+            drawMaze(maze);
+            // draw player
+            drawPlayer(spongebob, playerRow, playerCol, maze);
+            // get image from resources
+            Image jellyfish = new Image(getClass().getResource("/jellyfish.png").toExternalForm());
+            // draw goal
+            drawPlayer(jellyfish, goalRow, goalCol, maze);
+            // Create the hint button
+            Button hintButton = (Button) mazeDisplayer.lookup("#hint_button");
+            hintButton.getStyleClass().add("hint-button");
+            hintButton.setOnAction(this::handleHintButtonClick);
+
+            // Create the solve button
+            Button solveButton = (Button) mazeDisplayer.lookup("#solve_button");
+            solveButton.getStyleClass().add("hint-button");
+            solveButton.setOnAction(this::handleSolveButtonClick);
+
+            // set background color
+            mazeDisplayer.setStyle("-fx-background-color: #6dcff6;");
+
+            // create a new scene with the loaded FXML content
+            Scene mazeDisplayScene = new Scene(mazeDisplayer, 1000.0, 1000.0);
+
+            // load css file
+            mazeDisplayScene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+
+            // set the new scene as the scene of the primary stage
+            ps.setScene(mazeDisplayScene);
+
+            mazeDisplayer.requestFocus(); // set focus on the maze
+
+            mazeDisplayer.setOnKeyPressed(event -> {
+                KeyCode keyCode = event.getCode();
+                if (keyCode.isLetterKey()) {
+                    handlePlayMove(keyCode.getName().toLowerCase(), spongebob);
+                }
+            });
+        }
+        else {
+            // if file is null, show error
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please choose a valid file");
+            setAlertCSS(alert, "/attention.png");
+            alert.showAndWait();
+        }
+    }
+
     // helper function to set alert design
     public void setAlertCSS(Alert alert, String imageName) {
         // add css to alert
@@ -236,40 +341,9 @@ public class MyViewController extends Application implements IView {
         dialogPane.setGraphic(imageView);
     }
 
-    // handle new game menu item click
-    public void handleNewGameButtonClick(ActionEvent actionEvent) {
-        // Get the source MenuItem
-        MenuItem menuItem = (MenuItem) actionEvent.getSource();
 
-        // Find the parent MenuBar
-        MenuBar menuBar = null;
-        Parent parent = menuItem.getParentPopup().getOwnerNode().getParent();
-        while (parent != null && !(parent instanceof MenuBar)) {
-            parent = parent.getParent();
-        }
-        if (parent instanceof MenuBar) {
-            menuBar = (MenuBar) parent;
-        }
-
-        // Find the parent Stage
-        Stage primaryStage = null;
-        Scene scene = menuBar != null ? menuBar.getScene() : null;
-        if (scene != null) {
-            Window window = scene.getWindow();
-            if (window instanceof Stage) {
-                primaryStage = (Stage) window;
-            }
-        }
-
-        try {
-            if (primaryStage != null) {
-                setMainScene(primaryStage);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    // handle save maze menu item click
+    @Override
     public void handleSaveGameButtonClick(ActionEvent actionEvent) {
         viewModel = MyViewModel.getInstance();
         if (viewModel != null) {
@@ -307,6 +381,7 @@ public class MyViewController extends Application implements IView {
 
 
     // Handle the hint button click event
+    @Override
     public void handleHintButtonClick(ActionEvent actionEvent) {
         // get the next step in the solution
         int[] nextStep = viewModel.getNextStepInSolution();
@@ -315,6 +390,7 @@ public class MyViewController extends Application implements IView {
     }
 
     // handle the solve button click event
+    @Override
     public void handleSolveButtonClick(ActionEvent actionEvent) {
         int[] nextStep = {0, 0};
         while (nextStep[0] != -1 && nextStep[1] != -1 ) {
@@ -326,10 +402,11 @@ public class MyViewController extends Application implements IView {
     }
 
     // handle the exit button click event
+    @Override
     public void handleExitButtonClick(ActionEvent actionEvent) {
         // alert user that the program is about to exit
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?", ButtonType.YES, ButtonType.NO);
-        setAlertCSS(alert, "/exit.png");
+        setAlertCSS(alert, "/exit.jpg");
         // show alert
         alert.showAndWait();
         // if user clicked yes, exit the program
@@ -394,6 +471,7 @@ public class MyViewController extends Application implements IView {
     // function that check if cell player wants to move to is a passage
     // if it is, move player to this cell
     // if it isn't, do nothing
+    @Override
     public void handlePlayMove(String key,Image playerImage) {
         int[][] maze = viewModel.getMaze();
 
@@ -459,7 +537,30 @@ public class MyViewController extends Application implements IView {
             if (viewModel.getGoalColumn() == viewModel.getPlayerCol() && viewModel.getPlayerRow() == viewModel.getMazeRows()-1) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Maze solved!", ButtonType.OK);
                 setAlertCSS(alert, "/win.png");
-                alert.show();
+                alert.showAndWait();
+
+                // after alert show, open scene of maze solved
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MazeSolved.fxml"));
+                    Parent root = fxmlLoader.load();
+                    // get imageview from fxml
+                    ImageView imageView = (ImageView) root.lookup("#image");
+                    // set imageview to the image of success
+                    Image image = new Image(getClass().getResource("/spongebob_hunts.jpg").toExternalForm());
+                    imageView.setImage(image);
+                    // set label design from css
+                    Label label = (Label) root.lookup("#successLabel");
+                    label.getStyleClass().add("solved-label");
+                    Scene scene = new Scene(root, 1000, 1000);
+                    scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+                    scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
+                    Stage stage = new Stage();
+                    stage.setTitle("Maze Solved!");
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

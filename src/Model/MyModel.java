@@ -278,12 +278,12 @@ public class MyModel implements IModel{
         }
     }
 
-    public boolean loadCurrentMazeFromFile(String fileName) {
+    public boolean loadCurrentMazeFromFile(File file) {
         try {
             // create bytes array for maze
             byte savedMazeBytes[];
             // create file input stream, decompress maze and read it
-            InputStream in = new MyDecompressorInputStream(new FileInputStream(fileName));
+            InputStream in = new MyDecompressorInputStream(new FileInputStream(file));
             savedMazeBytes = new byte[10000];
             in.read(savedMazeBytes);
             in.close();

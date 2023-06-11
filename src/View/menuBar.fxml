@@ -6,7 +6,7 @@
     <Menu fx:id="fileMenu" text="File">
         <MenuItem fx:id="newMenuItem" onAction="#handleNewGameButtonClick" text="New" />
         <MenuItem fx:id="saveMenuItem" onAction="#handleSaveGameButtonClick" text="Save" />
-        <MenuItem fx:id="loadMenuItem" text="Load" />
+        <MenuItem fx:id="loadMenuItem" onAction="#handleLoadGameButtonClick" text="Load" />
     </Menu>
     <Menu fx:id="optionsMenu" text="Options">
         <MenuItem fx:id="propMenuItem" text="Properties" />

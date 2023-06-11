@@ -76,4 +76,16 @@
     -fx-background-color: #e76378;
 }
 
+.solved-label {
+    -fx-font-size: 70px;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+}
+
+
 

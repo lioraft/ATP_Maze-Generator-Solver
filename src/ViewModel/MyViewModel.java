@@ -77,8 +77,8 @@ public class MyViewModel {
         return model.saveCurrentMazeToFile(fileName);
     }
 
-    public boolean loadMaze(String fileName) {
-        return model.loadCurrentMazeFromFile(fileName);
+    public boolean loadMaze(File file) {
+        return model.loadCurrentMazeFromFile(file);
     }
 
 }

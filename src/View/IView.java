@@ -12,4 +12,5 @@ public interface IView {
     void handleExitButtonClick(ActionEvent actionEvent); // handle exit button click: the game is closed
     void handleNewGameButtonClick(ActionEvent actionEvent); // handle new game button click: a new game is generated
     void handleSaveGameButtonClick(ActionEvent actionEvent); // handle save game button click: save current game to file
+    void handleLoadGameButtonClick(ActionEvent actionEvent); // handle load game button click: load game from file
 }

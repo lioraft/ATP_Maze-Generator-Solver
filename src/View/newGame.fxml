@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+   <fx:include source="menuBar.fxml" />
+      <Label fx:id="heightLabel" layoutX="398.0" layoutY="198.0" text="Height:" />
+      <Label fx:id="widthLabel" layoutX="400.0" layoutY="147.0" text="Width:" />
+      <Label fx:id="mainLabel" layoutX="404.0" layoutY="98.0" text="Please enter dimension of new maze:" />
+      <Button fx:id="start_button" layoutX="446.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleStartButtonClick" text="Generate New Maze" />
+      <ImageView fx:id="newGameImage" fitHeight="382.0" fitWidth="500.0" layoutX="250.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true" />
+   <ComboBox fx:id="widthCombo" layoutX="450.0" layoutY="143.0" prefWidth="150.0" />
+   <ComboBox fx:id="heightCombo" layoutX="450.0" layoutY="194.0" prefWidth="150.0" />
+</AnchorPane>

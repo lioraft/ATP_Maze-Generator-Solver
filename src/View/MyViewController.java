@@ -523,6 +523,11 @@ public class MyViewController extends Application implements IView {
         double y = row * cellHeight;
 
         if (playerImage != null) {
+            // set the background color for the cell
+            gc.setFill(Color.LIGHTPINK); // color to pink
+            // fill the cell with the background color
+            gc.fillRect(x, y, cellWidth, cellHeight);
+            // draw the player image in the cell
             gc.drawImage(playerImage, x, y, cellWidth, cellHeight);
         } else {
             gc.setFill(Color.BLUE);

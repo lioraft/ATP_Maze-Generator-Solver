@@ -2,6 +2,8 @@ package ViewModel;
 
 import Model.MyModel;
 
+import java.io.File;
+
 /*
     * This class is the ViewModel layer of the MVVM architecture.
     * It is responsible for the presentation logic of the application.
@@ -71,7 +73,7 @@ public class MyViewModel {
         return model.isPassage(row, col);
     }
 
-    public boolean saveMaze(String fileName) {
+    public boolean saveMaze(File fileName) {
         return model.saveCurrentMazeToFile(fileName);
     }
 

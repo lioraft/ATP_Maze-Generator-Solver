@@ -270,29 +270,28 @@ public class MyViewController extends Application implements IView {
         }
     }
 
-    // handle save menu item click
     public void handleSaveGameButtonClick(ActionEvent actionEvent) {
         viewModel = MyViewModel.getInstance();
         if (viewModel != null) {
-            // open window for asking for file name
+            // Open window for asking for file name
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save Maze");
             fileChooser.setInitialFileName("savedMaze");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Maze Files (*.maze)", "*.maze");
+            fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(new Stage());
-            // get string of file name
-            String fileName = file.getName();
-            if (fileName != null && !fileName.equals("")) {
-                // if the file name is valid, try to save the maze
-                boolean canSave = viewModel.saveMaze(fileName);
-                if (!canSave) {
-                    // if game didn't start, alert user that there isn't a maze to save
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "No maze to save");
-                    setAlertCSS(alert, "/attention.png");
-                    alert.showAndWait();
-                } else {
-                    // if saved, alert user that the maze was saved successfully
+
+            if (file != null) {
+                boolean canSave = viewModel.saveMaze(file);
+                if (canSave) {
+                    // Maze saved successfully
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Maze saved successfully");
                     setAlertCSS(alert, "/success.png");
+                    alert.showAndWait();
+                } else {
+                    // Error saving maze
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to save the maze");
+                    setAlertCSS(alert, "/attention.png");
                     alert.showAndWait();
                 }
             }
@@ -303,6 +302,7 @@ public class MyViewController extends Application implements IView {
             alert.showAndWait();
         }
     }
+
 
 
 

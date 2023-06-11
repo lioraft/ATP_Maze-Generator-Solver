@@ -1,5 +1,6 @@
 package Model;
 import Client.IClientStrategy;
+import IO.MyCompressorOutputStream;
 import IO.MyDecompressorInputStream;
 import Server.*;
 import algorithms.mazeGenerators.Maze;
@@ -256,41 +257,40 @@ public class MyModel implements IModel{
     }
 
     // function that saves maze to file
-    public boolean saveCurrentMazeToFile(String fileName) {
+    public boolean saveCurrentMazeToFile(File file) {
         // if there is no current maze, return false
         if (currentMaze == null) {
             return false;
         }
         try {
             // create file output stream
-            FileOutputStream file = new FileOutputStream(fileName);
-            // create object output stream
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            // write object to file
-            out.writeObject(currentMaze);
-            // close streams
+            OutputStream out = new MyCompressorOutputStream(new FileOutputStream(file));
+            // write compressed maze to file
+            out.write(currentMaze.toByteArray());
+            out.flush();
             out.close();
-            file.close();
+            // return true if succeeded
             return true;
         } catch (IOException e) {
             e.printStackTrace();
+            // return false if failed
             return false;
         }
     }
 
     public boolean loadCurrentMazeFromFile(String fileName) {
         try {
-            // create file input stream
-            FileInputStream file = new FileInputStream(fileName);
-            // create object input stream
-            ObjectInputStream in = new ObjectInputStream(file);
-            // read object from file
-            currentMaze = (Maze) in.readObject();
-            // close streams
+            // create bytes array for maze
+            byte savedMazeBytes[];
+            // create file input stream, decompress maze and read it
+            InputStream in = new MyDecompressorInputStream(new FileInputStream(fileName));
+            savedMazeBytes = new byte[10000];
+            in.read(savedMazeBytes);
             in.close();
-            file.close();
+            // create new maze from bytes array
+            currentMaze = new Maze(savedMazeBytes);
             return true;
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
         }

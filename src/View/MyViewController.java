@@ -198,7 +198,7 @@ public class MyViewController extends Application implements IView {
         markCell(nextStep[0], nextStep[1]);
     }
 
-    // Handle the solve button click event
+    // handle the solve button click event
     public void handleSolveButtonClick(ActionEvent actionEvent) {
         int[] nextStep = {0, 0};
         while (nextStep[0] != -1 && nextStep[1] != -1 ) {
@@ -209,6 +209,7 @@ public class MyViewController extends Application implements IView {
         }
     }
 
+    // handle the exit button click event
     public void handleExitButtonClick(ActionEvent actionEvent) {
         // alert user that the program is about to exit
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?", ButtonType.YES, ButtonType.NO);
@@ -356,7 +357,12 @@ public class MyViewController extends Application implements IView {
                 alert.setContentText("Maze solved!");
                 DialogPane dialogPane = alert.getDialogPane();
                 dialogPane.setHeaderText(null);
-                dialogPane.setGraphic(null);
+                // load the win image
+                Image image = new Image(getClass().getResource("/win.png").toExternalForm());
+                // create the ImageView
+                ImageView imageView = new ImageView(image);
+                // set the ImageView as the graphic for the DialogPane
+                dialogPane.setGraphic(imageView);
 
                 // apply the CSS to the alert dialog
                 alert.getDialogPane().getStylesheets().add(css);

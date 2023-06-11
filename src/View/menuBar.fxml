@@ -15,7 +15,7 @@
         <MenuItem fx:id="exitMenuItem" onAction="#handleExitButtonClick" text="Exit" />
     </Menu>
     <Menu fx:id="helpMenu" text="Help">
-        <MenuItem fx:id="helpMenuItem" text="Help" />
+        <MenuItem fx:id="helpMenuItem" onAction="#handleHelpButtonClick" text="Help" />
     </Menu>
     <Menu fx:id="aboutMenu" text="About">
         <MenuItem fx:id="aboutMenuItem" text="About" />

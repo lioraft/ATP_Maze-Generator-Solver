@@ -102,6 +102,8 @@ public class MyViewController extends Application implements IView {
         Menu helpMenu = menuBar.getMenus().get(3);
         // initialize help menu items
         MenuItem help = helpMenu.getItems().get(0);
+        // handle help menu item click
+        help.setOnAction(this::handleHelpButtonClick);
         // initialize about menu
         Menu aboutMenu = menuBar.getMenus().get(4);
         // initialize about menu items
@@ -469,6 +471,8 @@ public class MyViewController extends Application implements IView {
         alert.showAndWait();
         // if user clicked yes, exit the program
         if (alert.getResult() == ButtonType.YES) {
+            if (viewModel == null)
+                viewModel = MyViewModel.getInstance();
             // close the thread pool
             viewModel.exit();
             // close the program
@@ -617,6 +621,14 @@ public class MyViewController extends Application implements IView {
                     // set label design from css
                     Label label = (Label) root.lookup("#successLabel");
                     label.getStyleClass().add("solved-label");
+                    // get close button
+                    Button closeButton = (Button) root.lookup("#closeButton");
+                    closeButton.getStyleClass().add("hint-button");
+                    // set close button to close the window
+                    closeButton.setOnAction(event -> {
+                        Stage stage = (Stage) closeButton.getScene().getWindow();
+                        stage.close();
+                    });
                     Scene scene = new Scene(root, 1000, 1000);
                     scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
                     scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
@@ -628,6 +640,62 @@ public class MyViewController extends Application implements IView {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    // function that opens help window
+    public void handleHelpButtonClick(ActionEvent actionEvent) {
+        try {
+            // load fxml of help
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("help.fxml"));
+            Parent root = fxmlLoader.load();
+            // set images of characters
+            ImageView spongebob = (ImageView) root.lookup("#spongebob");
+            Image spongebobImage = new Image(getClass().getResource("/spongebob.png").toExternalForm());
+            spongebob.setImage(spongebobImage);
+            ImageView jellyfish = (ImageView) root.lookup("#jellyfish");
+            Image jellyfishImage = new Image(getClass().getResource("/jellyfish.png").toExternalForm());
+            jellyfish.setImage(jellyfishImage);
+            // set main label design from css
+            Label mainLabel = (Label) root.lookup("#mainLabel");
+            mainLabel.getStyleClass().add("help-main-label");
+            // set help-label design from css
+            Label descLabel = (Label) root.lookup("#descLabel");
+            descLabel.getStyleClass().add("help-label");
+            Label navLabel = (Label) root.lookup("#navLabel");
+            navLabel.getStyleClass().add("help-label");
+            Label charLabel = (Label) root.lookup("#charLabel");
+            charLabel.getStyleClass().add("help-label");
+            Label menuLabel = (Label) root.lookup("#menuLabel");
+            menuLabel.getStyleClass().add("help-label");
+            // get text area and set background color
+            TextArea descText = (TextArea) root.lookup("#descText");
+            descText.getStyleClass().add("transparent-text-area");
+            TextArea navText = (TextArea) root.lookup("#navText");
+            navText.getStyleClass().add("transparent-text-area");
+            TextArea charText = (TextArea) root.lookup("#charText");
+            charText.getStyleClass().add("transparent-text-area");
+            TextArea menuText = (TextArea) root.lookup("#menuText");
+            menuText.getStyleClass().add("transparent-text-area");
+            // get close button
+            Button closeButton = (Button) root.lookup("#closeButton");
+            // set help-close-button design from css
+            closeButton.getStyleClass().add("help-close-button");
+            // set close button to close the window
+            closeButton.setOnAction(event -> {
+                Stage stage = (Stage) closeButton.getScene().getWindow();
+                stage.close();
+            });
+            // set scene and show
+            Scene scene = new Scene(root, 1000, 1000);
+            scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+            scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
+            Stage stage = new Stage();
+            stage.setTitle("Help");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

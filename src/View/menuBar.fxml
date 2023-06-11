@@ -9,7 +9,7 @@
         <MenuItem fx:id="loadMenuItem" onAction="#handleLoadGameButtonClick" text="Load" />
     </Menu>
     <Menu fx:id="optionsMenu" text="Options">
-        <MenuItem fx:id="propMenuItem" text="Properties" />
+        <MenuItem fx:id="propMenuItem" onAction="#handlePropertiesButtonClick" text="Properties" />
     </Menu>
     <Menu fx:id="exitMenu" text="Exit">
         <MenuItem fx:id="exitMenuItem" onAction="#handleExitButtonClick" text="Exit" />

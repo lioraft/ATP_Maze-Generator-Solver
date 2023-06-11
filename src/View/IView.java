@@ -13,4 +13,5 @@ public interface IView {
     void handleNewGameButtonClick(ActionEvent actionEvent); // handle new game button click: a new game is generated
     void handleSaveGameButtonClick(ActionEvent actionEvent); // handle save game button click: save current game to file
     void handleLoadGameButtonClick(ActionEvent actionEvent); // handle load game button click: load game from file
+    void handlePropertiesButtonClick(ActionEvent actionEvent); // handle properties button click: show properties window
 }

@@ -17,7 +17,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import java.io.*;
+import java.util.Properties;
 import java.io.File;
 import java.io.IOException;
 
@@ -89,6 +90,8 @@ public class MyViewController extends Application implements IView {
         Menu optionsMenu =  menuBar.getMenus().get(1);
         // initialize options menu items
         MenuItem properties = optionsMenu.getItems().get(0);
+        // handle properties menu item click
+        properties.setOnAction(this::handlePropertiesButtonClick);
         // initialize exit menu
         Menu exitMenu = menuBar.getMenus().get(2);
         // initialize exit menu item
@@ -400,6 +403,71 @@ public class MyViewController extends Application implements IView {
         }
     }
 
+    @Override
+    public void handlePropertiesButtonClick(ActionEvent actionEvent) {
+        // get the properties from the config file
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            Properties prop = new Properties();
+            // load a properties file
+            prop.load(input);
+            // if can retrieve, get the info from the config file
+            int poolSize = Integer.parseInt(prop.getProperty("threadPoolSize"));
+            String mazeGeneratingAlgorithm = prop.getProperty("mazeSearchingAlgorithm");
+            String  mazeSolvingAlgorithm = prop.getProperty("mazeGeneratingAlgorithm");
+            // create alert for properties
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Properties");
+            alert.setHeaderText("Properties");
+
+            // create the content VBox
+            VBox propertiesBox = new VBox();
+            propertiesBox.getStyleClass().add("properties");
+
+            // create the property labels and values
+            HBox mazeGeneratingRow = new HBox();
+            mazeGeneratingRow.getStyleClass().add("property-row");
+            Label mazeGeneratingLabel = new Label("Maze Generating Algorithm:");
+            mazeGeneratingLabel.getStyleClass().add("property-label");
+            Label mazeGeneratingValue = new Label(mazeGeneratingAlgorithm);
+            mazeGeneratingValue.getStyleClass().add("property-value");
+            mazeGeneratingRow.getChildren().addAll(mazeGeneratingLabel, mazeGeneratingValue);
+
+            HBox mazeSearchingRow = new HBox();
+            mazeSearchingRow.getStyleClass().add("property-row");
+            Label mazeSearchingLabel = new Label("Maze Searching Algorithm:");
+            mazeSearchingLabel.getStyleClass().add("property-label");
+            Label mazeSearchingValue = new Label(mazeSolvingAlgorithm);
+            mazeSearchingValue.getStyleClass().add("property-value");
+            mazeSearchingRow.getChildren().addAll(mazeSearchingLabel, mazeSearchingValue);
+
+            HBox threadPoolRow = new HBox();
+            threadPoolRow.getStyleClass().add("property-row");
+            Label threadPoolLabel = new Label("Thread Pool Size:");
+            threadPoolLabel.getStyleClass().add("property-label");
+            Label threadPoolValue = new Label(poolSize + "");
+            threadPoolValue.getStyleClass().add("property-value");
+            threadPoolRow.getChildren().addAll(threadPoolLabel, threadPoolValue);
+
+            // add the property rows to the content VBox
+            propertiesBox.getChildren().addAll(
+                    mazeGeneratingRow,
+                    mazeSearchingRow,
+                    threadPoolRow
+            );
+
+            // set the content
+            alert.getDialogPane().setContent(propertiesBox);
+            // show alert
+            alert.showAndWait();
+
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
     // handle the exit button click event
     @Override
     public void handleExitButtonClick(ActionEvent actionEvent) {
@@ -510,7 +578,6 @@ public class MyViewController extends Application implements IView {
                 newCol++;
                 break;
             default:
-                // Handle unrecognized key
                 break;
         }
 

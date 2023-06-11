@@ -23,6 +23,38 @@
     -fx-background-color: pink;
 }
 
+.properties {
+    -fx-padding: 10px;
+}
+
+.properties .property-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.properties .property-value {
+    -fx-font-size: 14px;
+    -fx-background-color: #F5F5F5;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #CCCCCC;
+}
+
+.properties .property-row {
+    -fx-spacing: 10px;
+    -fx-padding: 5px 0;
+}
+
+.properties .property-row .property-label {
+    -fx-min-width: 200px;
+}
+
+.properties .property-row .property-value {
+    -fx-min-width: 200px;
+}
+
+
+
 .hint-button {
     -fx-background-color: #e76378;
     -fx-text-fill: rgb(0, 0, 0);

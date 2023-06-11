@@ -14,11 +14,11 @@
          <Font size="31.0" />
       </font>
    </Label>
-   <Label fx:id="widthTitle" layoutX="393.0" layoutY="118.0" text="Width:">
+   <Label fx:id="widthTitle" layoutX="416.0" layoutY="119.0" text="Width:">
       <font>
          <Font size="14.0" />
       </font></Label>
-   <Label fx:id="heightTitle" layoutX="391.0" layoutY="166.0" text="Height:">
+   <Label fx:id="heightTitle" layoutX="416.0" layoutY="167.0" text="Height:">
       <font>
          <Font size="14.0" />
       </font></Label>

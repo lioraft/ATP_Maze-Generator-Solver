@@ -2,6 +2,7 @@ package View;
 
 import ViewModel.MyViewModel;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,8 +75,10 @@ public class MyViewController extends Application implements IView {
         MenuItem properties = optionsMenu.getItems().get(0);
         // initialize exit menu
         Menu exitMenu = menuBar.getMenus().get(2);
-        // initialize exit menu items
+        // initialize exit menu item
         MenuItem exit = exitMenu.getItems().get(0);
+        // handle exit menu item click
+        exit.setOnAction(this::handleExitButtonClick);
         // initialize help menu
         Menu helpMenu = menuBar.getMenus().get(3);
         // initialize help menu items
@@ -204,6 +207,31 @@ public class MyViewController extends Application implements IView {
             // update the maze display accordingly
             markCell(nextStep[0], nextStep[1]);
         }
+    }
+
+    public void handleExitButtonClick(ActionEvent actionEvent) {
+        // alert user that the program is about to exit
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?", ButtonType.YES, ButtonType.NO);
+        // add css to alert
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+        dialogPane.getStyleClass().add("alert");
+        alert.setHeaderText(null);
+        dialogPane.setHeaderText(null);
+        // load the exit image
+        Image image = new Image(getClass().getResource("/exit.png").toExternalForm());
+        // create the ImageView
+        ImageView imageView = new ImageView(image);
+        // set the ImageView as the graphic for the DialogPane
+        dialogPane.setGraphic(imageView);
+        // show alert
+        alert.showAndWait();
+        // if user clicked yes, exit the program
+        if (alert.getResult() == ButtonType.YES)
+            Platform.exit();
+        // if user clicked no, do nothing
+        else
+            alert.close();
     }
 
     // function takes in row and column, and fills the cell in the maze with yellow color

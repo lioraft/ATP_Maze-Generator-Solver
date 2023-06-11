@@ -16,9 +16,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.io.File;
 import java.io.IOException;
 
 /*
@@ -46,6 +48,8 @@ public class MyViewController extends Application implements IView {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // initialize view model
+        viewModel = MyViewModel.getInstance();
         // set main scene
         setMainScene(primaryStage);
     }
@@ -70,8 +74,6 @@ public class MyViewController extends Application implements IView {
         widthLabel.getStyleClass().add("sub-label");
         Label heightLabel = (Label) mainScene.lookup("#heightTitle");
         heightLabel.getStyleClass().add("sub-label");
-        // initialize view model
-        viewModel = new MyViewModel();
         // initialize menu bar
         MenuBar menuBar = (MenuBar) mainScene.lookup("#menuBar");
         // initialize file menu
@@ -81,6 +83,8 @@ public class MyViewController extends Application implements IView {
         // handle new game menu item click
         newGame.setOnAction(this::handleNewGameButtonClick);
         MenuItem saveGame = fileMenu.getItems().get(1);
+        // handle save game menu item click
+        saveGame.setOnAction(this::handleSaveGameButtonClick);
         MenuItem loadGame = fileMenu.getItems().get(2);
         // initialize options menu
         Menu optionsMenu =  menuBar.getMenus().get(1);
@@ -110,6 +114,12 @@ public class MyViewController extends Application implements IView {
             width.getItems().add(i);
             height.getItems().add(i);
         }
+        /*
+        // add more width and height values
+        for (int i = 200; i <= 1000; i += 100) {
+            width.getItems().add(i);
+            height.getItems().add(i);
+        }*/
         // initialize start button
         // get the button from the FXML file
         Button start_button = (Button) mainScene.lookup("#start_button");
@@ -260,7 +270,39 @@ public class MyViewController extends Application implements IView {
         }
     }
 
-
+    // handle save menu item click
+    public void handleSaveGameButtonClick(ActionEvent actionEvent) {
+        viewModel = MyViewModel.getInstance();
+        if (viewModel != null) {
+            // open window for asking for file name
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Maze");
+            fileChooser.setInitialFileName("savedMaze");
+            File file = fileChooser.showSaveDialog(new Stage());
+            // get string of file name
+            String fileName = file.getName();
+            if (fileName != null && !fileName.equals("")) {
+                // if the file name is valid, try to save the maze
+                boolean canSave = viewModel.saveMaze(fileName);
+                if (!canSave) {
+                    // if game didn't start, alert user that there isn't a maze to save
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "No maze to save");
+                    setAlertCSS(alert, "/attention.png");
+                    alert.showAndWait();
+                } else {
+                    // if saved, alert user that the maze was saved successfully
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Maze saved successfully");
+                    setAlertCSS(alert, "/success.png");
+                    alert.showAndWait();
+                }
+            }
+        } else {
+            // Alert the user that the maze is not available to save
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Maze is not available to save yet. Please wait a minute before trying again");
+            setAlertCSS(alert, "/attention.png");
+            alert.showAndWait();
+        }
+    }
 
 
 

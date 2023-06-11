@@ -5,13 +5,22 @@ import Model.MyModel;
 /*
     * This class is the ViewModel layer of the MVVM architecture.
     * It is responsible for the presentation logic of the application.
+    * implemented as a singleton.
  */
 public class MyViewModel {
+    static MyViewModel instance = null;
     MyModel model;
 
-    public MyViewModel() {
+    private MyViewModel() {
         model = new MyModel();
         model.startServers();
+    }
+
+    public static MyViewModel getInstance() {
+        if (instance == null) {
+            instance = new MyViewModel();
+        }
+        return instance;
     }
 
     public void generateMaze(int width, int height) {
@@ -60,6 +69,14 @@ public class MyViewModel {
 
     public boolean isPassage(int row, int col) {
         return model.isPassage(row, col);
+    }
+
+    public boolean saveMaze(String fileName) {
+        return model.saveCurrentMazeToFile(fileName);
+    }
+
+    public boolean loadMaze(String fileName) {
+        return model.loadCurrentMazeFromFile(fileName);
     }
 
 }

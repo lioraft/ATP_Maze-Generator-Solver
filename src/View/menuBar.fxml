@@ -5,14 +5,14 @@
 <MenuBar fx:id="menuBar" prefWidth="1000.0" styleClass="menu-bar" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
     <Menu fx:id="fileMenu" text="File">
         <MenuItem fx:id="newMenuItem" onAction="#handleNewGameButtonClick" text="New" />
-        <MenuItem fx:id="saveMenuItem" text="Save" />
+        <MenuItem fx:id="saveMenuItem" onAction="#handleSaveGameButtonClick" text="Save" />
         <MenuItem fx:id="loadMenuItem" text="Load" />
     </Menu>
     <Menu fx:id="optionsMenu" text="Options">
         <MenuItem fx:id="propMenuItem" text="Properties" />
     </Menu>
     <Menu fx:id="exitMenu" text="Exit">
-        <MenuItem fx:id="exitMenuItem" text="Exit" />
+        <MenuItem fx:id="exitMenuItem" onAction="#handleExitButtonClick" text="Exit" />
     </Menu>
     <Menu fx:id="helpMenu" text="Help">
         <MenuItem fx:id="helpMenuItem" text="Help" />

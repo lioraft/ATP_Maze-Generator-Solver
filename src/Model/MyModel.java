@@ -257,6 +257,10 @@ public class MyModel implements IModel{
 
     // function that saves maze to file
     public boolean saveCurrentMazeToFile(String fileName) {
+        // if there is no current maze, return false
+        if (currentMaze == null) {
+            return false;
+        }
         try {
             // create file output stream
             FileOutputStream file = new FileOutputStream(fileName);

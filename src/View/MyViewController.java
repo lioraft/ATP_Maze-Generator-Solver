@@ -326,23 +326,6 @@ public class MyViewController extends Application implements IView {
         }
     }
 
-    // helper function to set alert design
-    public void setAlertCSS(Alert alert, String imageName) {
-        // add css to alert
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
-        dialogPane.getStyleClass().add("alert");
-        // set header and header text to null
-        alert.setHeaderText(null);
-        dialogPane.setHeaderText(null);
-        // load the exit image
-        Image image = new Image(getClass().getResource(imageName).toExternalForm());
-        // create the ImageView
-        ImageView imageView = new ImageView(image);
-        // set the ImageView as the graphic for the DialogPane
-        dialogPane.setGraphic(imageView);
-    }
-
 
     // handle save maze menu item click
     @Override
@@ -417,7 +400,6 @@ public class MyViewController extends Application implements IView {
             // create alert for properties
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Properties");
-            alert.setHeaderText("Properties");
 
             // create the content VBox
             VBox propertiesBox = new VBox();
@@ -457,6 +439,15 @@ public class MyViewController extends Application implements IView {
 
             // set the content
             alert.getDialogPane().setContent(propertiesBox);
+            alert.getDialogPane().getStyleClass().add("properties");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/properties.css").toExternalForm());
+            alert.setHeaderText(null);
+            // load the exit image
+            Image image = new Image(getClass().getResource("/settings.png").toExternalForm());
+            // create the ImageView
+            ImageView imageView = new ImageView(image);
+            // set the ImageView as the graphic for the DialogPane
+            alert.getDialogPane().setGraphic(imageView);
             // show alert
             alert.showAndWait();
 
@@ -477,8 +468,12 @@ public class MyViewController extends Application implements IView {
         // show alert
         alert.showAndWait();
         // if user clicked yes, exit the program
-        if (alert.getResult() == ButtonType.YES)
+        if (alert.getResult() == ButtonType.YES) {
+            // close the thread pool
+            viewModel.exit();
+            // close the program
             Platform.exit();
+        }
         // if user clicked no, do nothing
         else
             alert.close();
@@ -631,5 +626,21 @@ public class MyViewController extends Application implements IView {
         }
     }
 
+    // helper function to set alert design
+    public void setAlertCSS(Alert alert, String imageName) {
+        // add css to alert
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+        dialogPane.getStyleClass().add("alert");
+        // set header and header text to null
+        alert.setHeaderText(null);
+        dialogPane.setHeaderText(null);
+        // load the exit image
+        Image image = new Image(getClass().getResource(imageName).toExternalForm());
+        // create the ImageView
+        ImageView imageView = new ImageView(image);
+        // set the ImageView as the graphic for the DialogPane
+        dialogPane.setGraphic(imageView);
+    }
 
 }

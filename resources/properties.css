@@ -1,0 +1,41 @@
+.alert.properties {
+    -fx-background-color: #F5F5F5;
+}
+
+.alert.properties .dialog-pane {
+    -fx-background-color: #F5F5F5;
+    -fx-border-color: #CCCCCC;
+}
+
+.alert.properties .header-panel {
+    -fx-background-color: #F5F5F5;
+}
+
+.alert.properties .content {
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+.alert.properties .properties {
+    -fx-padding: 10px;
+}
+
+.alert.properties .property-row {
+    -fx-spacing: 10px;
+    -fx-padding: 5px 0;
+}
+
+.alert.properties .property-label {
+    -fx-font-weight: bold;
+}
+
+.alert.properties .property-value {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #CCCCCC;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 0, 1);
+    -fx-translate-y: -5px;
+}
+

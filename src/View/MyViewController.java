@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,6 +17,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+
+import java.io.IOException;
 
 /*
  * This class is the ViewModel layer of the MVVM architecture.
@@ -28,6 +32,8 @@ public class MyViewController extends Application implements IView {
     ComboBox<Integer> width;
     @FXML
     ComboBox<Integer> height;
+    int mazeWidth = 0;
+    int mazeHeight = 0;
     AnchorPane mazeDisplayer;
     MyViewModel viewModel;
     String css;
@@ -40,6 +46,11 @@ public class MyViewController extends Application implements IView {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // set main scene
+        setMainScene(primaryStage);
+    }
+
+    public void setMainScene(Stage primaryStage) throws IOException {
         // initialize fxml loader
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MyView.fxml"));
         mainScene = loader.load(); // load main anchor pane
@@ -65,8 +76,10 @@ public class MyViewController extends Application implements IView {
         MenuBar menuBar = (MenuBar) mainScene.lookup("#menuBar");
         // initialize file menu
         Menu fileMenu = menuBar.getMenus().get(0);
-        // initialize file menu items
+        // initialize new game item
         MenuItem newGame = fileMenu.getItems().get(0);
+        // handle new game menu item click
+        newGame.setOnAction(this::handleNewGameButtonClick);
         MenuItem saveGame = fileMenu.getItems().get(1);
         MenuItem loadGame = fileMenu.getItems().get(2);
         // initialize options menu
@@ -115,7 +128,6 @@ public class MyViewController extends Application implements IView {
         primaryStage.setScene(scene);
         // show stage
         primaryStage.show();
-
     }
 
     public void handleStartButtonClick(ActionEvent actionEvent) {
@@ -128,10 +140,14 @@ public class MyViewController extends Application implements IView {
 
             // set background color
             mazeDisplayer.setStyle("-fx-background-color: #6dcff6;");
-
+            // set css
             // get input dimensions from user
-            int mazeWidth = width.getValue();
-            int mazeHeight = height.getValue();
+            if (width.getValue() == null || height.getValue() == null) {
+                throw new Exception();
+            }
+            // get input dimensions from user
+            mazeWidth = width.getValue();
+            mazeHeight = height.getValue();
 
             // generate maze
             viewModel.generateMaze(mazeWidth, mazeHeight);
@@ -186,9 +202,67 @@ public class MyViewController extends Application implements IView {
             });
 
         } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please choose width and height");
+            setAlertCSS(alert, "/attention.png");
+            alert.showAndWait();
+        }
+    }
+
+    // helper function to set alert design
+    public void setAlertCSS(Alert alert, String imageName) {
+        // add css to alert
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+        dialogPane.getStyleClass().add("alert");
+        // set header and header text to null
+        alert.setHeaderText(null);
+        dialogPane.setHeaderText(null);
+        // load the exit image
+        Image image = new Image(getClass().getResource(imageName).toExternalForm());
+        // create the ImageView
+        ImageView imageView = new ImageView(image);
+        // set the ImageView as the graphic for the DialogPane
+        dialogPane.setGraphic(imageView);
+    }
+
+    // handle new game menu item click
+    public void handleNewGameButtonClick(ActionEvent actionEvent) {
+        // Get the source MenuItem
+        MenuItem menuItem = (MenuItem) actionEvent.getSource();
+
+        // Find the parent MenuBar
+        MenuBar menuBar = null;
+        Parent parent = menuItem.getParentPopup().getOwnerNode().getParent();
+        while (parent != null && !(parent instanceof MenuBar)) {
+            parent = parent.getParent();
+        }
+        if (parent instanceof MenuBar) {
+            menuBar = (MenuBar) parent;
+        }
+
+        // Find the parent Stage
+        Stage primaryStage = null;
+        Scene scene = menuBar != null ? menuBar.getScene() : null;
+        if (scene != null) {
+            Window window = scene.getWindow();
+            if (window instanceof Stage) {
+                primaryStage = (Stage) window;
+            }
+        }
+
+        try {
+            if (primaryStage != null) {
+                setMainScene(primaryStage);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
 
     // Handle the hint button click event
     public void handleHintButtonClick(ActionEvent actionEvent) {
@@ -213,18 +287,7 @@ public class MyViewController extends Application implements IView {
     public void handleExitButtonClick(ActionEvent actionEvent) {
         // alert user that the program is about to exit
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?", ButtonType.YES, ButtonType.NO);
-        // add css to alert
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
-        dialogPane.getStyleClass().add("alert");
-        alert.setHeaderText(null);
-        dialogPane.setHeaderText(null);
-        // load the exit image
-        Image image = new Image(getClass().getResource("/exit.png").toExternalForm());
-        // create the ImageView
-        ImageView imageView = new ImageView(image);
-        // set the ImageView as the graphic for the DialogPane
-        dialogPane.setGraphic(imageView);
+        setAlertCSS(alert, "/exit.png");
         // show alert
         alert.showAndWait();
         // if user clicked yes, exit the program
@@ -352,21 +415,8 @@ public class MyViewController extends Application implements IView {
 
             // if player reached goal, show alert
             if (viewModel.getGoalColumn() == viewModel.getPlayerCol() && viewModel.getPlayerRow() == viewModel.getMazeRows()-1) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Maze solved!");
-                DialogPane dialogPane = alert.getDialogPane();
-                dialogPane.setHeaderText(null);
-                // load the win image
-                Image image = new Image(getClass().getResource("/win.png").toExternalForm());
-                // create the ImageView
-                ImageView imageView = new ImageView(image);
-                // set the ImageView as the graphic for the DialogPane
-                dialogPane.setGraphic(imageView);
-
-                // apply the CSS to the alert dialog
-                alert.getDialogPane().getStylesheets().add(css);
-
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Maze solved!", ButtonType.OK);
+                setAlertCSS(alert, "/win.png");
                 alert.show();
             }
         }

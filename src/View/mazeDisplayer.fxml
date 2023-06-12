@@ -4,9 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
-    <fx:include source="menuBar.fxml" />
-   <Canvas fx:id="mazeCanvas" height="891.0" layoutX="28.0" layoutY="49.0" width="946.0" />
-   <Button fx:id="hint_button" layoutX="519.0" layoutY="954.0" mnemonicParsing="false" onAction="#handleHintButtonClick" prefHeight="25.0" prefWidth="89.0" text="Hint" />
-   <Button fx:id="solve_button" layoutX="401.0" layoutY="954.0" mnemonicParsing="false" onAction="#handleSolveButtonClick" prefHeight="25.0" prefWidth="89.0" text="Solve" />
-</AnchorPane>
+<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+    <top>
+        <fx:include source="menuBar.fxml" />
+    </top>
+    <center>
+        <Canvas fx:id="mazeCanvas" height="600.0" width="600.0" BorderPane.alignment="CENTER" />
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="hint_button" mnemonicParsing="false" onAction="#handleHintButtonClick" text="Hint" />
+            <Button fx:id="solve_button" mnemonicParsing="false" onAction="#handleSolveButtonClick" text="Solve" />
+        </HBox>
+    </bottom>
+</BorderPane>

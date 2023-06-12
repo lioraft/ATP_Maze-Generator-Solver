@@ -3,11 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
-    <children>
-        <TextArea fx:id="descText" layoutX="178.0" layoutY="146.0" prefHeight="234.0" prefWidth="644.0" styleClass="transparent-text-area" text="This maze game was created by Lior and Noa, second year students in the Department of Information Systems at&#10;Ben Gurion University, as our project in Advanced Topics In Programming course.&#10;&#10;Utilizing Java as the primary programming language, we implemented various maze generation algorithms, &#10;ultimately selecting the binary tree approach for their game. We also made a few maze-solving algorithms, and the&#10;one we chose for this project is a Breath First Search algorithm.&#10;We implemented integration of a client-server architecture in this project. We developed a server that compresses &#10;the maze data using a Hexadecimal base compression technique. This compressed maze is then delivered to the client,&#10;enabling a streamlined and efficient communication process. Furthermore, when the server receives a maze to solve, &#10;it dynamically decompresses the data.&#10;&#10;We had the opportunity to expand our knowledge and skills in programming, algorithm design, and server-client &#10;communication, and we thoroughly enjoyed working on the project." />
-        <Label fx:id="mainLabel" layoutX="487.0" layoutY="57.0" text="About" />
-        <Label fx:id="descLabel" layoutX="178.0" layoutY="116.0" text="About us:" />
-        <Button fx:id="closeButton" layoutX="465.0" layoutY="421.0" mnemonicParsing="false" text="Close" />
-    </children>
-</AnchorPane>
+<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <Label fx:id="descLabel" text="About us:" VBox.vgrow="ALWAYS" />
+            <TextArea fx:id="descText" prefHeight="234.0" prefWidth="658.0" styleClass="transparent-text-area" text="This maze game was created by Lior and Noa, second year students in the Department of Information Systems at&#10;Ben Gurion University, as our project in Advanced Topics In Programming course.&#10;&#10;Utilizing Java as the primary programming language, we implemented various maze generation algorithms, &#10;ultimately selecting the binary tree approach for their game. We also made a few maze-solving algorithms, and the&#10;one we chose for this project is a Breath First Search algorithm.&#10;We implemented integration of a client-server architecture in this project. We developed a server that compresses &#10;the maze data using a Hexadecimal base compression technique. This compressed maze is then delivered to the client,&#10;enabling a streamlined and efficient communication process. Furthermore, when the server receives a maze to solve, &#10;it dynamically decompresses the data.&#10;&#10;We had the opportunity to expand our knowledge and skills in programming, algorithm design, and server-client &#10;communication, and we thoroughly enjoyed working on the project." />
+            <Button fx:id="closeButton" mnemonicParsing="false" text="Close" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </center>
+</BorderPane>

@@ -4,19 +4,23 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
-   <children>
-      <TextArea fx:id="descText" layoutX="178.0" layoutY="146.0" prefHeight="84.0" prefWidth="644.0" styleClass="transparent-text-area" text="In this fun-filled game, you'll guide SpongeBob through a challenging maze. Navigate through the maze keyboard or &#10;mouse, exploring each path carefully to find the right way to the jellyfish. Use your problem-solving skills to progress&#10;through the maze. Reach the end of the maze to catch the jellyfish, but be prepared for an exciting surprise! &#10;Enjoy vibrant graphics, cheerful music, and immerse yourself in the underwater world of SpongeBob SquarePants. " />
-      <Label fx:id="mainLabel" layoutX="487.0" layoutY="57.0" text="Help" />
-      <Label fx:id="descLabel" layoutX="178.0" layoutY="116.0" text="About the game:" />
-      <Label fx:id="navLabel" layoutX="178.0" layoutY="249.0" text="Navigation:" />
-      <TextArea fx:id="navText" layoutX="178.0" layoutY="279.0" prefHeight="180.0" prefWidth="644.0" styleClass="transparent-text-area" text="You can navigate through the maze in the following directions: vertical, horizontal, and diagonal.&#10;You can do so by mouse (click on the desired cell) or by keyboard (NumPad):&#10;- Up: 8&#10;- Down: 2&#10;- Left: 4&#10;- Right: 6&#10;- Up Left: 7 &#10;- Up Right: 9&#10;- Bottom Left: 1&#10;- Bottom Right: 3" />
-      <ImageView fx:id="spongebob" fitHeight="100.0" fitWidth="100.0" layoutX="178.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="jellyfish" fitHeight="100.0" fitWidth="100.0" layoutX="178.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="charLabel" layoutX="179.0" layoutY="526.0" text="Characters:" />
-      <Label fx:id="menuLabel" layoutX="547.0" layoutY="526.0" text="Menu:" />
-      <TextArea fx:id="menuText" layoutX="545.0" layoutY="556.0" prefHeight="180.0" prefWidth="277.0" styleClass="transparent-text-area" text="- New: allows you to generate a new game.&#10;- Save: save the maze you are currently playing&#10;to a file.&#10;- Load: load a maze you saved in a file.&#10;- Properties: configurations of the algorithms &#10;that were used in this game, in order to generate&#10;and solve mazes.&#10;- Exit: shut down the application.&#10;- About: just some details about us :)&#10;" />
-      <Button fx:id="closeButton" layoutX="661.0" layoutY="828.0" mnemonicParsing="false" text="Close" />
-      <TextArea fx:id="charText" layoutX="179.0" layoutY="841.0" prefHeight="59.0" prefWidth="227.0" text="Spongebob is your playing character,&#10;he is the starting position of the game.&#10;Your goal position is the jellyfish." />
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+   <center>
+      <VBox alignment="CENTER" spacing="10">
+         <Label fx:id="mainLabel" text="Help" />
+         <Label fx:id="descLabel" text="About the game:" />
+         <TextArea fx:id="descText" prefHeight="97.0" prefWidth="800.0" styleClass="transparent-text-area" text="In this fun-filled game, you'll guide SpongeBob through a challenging maze. Navigate through the maze using the keyboard or mouse, &#10;exploring each path carefully to find the right way to the jellyfish. Use your problem-solving skills to progress through the maze. Reach the&#10;end of the maze to catch the jellyfish, but be prepared for an exciting surprise! Enjoy vibrant graphics, cheerful music, and immerse yourself&#10;in the underwater world of SpongeBob SquarePants." />
+         <Label fx:id="navLabel" text="Navigation:" />
+         <TextArea fx:id="navText" prefHeight="76.0" prefWidth="800.0" styleClass="transparent-text-area" text="You can navigate through the maze in the following directions: vertical, horizontal, and diagonal. You can do so by mouse (click on the desired cell) &#10;or by keyboard (NumPad):&#10;Up: 8, Down: 2, Left: 4, Right: 6, Up Left: 7, Up Right: 9, Bottom Left: 1, Bottom Right: 3" />
+         <Label fx:id="charLabel" text="Characters:" />
+         <TextArea fx:id="charText" prefHeight="25.0" prefWidth="800.0" text="SpongeBob is your playing character. He is the starting position of the game. Your goal position is the jellyfish." />
+         <HBox spacing="10">
+            <ImageView fx:id="spongebob" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="jellyfish" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+         </HBox>
+         <Label fx:id="menuLabel" text="Menu:" />
+         <TextArea fx:id="menuText" prefHeight="130.0" prefWidth="800.0" styleClass="transparent-text-area" text="- New: allows you to generate a new game.&#10;- Save: save the maze you are currently playing to a file.&#10;- Load: load a maze you saved in a file.&#10;- Properties: configurations of the algorithms that were used in this game, in order to generate and solve mazes.&#10;- Exit: shut down the application.&#10;- About: just some details about us :)" />
+         <Button fx:id="closeButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Close" />
+      </VBox>
+   </center>
+</BorderPane>

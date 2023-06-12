@@ -36,7 +36,7 @@ public class MyViewController extends Application implements IView {
     Scene scene;
     private ComboBox<Integer> width;
     private ComboBox<Integer> height;
-    AnchorPane mazeDisplayer;
+    BorderPane mazeDisplayer;
     MyViewModel viewModel;
     String css;
 
@@ -150,7 +150,7 @@ public class MyViewController extends Application implements IView {
         // Set the event handler for the button
         start_button.setOnAction(this::handleStartButtonClick);
         // set scene
-        scene = new Scene(mainScene, 1000.0, 1000.0);
+        scene = new Scene(mainScene);
         scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         // show stage
@@ -171,8 +171,6 @@ public class MyViewController extends Application implements IView {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
             Parent root = fxmlLoader.load();
             // set same design from css as help scene
-            Label mainLabel = (Label) root.lookup("#mainLabel");
-            mainLabel.getStyleClass().add("help-main-label");
             // set help-label design from css
             Label descLabel = (Label) root.lookup("#descLabel");
             descLabel.getStyleClass().add("help-label");
@@ -189,7 +187,7 @@ public class MyViewController extends Application implements IView {
                 stage.close();
             });
             // set scene and show
-            Scene scene = new Scene(root, 1000, 1000);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
             scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
             Stage stage = new Stage();
@@ -277,7 +275,7 @@ public class MyViewController extends Application implements IView {
 
 
             // create a new scene with the loaded FXML content
-            Scene mazeDisplayScene = new Scene(mazeDisplayer, 1000.0, 1000.0);
+            Scene mazeDisplayScene = new Scene(mazeDisplayer);
 
             // load css file
             mazeDisplayScene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
@@ -401,7 +399,7 @@ public class MyViewController extends Application implements IView {
             mazeDisplayer.setStyle("-fx-background-color: #6dcff6;");
 
             // create a new scene with the loaded FXML content
-            Scene mazeDisplayScene = new Scene(mazeDisplayer, 1000.0, 1000.0);
+            Scene mazeDisplayScene = new Scene(mazeDisplayer);
 
             // load css file
             mazeDisplayScene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
@@ -459,7 +457,7 @@ public class MyViewController extends Application implements IView {
             } else if (clickCol == playerCol + 1) {
                 // Up-right movement
                 handlePlayMove("NUMPAD9", playerImage);
-            } else {
+            } else if (clickCol == playerCol) {
                 // Up movement
                 handlePlayMove("NUMPAD8", playerImage);
             }
@@ -470,16 +468,19 @@ public class MyViewController extends Application implements IView {
             } else if (clickCol == playerCol + 1) {
                 // Down-right movement
                 handlePlayMove("NUMPAD3", playerImage);
-            } else {
+            } else if (clickCol == playerCol) {
                 // Down movement
                 handlePlayMove("NUMPAD2", playerImage);
             }
-        } else if (clickCol == playerCol - 1) {
-            // Left movement
-            handlePlayMove("NUMPAD4", playerImage);
-        } else if (clickCol == playerCol + 1) {
-            // Right movement
-            handlePlayMove("NUMPAD6", playerImage);
+        }
+        else if (playerRow == clickRow) {
+            if (clickCol == playerCol - 1) {
+                // Left movement
+                handlePlayMove("NUMPAD4", playerImage);
+            } else if (clickCol == playerCol + 1) {
+                // Right movement
+                handlePlayMove("NUMPAD6", playerImage);
+            }
         }
     }
 
@@ -799,7 +800,7 @@ public class MyViewController extends Application implements IView {
                         Stage stage = (Stage) closeButton.getScene().getWindow();
                         stage.close();
                     });
-                    Scene scene = new Scene(root, 1000, 1000);
+                    Scene scene = new Scene(root);
                     scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
                     scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
                     Stage stage = new Stage();
@@ -865,7 +866,7 @@ public class MyViewController extends Application implements IView {
                 stage.close();
             });
             // set scene and show
-            Scene scene = new Scene(root, 1000, 1000);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
             scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
             Stage stage = new Stage();

@@ -56,7 +56,7 @@ public class MyViewController extends Application implements IView {
         mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/Spongebob_Theme.mp3").toExternalForm()));
         // set media player to loop
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        //mediaPlayer.play();
+        mediaPlayer.play();
         ps = primaryStage;
         ps.resizableProperty().setValue(Boolean.TRUE);
         // initialize view model

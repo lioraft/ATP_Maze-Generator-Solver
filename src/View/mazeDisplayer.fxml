@@ -4,12 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<BorderPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
     <top>
         <fx:include source="menuBar.fxml" />
     </top>
     <center>
-        <Canvas fx:id="mazeCanvas" height="600.0" width="600.0" BorderPane.alignment="CENTER" />
+        <Canvas fx:id="mazeCanvas" height="519.0" width="542.0" BorderPane.alignment="CENTER" />
     </center>
     <bottom>
         <HBox alignment="CENTER" spacing="10">

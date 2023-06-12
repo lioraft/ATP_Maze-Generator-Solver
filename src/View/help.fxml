@@ -4,22 +4,22 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<BorderPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <center>
       <VBox alignment="CENTER" spacing="10">
          <Label fx:id="mainLabel" text="Help" />
          <Label fx:id="descLabel" text="About the game:" />
-         <TextArea fx:id="descText" prefHeight="97.0" prefWidth="800.0" styleClass="transparent-text-area" text="In this fun-filled game, you'll guide SpongeBob through a challenging maze. Navigate through the maze using the keyboard or mouse, &#10;exploring each path carefully to find the right way to the jellyfish. Use your problem-solving skills to progress through the maze. Reach the&#10;end of the maze to catch the jellyfish, but be prepared for an exciting surprise! Enjoy vibrant graphics, cheerful music, and immerse yourself&#10;in the underwater world of SpongeBob SquarePants." />
+         <TextArea fx:id="descText" prefHeight="146.0" prefWidth="600.0" styleClass="transparent-text-area" text="In this fun-filled game, you'll guide SpongeBob through a challenging maze. Navigate through the maze&#10;using the keyboard or mouse, exploring each path carefully to find the right way to the jellyfish. Use your&#10;problem-solving skills to progress through the maze. Reach the end of the maze to catch the jellyfish." />
          <Label fx:id="navLabel" text="Navigation:" />
-         <TextArea fx:id="navText" prefHeight="76.0" prefWidth="800.0" styleClass="transparent-text-area" text="You can navigate through the maze in the following directions: vertical, horizontal, and diagonal. You can do so by mouse (click on the desired cell) &#10;or by keyboard (NumPad):&#10;Up: 8, Down: 2, Left: 4, Right: 6, Up Left: 7, Up Right: 9, Bottom Left: 1, Bottom Right: 3" />
+         <TextArea fx:id="navText" prefHeight="128.0" prefWidth="600.0" styleClass="transparent-text-area" text="You can navigate through the maze in the following directions: vertical, horizontal, and diagonal. You can&#10;do so by mouse (click on the desired cell) or by keyboard (NumPad):&#10;Up: 8, Down: 2, Left: 4, Right: 6, Up Left: 7, Up Right: 9, Bottom Left: 1, Bottom Right: 3" />
          <Label fx:id="charLabel" text="Characters:" />
          <TextArea fx:id="charText" prefHeight="25.0" prefWidth="800.0" text="SpongeBob is your playing character. He is the starting position of the game. Your goal position is the jellyfish." />
          <HBox spacing="10">
-            <ImageView fx:id="spongebob" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="jellyfish" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="spongebob" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="jellyfish" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
          </HBox>
          <Label fx:id="menuLabel" text="Menu:" />
-         <TextArea fx:id="menuText" prefHeight="130.0" prefWidth="800.0" styleClass="transparent-text-area" text="- New: allows you to generate a new game.&#10;- Save: save the maze you are currently playing to a file.&#10;- Load: load a maze you saved in a file.&#10;- Properties: configurations of the algorithms that were used in this game, in order to generate and solve mazes.&#10;- Exit: shut down the application.&#10;- About: just some details about us :)" />
+         <TextArea fx:id="menuText" prefHeight="143.0" prefWidth="600.0" styleClass="transparent-text-area" text="You can createnew maze, load existing one, or save your current maze.&#10;Properties is configurations of the algorithms that were used in this game, in order to generate and solve &#10;mazes. (You can get more info in About item in menu bar).&#10;In order to exit, you can chose exit option from menu bar or simple close program." />
          <Button fx:id="closeButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Close" />
       </VBox>
    </center>

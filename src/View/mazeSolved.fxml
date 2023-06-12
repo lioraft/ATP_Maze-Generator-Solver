@@ -4,10 +4,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <children>
-      <Label fx:id="successLabel" layoutX="320.0" layoutY="142.0" text="Good Job!" />
-      <Button fx:id="closeButton" layoutX="474.0" layoutY="908.0" mnemonicParsing="false" text="Close" />
-      <MediaView fx:id="video" fitHeight="480.0" fitWidth="635.0" layoutX="179.0" layoutY="277.0" />
+      <Label fx:id="successLabel" layoutX="335.0" layoutY="87.0" text="Good Job!" />
+      <Button fx:id="closeButton" layoutX="362.0" layoutY="712.0" mnemonicParsing="false" text="Close" />
+      <MediaView fx:id="video" fitHeight="480.0" fitWidth="635.0" layoutX="67.0" layoutY="199.0" />
    </children>
 </AnchorPane>

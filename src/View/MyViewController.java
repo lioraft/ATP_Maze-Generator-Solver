@@ -42,6 +42,7 @@ public class MyViewController extends Application implements IView {
     GraphicsContext gc;
     private static Stage ps;
     MediaPlayer mediaPlayer;
+    Canvas mazeCanvas;
 
     public static void main(String[] args) {
         launch(args);
@@ -228,8 +229,21 @@ public class MyViewController extends Application implements IView {
 
             if (gc == null) {
                 // get canvas in order to create maze in sizes and display it
-                Canvas mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
+                mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
                 gc = mazeCanvas.getGraphicsContext2D();
+                mazeCanvas.setOnScroll(event -> {
+                    if (event.isControlDown()) {
+                        double delta = event.getDeltaY();
+                        if (delta > 0) {
+                            // Zoom in
+                            zoomIn();
+                        } else {
+                            // Zoom out
+                            zoomOut();
+                        }
+                        event.consume();
+                    }
+                });
             }
             drawMaze(maze);
 
@@ -332,8 +346,21 @@ public class MyViewController extends Application implements IView {
             }
             // if gc is null, get it
             if (gc == null) {
-                Canvas mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
+                mazeCanvas = (Canvas) mazeDisplayer.lookup("#mazeCanvas");
                 gc = mazeCanvas.getGraphicsContext2D();
+                mazeCanvas.setOnScroll(event -> {
+                    if (event.isControlDown()) {
+                        double delta = event.getDeltaY();
+                        if (delta > 0) {
+                            // Zoom in
+                            zoomIn();
+                        } else {
+                            // Zoom out
+                            zoomOut();
+                        }
+                        event.consume();
+                    }
+                });
             }
             // draw maze
             drawMaze(maze);
@@ -788,6 +815,21 @@ public class MyViewController extends Application implements IView {
         ImageView imageView = new ImageView(image);
         // set the ImageView as the graphic for the DialogPane
         dialogPane.setGraphic(imageView);
+    }
+
+    // helper function to zoom in
+    private void zoomIn() {
+        // Adjust the scale factor to increase zoom level
+        double newScale = mazeCanvas.getScaleX() * 1.1;
+        mazeCanvas.setScaleX(newScale);
+        mazeCanvas.setScaleY(newScale);
+    }
+
+    // helper function to zoom out
+    private void zoomOut() {
+        double newScale = mazeCanvas.getScaleX() * 0.9;
+        mazeCanvas.setScaleX(newScale);
+        mazeCanvas.setScaleY(newScale);
     }
 
 }

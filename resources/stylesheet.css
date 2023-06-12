@@ -90,7 +90,7 @@
 
 .help-main-label {
     -fx-font-size: 28px;
-    -fx-text-align: center;
+    -fx-text-alignment: center;
     -fx-margin-top: 0;
     -fx-font-family: "Poppins", sans-serif;
     -fx-font-weight: bold;

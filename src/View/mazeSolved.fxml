@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <children>
-      <Label fx:id="successLabel" layoutX="473.0" layoutY="147.0" text="Good Job!" />
+      <Label fx:id="successLabel" layoutX="320.0" layoutY="142.0" text="Good Job!" />
       <Button fx:id="closeButton" layoutX="474.0" layoutY="908.0" mnemonicParsing="false" text="Close" />
       <MediaView fx:id="video" fitHeight="480.0" fitWidth="635.0" layoutX="179.0" layoutY="277.0" />
    </children>

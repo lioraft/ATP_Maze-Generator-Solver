@@ -214,8 +214,8 @@ public class MyViewController extends Application implements IView {
 
             mazeDisplayer.setOnKeyPressed(event -> {
                 KeyCode keyCode = event.getCode();
-                if (keyCode.isLetterKey()) {
-                    handlePlayMove(keyCode.getName().toLowerCase(), spongebob);
+                if (keyCode.isKeypadKey()) {
+                    handlePlayMove(keyCode.getName().toUpperCase(), spongebob);
                 }
             });
 
@@ -544,6 +544,8 @@ public class MyViewController extends Application implements IView {
     // if it isn't, do nothing
     @Override
     public void handlePlayMove(String key,Image playerImage) {
+        // remove spaces from key name
+        key = key.replaceAll("\\s+", "");
         int[][] maze = viewModel.getMaze();
 
         int currentRow = viewModel.getPlayerRow();
@@ -553,31 +555,31 @@ public class MyViewController extends Application implements IView {
         int newCol = currentCol;
 
         switch (key) {
-            case "w":
+            case "NUMPAD8":
                 newRow--;
                 break;
-            case "q":
+            case "NUMPAD7":
                 newRow--;
                 newCol--;
                 break;
-            case "s":
+            case "NUMPAD2":
                 newRow++;
                 break;
-            case "a":
+            case "NUMPAD4":
                 newCol--;
                 break;
-            case "d":
+            case "NUMPAD6":
                 newCol++;
                 break;
-            case "e":
+            case "NUMPAD9":
                 newRow--;
                 newCol++;
                 break;
-            case "x":
+            case "NUMPAD1":
                 newRow++;
                 newCol--;
                 break;
-            case "z":
+            case "NUMPAD3":
                 newRow++;
                 newCol++;
                 break;

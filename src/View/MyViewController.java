@@ -108,6 +108,8 @@ public class MyViewController extends Application implements IView {
         Menu aboutMenu = menuBar.getMenus().get(4);
         // initialize about menu items
         MenuItem about = aboutMenu.getItems().get(0);
+        // handle about menu item click
+        about.setOnAction(this::handleAboutButtonClick);
         // set designs for menu bar
         menuBar.getStyleClass().add("menu-bar");
         // set width and height comboboxes
@@ -137,6 +139,43 @@ public class MyViewController extends Application implements IView {
         primaryStage.setScene(scene);
         // show stage
         primaryStage.show();
+    }
+
+    @Override
+    public void handleAboutButtonClick(ActionEvent actionEvent) {
+        try {
+            // load fxml of help
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+            Parent root = fxmlLoader.load();
+            // set same design from css as help scene
+            Label mainLabel = (Label) root.lookup("#mainLabel");
+            mainLabel.getStyleClass().add("help-main-label");
+            // set help-label design from css
+            Label descLabel = (Label) root.lookup("#descLabel");
+            descLabel.getStyleClass().add("help-label");
+            // get text area and set background color
+            TextArea descText = (TextArea) root.lookup("#descText");
+            descText.getStyleClass().add("transparent-text-area");
+            // get close button
+            Button closeButton = (Button) root.lookup("#closeButton");
+            // set help-close-button design from css
+            closeButton.getStyleClass().add("help-close-button");
+            // set close button to close the window
+            closeButton.setOnAction(event -> {
+                Stage stage = (Stage) closeButton.getScene().getWindow();
+                stage.close();
+            });
+            // set scene and show
+            Scene scene = new Scene(root, 1000, 1000);
+            scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+            scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
+            Stage stage = new Stage();
+            stage.setTitle("About");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // handle start game button click

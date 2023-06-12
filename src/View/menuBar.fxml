@@ -18,6 +18,6 @@
         <MenuItem fx:id="helpMenuItem" onAction="#handleHelpButtonClick" text="Help" />
     </Menu>
     <Menu fx:id="aboutMenu" text="About">
-        <MenuItem fx:id="aboutMenuItem" text="About" />
+        <MenuItem fx:id="aboutMenuItem" onAction="#handleAboutButtonClick" text="About" />
     </Menu>
 </MenuBar>

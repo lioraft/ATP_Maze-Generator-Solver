@@ -17,7 +17,7 @@
             </font>
          </Label>
          <HBox alignment="CENTER" spacing="10">
-            <Label fx:id="widthTitle" text="Width:">
+            <Label fx:id="widthTitle" text="Width: ">
                <font>
                   <Font size="14.0" />
                </font>

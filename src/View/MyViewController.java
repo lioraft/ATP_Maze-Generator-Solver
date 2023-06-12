@@ -4,6 +4,7 @@ import ViewModel.MyViewModel;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.*;
@@ -42,6 +43,7 @@ public class MyViewController extends Application implements IView {
     GraphicsContext gc;
     private static Stage ps;
     MediaPlayer mediaPlayer;
+    @FXML
     Canvas mazeCanvas;
 
     public static void main(String[] args) {
@@ -285,6 +287,17 @@ public class MyViewController extends Application implements IView {
 
             mazeDisplayer.requestFocus(); // set focus on the maze
 
+            mazeDisplayer.setOnMouseDragged(event -> {
+                double dragX = event.getX();
+                double dragY = event.getY();
+
+                if (viewModel == null) {
+                    viewModel = MyViewModel.getInstance();
+                }
+
+                handleMouseClickMovement(viewModel.getPlayerRow(), viewModel.getPlayerCol(), dragX, dragY, spongebob);
+            });
+
             mazeDisplayer.setOnKeyPressed(event -> {
                 KeyCode keyCode = event.getCode();
                 if (keyCode.isKeypadKey()) {
@@ -398,6 +411,17 @@ public class MyViewController extends Application implements IView {
 
             mazeDisplayer.requestFocus(); // set focus on the maze
 
+            mazeDisplayer.setOnMouseDragged(event -> {
+                double dragX = event.getX();
+                double dragY = event.getY();
+
+                if (viewModel == null) {
+                    viewModel = MyViewModel.getInstance();
+                }
+
+                handleMouseClickMovement(viewModel.getPlayerRow(), viewModel.getPlayerCol(), dragX, dragY, spongebob);
+            });
+
             mazeDisplayer.setOnKeyPressed(event -> {
                 KeyCode keyCode = event.getCode();
                 if (keyCode.isLetterKey()) {
@@ -413,6 +437,55 @@ public class MyViewController extends Application implements IView {
             alert.showAndWait();
         }
     }
+
+    // handle mouse drag event - when user drags the character in the maze, translate it to keyboard movement and use handlePlayMove
+    private void handleMouseClickMovement(int playerRow, int playerCol, double clickX, double clickY, Image playerImage) {
+        // Calculate the cell size based on the maze dimensions and the canvas size
+        if (viewModel == null) {
+            viewModel = MyViewModel.getInstance();
+        }
+        double cellWidth = mazeCanvas.getWidth() / viewModel.getMazeCols();
+        double cellHeight = mazeCanvas.getHeight() / viewModel.getMazeRows();
+
+        // Calculate the clicked cell's position in the maze
+        int clickCol = (int) (clickX / cellWidth);
+        int clickRow = (int) (clickY / cellHeight);
+
+// Determine the direction of movement based on the clicked cell's position relative to the player's position
+        if (clickRow == playerRow - 1) {
+            if (clickCol == playerCol - 1) {
+                // Up-left movement
+                handlePlayMove("NUMPAD7", playerImage);
+            } else if (clickCol == playerCol + 1) {
+                // Up-right movement
+                handlePlayMove("NUMPAD9", playerImage);
+            } else {
+                // Up movement
+                handlePlayMove("NUMPAD8", playerImage);
+            }
+        } else if (clickRow == playerRow + 1) {
+            if (clickCol == playerCol - 1) {
+                // Down-left movement
+                handlePlayMove("NUMPAD1", playerImage);
+            } else if (clickCol == playerCol + 1) {
+                // Down-right movement
+                handlePlayMove("NUMPAD3", playerImage);
+            } else {
+                // Down movement
+                handlePlayMove("NUMPAD2", playerImage);
+            }
+        } else if (clickCol == playerCol - 1) {
+            // Left movement
+            handlePlayMove("NUMPAD4", playerImage);
+        } else if (clickCol == playerCol + 1) {
+            // Right movement
+            handlePlayMove("NUMPAD6", playerImage);
+        }
+    }
+
+
+
+
 
 
     // handle save maze menu item click

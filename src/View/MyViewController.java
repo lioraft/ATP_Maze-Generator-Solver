@@ -6,7 +6,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -14,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -38,6 +41,7 @@ public class MyViewController extends Application implements IView {
 
     GraphicsContext gc;
     private static Stage ps;
+    MediaPlayer mediaPlayer;
 
     public static void main(String[] args) {
         launch(args);
@@ -45,6 +49,11 @@ public class MyViewController extends Application implements IView {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // initialize media player
+        mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/Spongebob_Theme.mp3").toExternalForm()));
+        // set media player to loop
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
         ps = primaryStage;
         // initialize view model
         viewModel = MyViewModel.getInstance();
@@ -139,6 +148,13 @@ public class MyViewController extends Application implements IView {
         primaryStage.setScene(scene);
         // show stage
         primaryStage.show();
+        // if user exists through the x button, stop the servers if started
+        primaryStage.setOnCloseRequest(event -> {
+            if (viewModel == null) {
+                viewModel = MyViewModel.getInstance();
+            }
+            viewModel.exit();
+        });
     }
 
     @Override
@@ -654,11 +670,16 @@ public class MyViewController extends Application implements IView {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MazeSolved.fxml"));
                     Parent root = fxmlLoader.load();
-                    // get imageview from fxml
-                    ImageView imageView = (ImageView) root.lookup("#image");
-                    // set imageview to the image of success
-                    Image image = new Image(getClass().getResource("/spongebob_hunts.jpg").toExternalForm());
-                    imageView.setImage(image);
+                    // pause the music
+                    mediaPlayer.pause();
+                    // new MediaPlayer for the video
+                    Media videoMedia = new Media(getClass().getResource("/Sweet_Victory.mp4").toExternalForm());
+                    MediaPlayer videoPlayer = new MediaPlayer(videoMedia);
+                    // Play the video
+                    MediaView mediaView = (MediaView) root.lookup("#video");
+                    mediaView.setMediaPlayer(videoPlayer);
+                    videoPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                    videoPlayer.play();
                     // set label design from css
                     Label label = (Label) root.lookup("#successLabel");
                     label.getStyleClass().add("solved-label");
@@ -667,6 +688,10 @@ public class MyViewController extends Application implements IView {
                     closeButton.getStyleClass().add("hint-button");
                     // set close button to close the window
                     closeButton.setOnAction(event -> {
+                        // stop the video player
+                        videoPlayer.stop();
+                        // resume the background music
+                        mediaPlayer.play();
                         Stage stage = (Stage) closeButton.getScene().getWindow();
                         stage.close();
                     });
@@ -677,6 +702,14 @@ public class MyViewController extends Application implements IView {
                     stage.setTitle("Maze Solved!");
                     stage.setScene(scene);
                     stage.show();
+                    // if user exists through the x button, stop the video player and resume the background music as well
+                    stage.setOnCloseRequest(event -> {
+                        // Stop the video player
+                        videoPlayer.stop();
+
+                        // Resume the background music
+                        mediaPlayer.play();
+                    });
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -10,7 +10,7 @@
       <Label fx:id="mainLabel" layoutX="487.0" layoutY="57.0" text="Help" />
       <Label fx:id="descLabel" layoutX="178.0" layoutY="116.0" text="About the game:" />
       <Label fx:id="navLabel" layoutX="178.0" layoutY="249.0" text="Navigation:" />
-      <TextArea fx:id="navText" layoutX="178.0" layoutY="279.0" prefHeight="180.0" prefWidth="644.0" styleClass="transparent-text-area" text="You can navigate through the maze in the following directions: vertical, horizontal, and diagonal.&#10;You can do so by mouse (click on the desired cell) or by keyboard (NumPad or arrow keys):&#10;- Up: 8 or upper arrow&#10;- Down: 2 or down arrow&#10;- Left: 4 or left arrow&#10;- Right: 6 or right arrow&#10;- Up Left: 7 &#10;- Up Right: 9&#10;- Bottom Left: 1&#10;- Bottom Right: 3" />
+      <TextArea fx:id="navText" layoutX="178.0" layoutY="279.0" prefHeight="180.0" prefWidth="644.0" styleClass="transparent-text-area" text="You can navigate through the maze in the following directions: vertical, horizontal, and diagonal.&#10;You can do so by mouse (click on the desired cell) or by keyboard (NumPad):&#10;- Up: 8&#10;- Down: 2&#10;- Left: 4&#10;- Right: 6&#10;- Up Left: 7 &#10;- Up Right: 9&#10;- Bottom Left: 1&#10;- Bottom Right: 3" />
       <ImageView fx:id="spongebob" fitHeight="100.0" fitWidth="100.0" layoutX="178.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="jellyfish" fitHeight="100.0" fitWidth="100.0" layoutX="178.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="charLabel" layoutX="179.0" layoutY="526.0" text="Characters:" />

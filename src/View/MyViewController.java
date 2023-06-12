@@ -31,7 +31,7 @@ import java.io.IOException;
  */
 
 public class MyViewController extends Application implements IView {
-    AnchorPane mainScene;
+    BorderPane mainScene;
     Scene scene;
     private ComboBox<Integer> width;
     private ComboBox<Integer> height;
@@ -70,9 +70,13 @@ public class MyViewController extends Application implements IView {
         // load css file
         css = getClass().getResource("/stylesheet.css").toExternalForm();
         // load background image
-        Image backgroundImage = new Image(getClass().getResource("/spongebob-jellyfish-1000.jpg").toExternalForm());
-        // set background image
-        mainScene.setStyle("-fx-background-image: url('" + backgroundImage.getUrl() + "'); " + "-fx-background-position: center center; " + "-fx-background-repeat: stretch;");
+        Image backgroundImage = new Image(getClass().getResource("/spongebob-jellyfish.jpg").toExternalForm());
+        // set background color
+        mainScene.setStyle("-fx-background-color: #6dcff6;");
+        // get imageview from fxml
+        ImageView backgroundImageView = (ImageView) mainScene.lookup("#bgImage");
+        // set image
+        backgroundImageView.setImage(backgroundImage);
         // set title
         primaryStage.setTitle("Maze Game");
         // get main title and set design

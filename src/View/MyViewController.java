@@ -54,8 +54,9 @@ public class MyViewController extends Application implements IView {
         mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/Spongebob_Theme.mp3").toExternalForm()));
         // set media player to loop
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        //mediaPlayer.play();
         ps = primaryStage;
+        ps.resizableProperty().setValue(Boolean.TRUE);
         // initialize view model
         viewModel = MyViewModel.getInstance();
         // set main scene
@@ -122,7 +123,6 @@ public class MyViewController extends Application implements IView {
         about.setOnAction(this::handleAboutButtonClick);
         // set designs for menu bar
         menuBar.getStyleClass().add("menu-bar");
-        // set width and height comboboxes
         // set width and height comboboxes
         width = (ComboBox<Integer>) mainScene.lookup("#width");
         height = (ComboBox<Integer>) mainScene.lookup("#height");

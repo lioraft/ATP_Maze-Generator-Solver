@@ -125,5 +125,10 @@
     -fx-background-color: transparent;
 }
 
+.sound-button {
+    -fx-alignment: center;
+    -fx-background-color: Transparent;
+}
+
 
 

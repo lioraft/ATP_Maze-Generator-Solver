@@ -20,4 +20,9 @@
     <Menu fx:id="aboutMenu" text="About">
         <MenuItem fx:id="aboutMenuItem" onAction="#handleAboutButtonClick" text="About" />
     </Menu>
+   <Menu fx:id="soundMenu" mnemonicParsing="false" text="Sound">
+     <items>
+       <MenuItem fx:id="soundMenuItem" mnemonicParsing="false" onAction="#handleSoundButtonClick" text="Control Sound" />
+     </items>
+   </Menu>
 </MenuBar>

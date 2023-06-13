@@ -127,6 +127,11 @@ public class MyViewController extends Application implements IView {
         MenuItem about = aboutMenu.getItems().get(0);
         // handle about menu item click
         about.setOnAction(this::handleAboutButtonClick);
+        // initialize sound menu
+        Menu soundMenu = menuBar.getMenus().get(5);
+        // initialize sound menu items
+        MenuItem sound = soundMenu.getItems().get(0);
+        sound.setOnAction(this::handleSoundButtonClick);
         // set designs for menu bar
         menuBar.getStyleClass().add("menu-bar");
         // set width and height comboboxes
@@ -163,6 +168,67 @@ public class MyViewController extends Application implements IView {
             viewModel.exit();
         });
     }
+
+    public void handleSoundButtonClick(ActionEvent actionEvent) {
+        // create the alert
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Sound Properties");
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.setContentText("Play/Pause");
+
+        // create buttons with images
+        Image imagePlay = new Image(getClass().getResource("/play.png").toExternalForm());
+        Image imageStop = new Image(getClass().getResource("/stop.png").toExternalForm());
+
+        // create custom buttons
+        Button playButton = new Button();
+        playButton.setGraphic(new ImageView(imagePlay));
+        Button stopButton = new Button();
+        stopButton.setGraphic(new ImageView(imageStop));
+
+        // create button types with custom buttons
+        ButtonType buttonTypePlay = new ButtonType("", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonTypeStop = new ButtonType("", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        // set the button types in the alert
+        alert.getButtonTypes().setAll(buttonTypePlay, buttonTypeStop);
+
+        // retrieve the button nodes from the alert dialog
+        Button playButtonNode = (Button) alert.getDialogPane().lookupButton(buttonTypePlay);
+        Button stopButtonNode = (Button) alert.getDialogPane().lookupButton(buttonTypeStop);
+
+        // set the custom buttons as the graphic for the button nodes
+        playButtonNode.setGraphic(playButton.getGraphic());
+        stopButtonNode.setGraphic(stopButton.getGraphic());
+
+        // set the layout of the button nodes to center
+        playButtonNode.getStyleClass().add("sound-button");
+        stopButtonNode.getStyleClass().add("sound-button");
+        alert.setResizable(true);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+
+        // set the width and height
+        alert.getDialogPane().setPrefWidth(250);
+        alert.getDialogPane().setPrefHeight(130);
+
+        // show the alert and wait for the user's response
+        alert.showAndWait().ifPresent(buttonType -> {
+            if (mediaPlayer != null) {
+                if (buttonType == buttonTypeStop) {
+                    if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                        mediaPlayer.stop();
+                    }
+                } else if (buttonType == buttonTypePlay) {
+                    if (mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED) {
+                        mediaPlayer.play();
+                    }
+                }
+            }
+        });
+    }
+
+
 
     @Override
     public void handleAboutButtonClick(ActionEvent actionEvent) {
@@ -585,7 +651,7 @@ public class MyViewController extends Application implements IView {
             threadPoolRow.getStyleClass().add("property-row");
             Label threadPoolLabel = new Label("Thread Pool Size:");
             threadPoolLabel.getStyleClass().add("property-label");
-            Label threadPoolValue = new Label(poolSize + "");
+            Label threadPoolValue = new Label(poolSize+"");
             threadPoolValue.getStyleClass().add("property-value");
             threadPoolRow.getChildren().addAll(threadPoolLabel, threadPoolValue);
 
@@ -601,6 +667,7 @@ public class MyViewController extends Application implements IView {
             alert.getDialogPane().getStyleClass().add("properties");
             alert.getDialogPane().getStylesheets().add(getClass().getResource("/properties.css").toExternalForm());
             alert.setHeaderText(null);
+            alert.setResizable(true);
             // load the exit image
             Image image = new Image(getClass().getResource("/settings.png").toExternalForm());
             // create the ImageView

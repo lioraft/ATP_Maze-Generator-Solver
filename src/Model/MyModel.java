@@ -8,7 +8,6 @@ import Client.*;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
 import algorithms.search.Solution;
-
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.io.*;
@@ -171,18 +170,6 @@ public class MyModel implements IModel{
             return -1;
         }
     	return currentMaze.getMaze()[0].length;
-    }
-
-    // function that returns the current maze solution
-    // if there is no current maze, return null
-    public Solution getMazeSolution() {
-        if (currentMaze == null) {
-            return null;
-        }
-        if (solToMaze == null) {
-            solveGame();
-        }
-        return solToMaze;
     }
 
     // function to get hint for the next solution step

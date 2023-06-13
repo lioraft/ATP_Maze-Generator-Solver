@@ -19,10 +19,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.*;
-import java.util.Properties;
+import java.util.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -42,9 +43,10 @@ public class MyViewController extends Application implements IView {
 
     GraphicsContext gc;
     private static Stage ps;
-    MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer;
     @FXML
     Canvas mazeCanvas;
+    private static HashMap<String, String[]> speakerQuotes;
 
     public static void main(String[] args) {
         launch(args);
@@ -52,6 +54,8 @@ public class MyViewController extends Application implements IView {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // set hashmap
+        setSpeakerQuotes();
         // initialize media player
         mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/Spongebob_Theme.mp3").toExternalForm()));
         // set media player to loop
@@ -132,6 +136,12 @@ public class MyViewController extends Application implements IView {
         // initialize sound menu items
         MenuItem sound = soundMenu.getItems().get(0);
         sound.setOnAction(this::handleSoundButtonClick);
+        // initialize guess who menu
+        Menu guessWhoMenu = menuBar.getMenus().get(6);
+        // initialize guess who menu items
+        MenuItem guessWho = guessWhoMenu.getItems().get(0);
+        // handle guess who menu item click
+        guessWho.setOnAction(this::handleQuotesButtonClick);
         // set designs for menu bar
         menuBar.getStyleClass().add("menu-bar");
         // set width and height comboboxes
@@ -972,6 +982,135 @@ public class MyViewController extends Application implements IView {
         double newScale = mazeCanvas.getScaleX() * 0.9;
         mazeCanvas.setScaleX(newScale);
         mazeCanvas.setScaleY(newScale);
+    }
+
+    public void handleQuotesButtonClick(ActionEvent actionEvent) {
+        try {
+            // load fxml of quotes
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("quotes.fxml"));
+            Parent root = fxmlLoader.load();
+            // choose random character
+            int randomIndex = new Random().nextInt(speakerQuotes.size());
+            String key = (String)speakerQuotes.keySet().toArray(new Object[0])[randomIndex];
+            // get character list of quotes
+            String[] quotes = speakerQuotes.get(key);
+            // choose random quote
+            int randomQuoteIndex = new Random().nextInt(quotes.length);
+            String quote = quotes[randomQuoteIndex];
+            // set quote label
+            Label quoteLabel = (Label) root.lookup("#quoteLabel");
+            quoteLabel.setText(quote);
+            // set character image
+            ImageView characterImage = (ImageView) root.lookup("#characterImage");
+            Image image = new Image(getClass().getResource("/characters/" + key + ".png").toExternalForm());
+            characterImage.setImage(image);
+            // set reveal button
+            Button revealButton = (Button) root.lookup("#revealButton");
+            revealButton.getStyleClass().add("hint-button");
+            // set action for reveal button - reveal image
+            revealButton.setOnAction(event -> {
+                characterImage.visibleProperty().setValue(true);
+            });
+            // set action for try again button
+            Button tryAgainButton = (Button) root.lookup("#repeatButton");
+            tryAgainButton.getStyleClass().add("hint-button");
+            tryAgainButton.setOnAction(event -> {
+                // close window
+                Stage stage = (Stage) tryAgainButton.getScene().getWindow();
+                stage.close();
+                // call function again
+                handleQuotesButtonClick(actionEvent);
+            });
+            // set design for quote label
+            quoteLabel.getStyleClass().add("help-main-label");
+            // set scene and show
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+            scene.getRoot().setStyle("-fx-background-color: #6dcff6;");
+            Stage stage = new Stage();
+            stage.setTitle("Fun Quotes");
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // initialize speaker quotes
+    public void setSpeakerQuotes() {
+        // initialize hashmap
+        speakerQuotes = new HashMap<>();
+        // add quotes to spongebob
+        String[] spongebobQuotes = {
+                "Can I be excused for the rest of my life?",
+                "Hey Patrick, I thought of something funnier than 24… 25!",
+                "The best time to wear a striped sweater is all the time.",
+                "F is for friends who do stuff together!",
+                "If you believe in yourself, with a tiny pinch of magic all your dreams can come true!",
+                "I'm not just ready, I'm ready Freddy.",
+                "Always follow your heart – unless your heart is bad with directions."
+        };
+        speakerQuotes.put("spongebob", spongebobQuotes);
+        // add quotes to patrick
+        String[] patrickQuotes = {
+                "Is mayonnaise an instrument?",
+                "The inner machinations of my mind are an enigma.",
+                "Two words, SpongeBob. Na. Chos.",
+                "I wumbo, you wumbo, he she me wumbo, Wumbology, The study of wumbo? It’s first grade SpongeBob!",
+                "I can't see my forehead.",
+                "No, this is Patrick."
+        };
+
+        speakerQuotes.put("patrick", patrickQuotes);
+        // add quotes to squidward
+        String[] squidwardQuotes = {
+                "Wake me up when I care.",
+                "I have no soul.",
+                "I knew I shouldn't have gotten out of bed today.",
+                "I might as well sleep for 100 years or so.",
+                "Just when I thought they couldn't get any stupider."
+        };
+
+        speakerQuotes.put("squidward", squidwardQuotes);
+        // add quotes to krabs
+        String[] krabsQuotes = {
+                "A 5 letter word for happiness... MONEY.",
+                "I like money more than I like people.",
+                "Give to the Children’s fund? What have the children ever done for me?",
+                "What doesn't kill you, usually succeeds in the second attempt."
+        };
+
+        speakerQuotes.put("krabs", krabsQuotes);
+        // add quotes to plankton
+        String[] planktonQuotes = {
+                "I went to college!",
+                "Goodbye everyone, I’ll remember you all in therapy.",
+                "Do instruments of torture count?",
+                "No, I'm not on my way to the grand opening ceremony. I'm busy planning to rule the world!",
+                "I command you to help me be a nicer person!"
+        };
+
+        speakerQuotes.put("plankton", planktonQuotes);
+        // add quotes to sandy
+        String[] sandyQuotes = {
+                "I'm hotter than a hickory smoked sausage!",
+                "Don’t you have to be stupid somewhere else?",
+                "Stupidity isn’t a virus, but it sure is spreading like one.",
+                "You’re nothing but pure evil... just like newspaper comics."
+        };
+
+        speakerQuotes.put("sandy", sandyQuotes);
+        // add karen quotes
+        String[] karenQuotes = {
+                "Just blink.",
+                "So, typical day of failure, I see, huh darling?",
+                "SHELDON!! HA HA HA!",
+                "I heard this joke before!",
+                "Why do I even bother?"
+        };
+
+        speakerQuotes.put("karen", karenQuotes);
     }
 
 }

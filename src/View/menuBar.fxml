@@ -25,4 +25,9 @@
        <MenuItem fx:id="soundMenuItem" mnemonicParsing="false" onAction="#handleSoundButtonClick" text="Control Sound" />
      </items>
    </Menu>
+   <Menu fx:id="spongeBobMenu" mnemonicParsing="false" text="Guess Who Said">
+     <items>
+       <MenuItem fx:id="quotesMenuItem" mnemonicParsing="false" onAction="#handleQuotesButtonClick" text="Guess Who Said" />
+     </items>
+   </Menu>
 </MenuBar>

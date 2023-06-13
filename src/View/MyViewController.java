@@ -422,8 +422,8 @@ public class MyViewController extends Application implements IView {
 
             mazeDisplayer.setOnKeyPressed(event -> {
                 KeyCode keyCode = event.getCode();
-                if (keyCode.isLetterKey()) {
-                    handlePlayMove(keyCode.getName().toLowerCase(), spongebob);
+                if (keyCode.isKeypadKey()) {
+                    handlePlayMove(keyCode.getName().toUpperCase(), spongebob);
                 }
             });
         }
@@ -483,9 +483,6 @@ public class MyViewController extends Application implements IView {
             }
         }
     }
-
-
-
 
 
 

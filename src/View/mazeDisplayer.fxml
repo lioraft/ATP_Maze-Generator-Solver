@@ -13,8 +13,8 @@
     </center>
     <bottom>
         <HBox alignment="CENTER" spacing="10">
-            <Button fx:id="hint_button" mnemonicParsing="false" onAction="#handleHintButtonClick" text="Hint" />
-            <Button fx:id="solve_button" mnemonicParsing="false" onAction="#handleSolveButtonClick" text="Solve" />
+            <Button fx:id="hint_button" mnemonicParsing="false" onAction="#handleHintButtonClick" text="Hint" HBox.hgrow="ALWAYS" />
+            <Button fx:id="solve_button" mnemonicParsing="false" onAction="#handleSolveButtonClick" text="Solve" HBox.hgrow="ALWAYS" />
         </HBox>
     </bottom>
 </BorderPane>

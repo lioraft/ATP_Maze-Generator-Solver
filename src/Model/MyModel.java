@@ -8,6 +8,10 @@ import Client.*;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
 import algorithms.search.Solution;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
+
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.io.*;
@@ -22,12 +26,14 @@ import java.net.UnknownHostException;
  * it has a current maze and a character position.
  */
 public class MyModel implements IModel{
+    private static final Logger LOG = LogManager.getLogger("ServerLogger"); // logger
     private Server mazeGeneratingServer; // maze generating server
     private Server solveSearchProblemServer; // solve search problem server
     private Maze currentMaze; // current maze
     private Solution solToMaze; // solution to current maze
     private Position characterPosition; // character position
     private int currentStep; // current step given in solution
+    private String host; // host address
 
     public MyModel() {
         // generate maze generating server
@@ -39,6 +45,15 @@ public class MyModel implements IModel{
         characterPosition = null;
         solToMaze = null;
         currentStep = 0;
+        Configurator.initialize(null, "log4j2.xml"); // initialize logger from xml file in package logs
+        // write to get host address
+        try { // try to get host address
+            host = InetAddress.getLocalHost().getHostAddress(); // get host address
+            LOG.info("Client connected: " + host); // write to log info
+        } catch (UnknownHostException e) { // if failed, write unknown host
+            host = "Unknown host";
+            LOG.error("Unknown host connected: " + e.getMessage()); // write to log error
+        }
     }
 
     // function to generate maze based on dimensions and return it.
@@ -66,23 +81,28 @@ public class MyModel implements IModel{
                         Maze maze = new Maze(decompressedMaze);
                         mazeRef.set(maze); // set the maze object in the AtomicReference
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        LOG.error("Client " + host + " had error in generating maze: " + e.getMessage());
                     }
                 }
             });
             client.communicateWithServer();
+            // set current maze to the generated maze
+            currentMaze = mazeRef.get(); // set the current maze
+            // set starting position
+            setCharacterPosition(currentMaze.getStartPosition().getRowIndex(), currentMaze.getStartPosition().getColumnIndex());
+            // write to log that client generated maze
+            LOG.info("Client " + host + " generated maze of size " + currentMaze.getMaze().length + "x" + currentMaze.getMaze()[0].length);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            // log error in generating maze
+            LOG.error("Client " + host + " failed to generate maze of size " + width + "x" + height + ": " + e.getMessage());
         }
-        // set current maze to the generated maze
-        currentMaze = mazeRef.get(); // set the current maze
-        // set starting position
-        setCharacterPosition(currentMaze.getStartPosition().getRowIndex(), currentMaze.getStartPosition().getColumnIndex());
     }
 
     // function to solve maze and return solution
     public void solveGame() {
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             return;
         }
         AtomicReference<Solution> mazeSolution = new AtomicReference<>();
@@ -98,32 +118,41 @@ public class MyModel implements IModel{
                         toServer.flush();
                         mazeSolution.set((Solution) fromServer.readObject()); // read generated maze (compressed with MyCompressor) from server
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        // log unexpected error in solving maze
+                        LOG.error("Client " + host + " had error in solving maze " + currentMaze.getMaze().length + "x" + currentMaze.getMaze()[0].length + ": " + e.getMessage());
                     }
                 }
             });
             client.communicateWithServer();
+            // set solution to current maze
+            solToMaze = mazeSolution.get();
+            // write to log that client solved maze
+            LOG.info("Client " + host + " requested to solve maze of size " + currentMaze.getMaze().length + "x" + currentMaze.getMaze()[0].length);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            LOG.error("Client " + host + " request to solve maze of size " + currentMaze.getMaze().length + "x" + currentMaze.getMaze()[0].length + " failed");
         }
-        // set solution to current maze
-        solToMaze = mazeSolution.get();
     }
 
     // function that saves character position in current maze
     public void setCharacterPosition(int row, int col) {
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             return;
         }
         // create character position and set it
         Position characterPosition = new Position(row, col);
         this.characterPosition = characterPosition;
+        // log client moved character
+        LOG.info("Client " + host + " moved character to position " + row + "," + col);
     }
 
     // function that returns the current row index of the character
     // if there is no current maze, return -1
     public int getCurrentRow() {
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             return -1;
         }
         return characterPosition.getRowIndex();
@@ -133,6 +162,8 @@ public class MyModel implements IModel{
     // if there is no current maze, return -1
     public int getCurrentCol() {
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             return -1;
         }
         return characterPosition.getColumnIndex();
@@ -158,6 +189,8 @@ public class MyModel implements IModel{
     // if there is no current maze, return -1
     public int getMazeRows() {
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             return -1;
         }
     	return currentMaze.getMaze().length;
@@ -167,6 +200,8 @@ public class MyModel implements IModel{
     // if there is no current maze, return -1
     public int getMazeCols() {
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             return -1;
         }
     	return currentMaze.getMaze()[0].length;
@@ -179,6 +214,8 @@ public class MyModel implements IModel{
         int[] nextStep = new int[2];
         // if there is no current maze, return -1
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             nextStep[0] = -1;
             nextStep[1] = -1;
             return nextStep;
@@ -234,6 +271,8 @@ public class MyModel implements IModel{
         mazeGeneratingServer.start();
         // start server for solving mazes
         solveSearchProblemServer.start();
+        // log servers started
+        LOG.info("Client: " + host + "servers started");
     }
 
     // function that stops the servers
@@ -241,12 +280,16 @@ public class MyModel implements IModel{
         // stop servers
         mazeGeneratingServer.stop();
         solveSearchProblemServer.stop();
+        // log servers stopped
+        LOG.info("Client: " + host + "servers stopped");
     }
 
     // function that saves maze to file
     public boolean saveCurrentMazeToFile(File file) {
         // if there is no current maze, return false
         if (currentMaze == null) {
+            // log fatal error of client trying to perform operations on null maze
+            LOG.fatal("Client " + host + " tried to perform operation on null maze");
             return false;
         }
         try {
@@ -256,10 +299,13 @@ public class MyModel implements IModel{
             out.write(currentMaze.toByteArray());
             out.flush();
             out.close();
+            // log maze saved
+            LOG.info("Client " + host + " saved maze to file " + file.getName());
             // return true if succeeded
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            // log error
+            LOG.error("Client " + host + " failed to save maze to file " + file.getName());
             // return false if failed
             return false;
         }
@@ -276,9 +322,12 @@ public class MyModel implements IModel{
             in.close();
             // create new maze from bytes array
             currentMaze = new Maze(savedMazeBytes);
+            // log maze loaded
+            LOG.info("Client " + host + " loaded maze from file " + file.getName());
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            // log error
+            LOG.error("Client " + host + " failed to load maze from file " + file.getName());
             return false;
         }
     }

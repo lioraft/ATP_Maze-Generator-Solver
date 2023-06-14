@@ -148,7 +148,7 @@ public class MyViewController extends Application implements IView {
         width = (ComboBox<Integer>) mainScene.lookup("#width");
         height = (ComboBox<Integer>) mainScene.lookup("#height");
         // set width and height comboboxes values
-        for (int i = 10; i <= 100; i += 10) {
+        for (int i = 10; i <= 300; i += 10) {
             width.getItems().add(i);
             height.getItems().add(i);
         }
@@ -614,6 +614,9 @@ public class MyViewController extends Application implements IView {
     public void handleSolveButtonClick(ActionEvent actionEvent) {
         int[] nextStep = {0, 0};
         while (nextStep[0] != -1 && nextStep[1] != -1 ) {
+            if (viewModel == null) {
+                viewModel = MyViewModel.getInstance();
+            }
             // get the next step in the solution
             nextStep = viewModel.getNextStepInSolution();
             // update the maze display accordingly

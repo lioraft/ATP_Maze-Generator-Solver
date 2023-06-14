@@ -75,7 +75,7 @@ public class MyModel implements IModel{
                         byte[] compressedMaze = (byte[]) fromServer.readObject();
                         // read generated maze (compressed with MyCompressor) from server
                         InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze));
-                        byte[] decompressedMaze = new byte[15000 /*giving max space*/];
+                        byte[] decompressedMaze = new byte[100000 /*giving max space*/];
                         // allocating byte[] for the decompressed maze
                         is.read(decompressedMaze); // fill decompressedMaze with bytes
                         Maze maze = new Maze(decompressedMaze);
@@ -317,7 +317,7 @@ public class MyModel implements IModel{
             byte savedMazeBytes[];
             // create file input stream, decompress maze and read it
             InputStream in = new MyDecompressorInputStream(new FileInputStream(file));
-            savedMazeBytes = new byte[10000];
+            savedMazeBytes = new byte[100000];
             in.read(savedMazeBytes);
             in.close();
             // create new maze from bytes array

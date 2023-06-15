@@ -37,7 +37,6 @@ public class MyViewController extends Application implements IView {
     Scene scene;
     private ComboBox<Integer> width;
     private ComboBox<Integer> height;
-    BorderPane mazeDisplayer;
     MyViewModel viewModel;
     String css;
 
@@ -281,11 +280,9 @@ public class MyViewController extends Application implements IView {
         try {
             Stage primaryStage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
 
-            if (mazeDisplayer == null) {
-                // load the FXML file for the new scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("mazeDisplayer.fxml"));
-                mazeDisplayer = loader.load();
-            }
+            // load the FXML file for the new scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mazeDisplayer.fxml"));
+            BorderPane mazeDisplayer = loader.load();
 
             // set background color
             mazeDisplayer.setStyle("-fx-background-color: #6dcff6;");
@@ -299,9 +296,7 @@ public class MyViewController extends Application implements IView {
             Integer mazeHeight = height.getValue();
 
             // generate maze
-            if (viewModel == null) {
-                viewModel = MyViewModel.getInstance();
-            }
+            viewModel = MyViewModel.getInstance();
             viewModel.generateMaze(mazeWidth, mazeHeight);
 
             // get current maze
@@ -339,15 +334,8 @@ public class MyViewController extends Application implements IView {
             Image jellyfish = new Image(getClass().getResource("/jellyfish.png").toExternalForm());
             drawPlayer(jellyfish,maze.length-1, goalCol, maze);
 
-            // Create the hint button
-            Button hintButton = (Button) mazeDisplayer.lookup("#hint_button");
-            hintButton.getStyleClass().add("hint-button");
-            hintButton.setOnAction(this::handleHintButtonClick);
-
-            // Create the solve button
-            Button solveButton = (Button) mazeDisplayer.lookup("#solve_button");
-            solveButton.getStyleClass().add("hint-button");
-            solveButton.setOnAction(this::handleSolveButtonClick);
+            // create hint and solve buttons
+            createHintAndSolveButtons(mazeDisplayer);
 
 
             // create a new scene with the loaded FXML content
@@ -387,6 +375,19 @@ public class MyViewController extends Application implements IView {
         }
     }
 
+    // create the hint button and the solve button
+    private void createHintAndSolveButtons(BorderPane mazeDisplayer) {
+        // Create the hint button
+        Button hintButton = (Button) mazeDisplayer.lookup("#hint_button");
+        hintButton.getStyleClass().add("hint-button");
+        hintButton.setOnAction(this::handleHintButtonClick);
+
+        // Create the solve button
+        Button solveButton = (Button) mazeDisplayer.lookup("#solve_button");
+        solveButton.getStyleClass().add("hint-button");
+        solveButton.setOnAction(this::handleSolveButtonClick);
+    }
+
     @Override
     public void handleNewGameButtonClick(ActionEvent actionEvent) {
         try {
@@ -410,9 +411,7 @@ public class MyViewController extends Application implements IView {
         File file = fileChooser.showOpenDialog(null);
         // let user choose file to load
         if (file != null) {
-            if (viewModel == null) {
-                viewModel = MyViewModel.getInstance();
-            }
+            viewModel = MyViewModel.getInstance();
             viewModel.loadMaze(file);
             // get current maze
             int[][] maze = viewModel.getMaze();
@@ -425,15 +424,13 @@ public class MyViewController extends Application implements IView {
             viewModel.setPlayerPosition(playerRow, playerCol);
             // get image from resources
             Image spongebob = new Image(getClass().getResource("/spongebob.png").toExternalForm());
-            // if mazeDisplayer is null, get it
-            if (mazeDisplayer == null) {
-                // load the FXML file for the new scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("mazeDisplayer.fxml"));
-                try {
-                    mazeDisplayer = loader.load();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+            // load the FXML file for the new scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mazeDisplayer.fxml"));
+            BorderPane mazeDisplayer;
+            try {
+                mazeDisplayer = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
             // if gc is null, get it
             if (gc == null) {
@@ -603,6 +600,9 @@ public class MyViewController extends Application implements IView {
     // Handle the hint button click event
     @Override
     public void handleHintButtonClick(ActionEvent actionEvent) {
+        if (viewModel == null) {
+            viewModel = MyViewModel.getInstance();
+        }
         // get the next step in the solution
         int[] nextStep = viewModel.getNextStepInSolution();
         // update the maze display accordingly
@@ -612,11 +612,11 @@ public class MyViewController extends Application implements IView {
     // handle the solve button click event
     @Override
     public void handleSolveButtonClick(ActionEvent actionEvent) {
+        if (viewModel == null) {
+            viewModel = MyViewModel.getInstance();
+        }
         int[] nextStep = {0, 0};
         while (nextStep[0] != -1 && nextStep[1] != -1 ) {
-            if (viewModel == null) {
-                viewModel = MyViewModel.getInstance();
-            }
             // get the next step in the solution
             nextStep = viewModel.getNextStepInSolution();
             // update the maze display accordingly

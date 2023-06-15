@@ -1,0 +1,509 @@
+2023-06-15 18:43:53.441 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:43:53.445 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:44:02.216 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:44:02.216 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:44:06.004 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 18:44:06.245 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 18:44:06.483 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 18:44:06.797 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,3
+2023-06-15 18:44:07.069 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,3
+2023-06-15 18:44:07.281 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,4
+2023-06-15 18:44:08.478 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 18:44:09.651 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,5
+2023-06-15 18:44:09.858 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,6
+2023-06-15 18:44:10.145 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,6
+2023-06-15 18:44:10.429 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,6
+2023-06-15 18:44:10.684 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,7
+2023-06-15 18:44:11.450 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,6
+2023-06-15 18:44:11.765 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,5
+2023-06-15 18:44:12.050 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,5
+2023-06-15 18:44:12.273 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,5
+2023-06-15 18:44:12.543 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,6
+2023-06-15 18:44:12.994 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,6
+2023-06-15 18:44:13.233 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,6
+2023-06-15 18:44:13.489 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,7
+2023-06-15 18:44:13.759 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 18:44:14.058 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,9
+2023-06-15 18:44:14.373 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 18:44:33.157 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:45:03.004 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:45:03.009 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:45:05.984 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:45:05.985 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:45:09.504 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:45:30.664 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:45:30.667 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:45:35.574 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:45:35.575 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:45:42.419 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:46:15.471 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:46:15.475 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:46:19.749 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:46:19.749 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:46:28.318 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:46:38.073 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:46:38.075 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:46:41.378 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:46:41.378 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:46:44.426 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:47:39.977 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:47:39.980 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:47:47.118 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:47:47.118 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:47:50.634 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:48:06.595 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:48:06.597 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:48:09.491 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:48:09.492 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:48:13.112 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:49:03.831 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:49:03.833 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:49:06.849 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:49:06.849 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:49:10.896 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:49:23.532 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:49:23.534 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:49:26.964 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:49:26.964 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:49:31.464 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:49:56.822 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:49:56.824 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:50:00.001 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:50:00.001 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:50:04.629 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:50:10.145 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:50:10.148 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:50:13.045 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:50:13.046 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:50:16.148 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:50:33.158 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:50:33.160 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:50:36.986 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:50:36.986 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:50:46.940 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:51:10.468 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:51:10.472 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:51:14.877 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:52:00.653 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:52:00.656 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:52:05.623 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:52:05.624 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:52:13.477 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:52:42.186 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:52:42.191 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:52:45.927 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:52:45.927 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:52:47.418 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 18:52:48.963 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 18:52:49.466 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 18:52:49.497 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 18:52:49.528 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 18:52:49.559 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 18:52:49.605 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 18:52:49.635 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 18:52:49.668 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,8
+2023-06-15 18:52:49.699 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,9
+2023-06-15 18:52:49.750 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,9
+2023-06-15 18:52:50.850 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,9
+2023-06-15 18:52:51.101 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,8
+2023-06-15 18:52:51.537 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 18:52:51.732 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 18:52:52.137 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 18:52:53.637 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 18:52:53.876 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,6
+2023-06-15 18:52:54.718 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,6
+2023-06-15 18:52:54.897 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,6
+2023-06-15 18:52:55.078 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,6
+2023-06-15 18:52:55.332 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,7
+2023-06-15 18:52:55.738 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,7
+2023-06-15 18:52:55.976 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,8
+2023-06-15 18:52:56.234 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,8
+2023-06-15 18:52:56.441 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,8
+2023-06-15 18:52:56.636 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 18:52:56.847 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 18:52:57.086 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 18:53:05.799 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:53:05.799 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:53:11.168 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,1
+2023-06-15 18:53:11.201 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,1
+2023-06-15 18:53:11.248 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,1
+2023-06-15 18:53:11.278 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,2
+2023-06-15 18:53:11.418 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,3
+2023-06-15 18:53:11.883 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,4
+2023-06-15 18:53:12.132 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,5
+2023-06-15 18:53:12.345 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,6
+2023-06-15 18:53:12.391 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,6
+2023-06-15 18:53:12.459 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,6
+2023-06-15 18:53:12.660 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,7
+2023-06-15 18:53:12.797 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,7
+2023-06-15 18:53:12.953 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 18:53:15.853 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 18:53:20.747 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:53:21.623 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:53:34.735 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:53:34.739 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:53:37.681 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:53:37.681 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:53:39.578 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 18:53:39.737 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 18:53:40.300 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,1
+2023-06-15 18:53:40.541 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,1
+2023-06-15 18:53:40.826 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,0
+2023-06-15 18:53:41.202 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,0
+2023-06-15 18:53:41.652 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,0
+2023-06-15 18:53:41.982 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,0
+2023-06-15 18:53:42.221 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,0
+2023-06-15 18:53:42.448 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,0
+2023-06-15 18:53:42.717 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,1
+2023-06-15 18:53:42.989 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,1
+2023-06-15 18:53:43.256 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,2
+2023-06-15 18:53:43.761 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,3
+2023-06-15 18:53:43.791 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,4
+2023-06-15 18:53:43.837 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,5
+2023-06-15 18:53:43.868 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,6
+2023-06-15 18:53:43.901 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,7
+2023-06-15 18:53:43.929 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 18:53:43.959 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 18:53:50.044 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:53:50.044 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:53:59.264 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:56:06.628 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:56:06.631 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:56:09.864 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:56:57.875 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:56:57.877 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:56:59.237 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 18:57:04.248 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 18:57:04.249 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 18:57:07.470 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 18:57:07.470 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 18:57:08.458 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 18:57:11.851 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 18:57:12.356 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 18:57:12.386 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 18:57:12.415 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 18:57:12.461 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 18:57:12.810 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,5
+2023-06-15 18:57:13.318 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,5
+2023-06-15 18:57:13.350 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,5
+2023-06-15 18:57:13.383 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,5
+2023-06-15 18:57:13.414 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,5
+2023-06-15 18:57:13.446 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,5
+2023-06-15 18:57:13.546 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,6
+2023-06-15 18:57:13.952 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,6
+2023-06-15 18:57:14.341 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,6
+2023-06-15 18:57:14.596 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,7
+2023-06-15 18:57:14.882 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,7
+2023-06-15 18:57:15.151 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 18:57:15.389 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 20:00:11.984 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 20:00:11.987 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 20:00:15.533 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 20:00:15.533 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 20:00:16.801 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 20:00:18.730 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 20:00:18.798 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 20:00:19.053 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 20:00:19.264 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 20:00:19.443 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 20:00:19.593 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 20:00:19.833 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 20:00:20.105 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,7
+2023-06-15 20:00:20.605 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,7
+2023-06-15 20:00:20.651 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,7
+2023-06-15 20:00:20.683 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,7
+2023-06-15 20:00:20.854 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,8
+2023-06-15 20:00:21.141 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,8
+2023-06-15 20:00:21.651 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,8
+2023-06-15 20:00:21.680 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,8
+2023-06-15 20:00:21.712 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 20:00:21.743 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 20:00:21.876 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 20:00:27.313 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 20:00:27.313 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 20x20
+2023-06-15 20:00:35.704 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:04:55.678 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:04:55.681 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:04:59.459 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:04:59.459 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:05:00.918 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:05:01.126 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 23:05:01.793 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 23:05:02.582 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:05:03.076 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,1
+2023-06-15 23:05:03.286 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,1
+2023-06-15 23:05:03.571 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,2
+2023-06-15 23:05:03.857 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,3
+2023-06-15 23:05:04.172 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,3
+2023-06-15 23:05:04.411 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,4
+2023-06-15 23:05:04.697 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,5
+2023-06-15 23:05:04.981 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,5
+2023-06-15 23:05:05.342 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,6
+2023-06-15 23:05:05.581 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,7
+2023-06-15 23:05:05.837 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,7
+2023-06-15 23:05:06.033 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,7
+2023-06-15 23:05:06.199 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,7
+2023-06-15 23:05:06.376 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,7
+2023-06-15 23:05:06.572 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,7
+2023-06-15 23:05:06.828 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 23:05:07.007 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:05:16.019 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:05:16.019 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 30x30
+2023-06-15 23:05:27.141 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 saved maze to file savedMaze.maze
+2023-06-15 23:05:33.063 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 loaded maze from file savedMaze.maze
+2023-06-15 23:05:33.064 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:05:38.145 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:06:15.255 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:06:15.259 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:06:18.491 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:06:18.492 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:06:20.874 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 23:06:21.934 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,0
+2023-06-15 23:06:22.434 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,0
+2023-06-15 23:06:22.480 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,0
+2023-06-15 23:06:22.512 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,0
+2023-06-15 23:06:22.543 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,0
+2023-06-15 23:06:22.574 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,0
+2023-06-15 23:06:22.605 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,0
+2023-06-15 23:06:22.637 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,0
+2023-06-15 23:06:22.667 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,0
+2023-06-15 23:06:22.817 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,1
+2023-06-15 23:06:23.354 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,2
+2023-06-15 23:06:23.383 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,3
+2023-06-15 23:06:23.415 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,4
+2023-06-15 23:06:23.446 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,5
+2023-06-15 23:06:23.494 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,6
+2023-06-15 23:06:23.525 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,7
+2023-06-15 23:06:23.556 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 23:06:23.588 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:06:30.547 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:06:30.547 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:06:31.685 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,0
+2023-06-15 23:06:31.940 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,0
+2023-06-15 23:06:35.571 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:06:41.772 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:06:41.775 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:06:45.164 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:06:50.314 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:06:50.318 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:06:58.257 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:06:58.259 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:06:59.303 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 23:07:00.354 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,0
+2023-06-15 23:07:00.847 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,0
+2023-06-15 23:07:00.894 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,0
+2023-06-15 23:07:00.927 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,0
+2023-06-15 23:07:00.956 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,0
+2023-06-15 23:07:00.986 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,0
+2023-06-15 23:07:01.019 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,0
+2023-06-15 23:07:01.051 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,0
+2023-06-15 23:07:01.158 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,1
+2023-06-15 23:07:01.676 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,2
+2023-06-15 23:07:01.722 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,3
+2023-06-15 23:07:01.753 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,4
+2023-06-15 23:07:01.783 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,5
+2023-06-15 23:07:02.193 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,4
+2023-06-15 23:07:02.479 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,4
+2023-06-15 23:07:02.704 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,4
+2023-06-15 23:07:03.004 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,5
+2023-06-15 23:07:03.215 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,6
+2023-06-15 23:07:03.380 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,7
+2023-06-15 23:07:03.722 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,7
+2023-06-15 23:07:03.905 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,7
+2023-06-15 23:07:04.099 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 23:07:04.415 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,8
+2023-06-15 23:07:04.638 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:07:20.986 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:07:20.987 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:08:28.124 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:09:23.508 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:09:23.512 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:09:26.869 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:09:26.870 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:09:27.837 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:09:27.837 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:09:31.226 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:09:31.226 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:09:31.386 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:09:31.386 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:09:31.567 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:09:31.567 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:09:31.727 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:09:31.727 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:09:36.137 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:09:45.762 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:09:45.764 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:09:49.276 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:09:49.276 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:09:51.159 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:09:51.426 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 23:09:51.694 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 23:09:51.908 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 23:09:52.071 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 23:09:52.444 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,5
+2023-06-15 23:09:52.835 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,5
+2023-06-15 23:09:53.001 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,5
+2023-06-15 23:09:53.151 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,5
+2023-06-15 23:09:53.314 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,5
+2023-06-15 23:09:53.523 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,6
+2023-06-15 23:09:53.901 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,7
+2023-06-15 23:09:54.171 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,7
+2023-06-15 23:09:54.456 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,8
+2023-06-15 23:09:54.847 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,8
+2023-06-15 23:09:55.069 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 23:09:55.369 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,9
+2023-06-15 23:09:55.671 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:10:03.348 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:10:03.348 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 20x10
+2023-06-15 23:10:04.118 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 20x10
+2023-06-15 23:10:09.217 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:10:09.218 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:10:12.194 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:14:58.831 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:14:58.833 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:15:02.161 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:15:02.162 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x20
+2023-06-15 23:15:02.923 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x20
+2023-06-15 23:15:04.814 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:15:05.324 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 23:15:05.356 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 23:15:05.386 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 23:15:05.418 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 23:15:05.450 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 23:15:05.482 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 23:15:05.514 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,8
+2023-06-15 23:15:05.544 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,9
+2023-06-15 23:15:05.590 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,10
+2023-06-15 23:15:05.621 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,11
+2023-06-15 23:15:05.652 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,12
+2023-06-15 23:15:05.681 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,13
+2023-06-15 23:15:05.712 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,14
+2023-06-15 23:15:05.743 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,15
+2023-06-15 23:15:05.773 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,16
+2023-06-15 23:15:06.103 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,16
+2023-06-15 23:15:06.373 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,16
+2023-06-15 23:15:06.884 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,16
+2023-06-15 23:15:07.391 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,17
+2023-06-15 23:15:07.858 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,17
+2023-06-15 23:15:08.362 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,17
+2023-06-15 23:15:08.393 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,17
+2023-06-15 23:15:08.424 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,17
+2023-06-15 23:15:08.682 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,16
+2023-06-15 23:15:09.400 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,17
+2023-06-15 23:15:09.778 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,18
+2023-06-15 23:15:10.003 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,18
+2023-06-15 23:15:10.409 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,18
+2023-06-15 23:15:10.648 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,19
+2023-06-15 23:15:18.430 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:15:18.431 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:15:22.675 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:17:32.516 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:17:32.519 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:17:35.873 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:17:35.873 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:17:38.499 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 23:17:38.732 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:17:39.233 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 23:17:39.265 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 23:17:39.296 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 23:17:39.344 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 23:17:39.374 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 23:17:39.405 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 23:17:39.437 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,8
+2023-06-15 23:17:39.914 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 23:17:40.244 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,7
+2023-06-15 23:17:40.751 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,7
+2023-06-15 23:17:40.779 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,7
+2023-06-15 23:17:40.810 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,7
+2023-06-15 23:17:40.857 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,7
+2023-06-15 23:17:40.889 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,7
+2023-06-15 23:17:40.922 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,7
+2023-06-15 23:17:40.964 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,8
+2023-06-15 23:17:41.266 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,9
+2023-06-15 23:17:41.491 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,9
+2023-06-15 23:17:41.715 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:17:46.819 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:17:46.821 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 20x20
+2023-06-15 23:17:51.206 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:18:14.290 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:18:14.293 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:18:18.065 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:18:18.066 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:18:19.407 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 23:18:20.282 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:18:20.791 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 23:18:20.823 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 23:18:20.853 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 23:18:20.884 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 23:18:20.914 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 23:18:20.946 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 23:18:20.977 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,8
+2023-06-15 23:18:21.481 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 23:18:21.674 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 23:18:21.934 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,6
+2023-06-15 23:18:22.437 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,6
+2023-06-15 23:18:22.466 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,6
+2023-06-15 23:18:22.511 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,6
+2023-06-15 23:18:22.786 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,7
+2023-06-15 23:18:23.116 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,7
+2023-06-15 23:18:23.647 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,7
+2023-06-15 23:18:23.694 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,7
+2023-06-15 23:18:23.723 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,7
+2023-06-15 23:18:23.807 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 23:18:24.347 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,9
+2023-06-15 23:18:24.618 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:18:29.925 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:18:29.925 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:18:32.471 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:22:22.034 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:22:22.037 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:22:25.272 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:22:25.273 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:22:27.069 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 23:22:27.471 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:22:27.979 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 23:22:28.010 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 23:22:28.566 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,3
+2023-06-15 23:22:28.835 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,3
+2023-06-15 23:22:29.030 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,4
+2023-06-15 23:22:29.285 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,4
+2023-06-15 23:22:29.479 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,4
+2023-06-15 23:22:29.660 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,4
+2023-06-15 23:22:29.855 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,4
+2023-06-15 23:22:30.139 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,4
+2023-06-15 23:22:30.395 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,4
+2023-06-15 23:22:30.605 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,5
+2023-06-15 23:22:30.830 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,6
+2023-06-15 23:22:30.996 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,7
+2023-06-15 23:22:31.145 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 23:22:31.280 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,9
+2023-06-15 23:22:31.490 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:22:38.019 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:22:38.019 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:22:41.756 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped
+2023-06-15 23:23:24.594 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-15 23:23:24.596 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-15 23:23:28.098 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:23:28.098 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:23:29.423 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 requested to solve maze of size 10x10
+2023-06-15 23:23:30.252 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,1
+2023-06-15 23:23:30.751 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,2
+2023-06-15 23:23:30.782 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,3
+2023-06-15 23:23:30.815 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,4
+2023-06-15 23:23:30.861 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,5
+2023-06-15 23:23:30.892 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,6
+2023-06-15 23:23:30.925 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,7
+2023-06-15 23:23:31.058 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 1,7
+2023-06-15 23:23:31.570 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 2,7
+2023-06-15 23:23:31.602 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 3,7
+2023-06-15 23:23:31.634 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 4,7
+2023-06-15 23:23:31.664 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 5,7
+2023-06-15 23:23:31.697 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 6,7
+2023-06-15 23:23:31.727 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,7
+2023-06-15 23:23:31.839 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 7,8
+2023-06-15 23:23:32.154 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,8
+2023-06-15 23:23:32.394 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 8,9
+2023-06-15 23:23:32.691 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 9,9
+2023-06-15 23:23:38.905 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-15 23:23:38.905 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-15 23:23:41.504 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped

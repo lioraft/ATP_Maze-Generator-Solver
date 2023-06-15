@@ -1,0 +1,5 @@
+2023-06-16 00:00:02.371 [JavaFX Application Thread] INFO  ServerLogger - Client connected: 10.100.102.27
+2023-06-16 00:00:02.376 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers started
+2023-06-16 00:00:08.842 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 moved character to position 0,0
+2023-06-16 00:00:08.842 [JavaFX Application Thread] INFO  ServerLogger - Client 10.100.102.27 generated maze of size 10x10
+2023-06-16 00:00:19.075 [JavaFX Application Thread] INFO  ServerLogger - Client: 10.100.102.27servers stopped

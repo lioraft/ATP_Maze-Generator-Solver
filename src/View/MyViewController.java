@@ -1,6 +1,8 @@
 package View;
 
 import ViewModel.MyViewModel;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -22,6 +24,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.*;
 import java.util.*;
 import java.io.File;
@@ -112,6 +116,10 @@ public class MyViewController extends Application implements IView {
         MenuItem properties = optionsMenu.getItems().get(0);
         // handle properties menu item click
         properties.setOnAction(this::handlePropertiesButtonClick);
+        // get sound menu item
+        MenuItem sound = optionsMenu.getItems().get(1);
+        // handle sound menu item click
+        sound.setOnAction(this::handleSoundButtonClick);
         // initialize exit menu
         Menu exitMenu = menuBar.getMenus().get(2);
         // initialize exit menu item
@@ -130,13 +138,8 @@ public class MyViewController extends Application implements IView {
         MenuItem about = aboutMenu.getItems().get(0);
         // handle about menu item click
         about.setOnAction(this::handleAboutButtonClick);
-        // initialize sound menu
-        Menu soundMenu = menuBar.getMenus().get(5);
-        // initialize sound menu items
-        MenuItem sound = soundMenu.getItems().get(0);
-        sound.setOnAction(this::handleSoundButtonClick);
         // initialize guess who menu
-        Menu guessWhoMenu = menuBar.getMenus().get(6);
+        Menu guessWhoMenu = menuBar.getMenus().get(5);
         // initialize guess who menu items
         MenuItem guessWho = guessWhoMenu.getItems().get(0);
         // handle guess who menu item click
@@ -337,6 +340,22 @@ public class MyViewController extends Application implements IView {
             // create hint and solve buttons
             createHintAndSolveButtons(mazeDisplayer);
 
+            // get timer label
+            Label timerLabel = (Label) mazeDisplayer.lookup("#timerLabel");
+            // set text for timer label
+            timerLabel.setText("00:00:00");
+            Timeline timeline;
+            final Duration[] duration = {Duration.ZERO};
+            timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                duration[0] = duration[0].add(Duration.seconds(1));
+                long hours = (long) duration[0].toHours();
+                long minutes = (long) (duration[0].toMinutes() % 60);
+                long seconds = (long) (duration[0].toSeconds() % 60);
+                timerLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+            }));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+
 
             // create a new scene with the loaded FXML content
             Scene mazeDisplayScene = new Scene(mazeDisplayer);
@@ -459,14 +478,23 @@ public class MyViewController extends Application implements IView {
             // draw goal
             drawPlayer(jellyfish, goalRow, goalCol, maze);
             // Create the hint button
-            Button hintButton = (Button) mazeDisplayer.lookup("#hint_button");
-            hintButton.getStyleClass().add("hint-button");
-            hintButton.setOnAction(this::handleHintButtonClick);
+            createHintAndSolveButtons(mazeDisplayer);
 
-            // Create the solve button
-            Button solveButton = (Button) mazeDisplayer.lookup("#solve_button");
-            solveButton.getStyleClass().add("hint-button");
-            solveButton.setOnAction(this::handleSolveButtonClick);
+            // get timer label
+            Label timerLabel = (Label) mazeDisplayer.lookup("#timerLabel");
+            // set text for timer label
+            timerLabel.setText("00:00:00");
+            Timeline timeline;
+            final Duration[] duration = {Duration.ZERO};
+            timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                duration[0] = duration[0].add(Duration.seconds(1));
+                long hours = (long) duration[0].toHours();
+                long minutes = (long) (duration[0].toMinutes() % 60);
+                long seconds = (long) (duration[0].toSeconds() % 60);
+                timerLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+            }));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
 
             // set background color
             mazeDisplayer.setStyle("-fx-background-color: #6dcff6;");

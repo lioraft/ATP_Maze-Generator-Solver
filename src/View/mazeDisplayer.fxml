@@ -13,9 +13,11 @@
         <Canvas fx:id="mazeCanvas" height="519.0" width="542.0" BorderPane.alignment="CENTER" />
     </center>
     <bottom>
-        <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" minWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER">
             <Button fx:id="hint_button" mnemonicParsing="false" onAction="#handleHintButtonClick" text="Hint" HBox.hgrow="ALWAYS" />
             <Button fx:id="solve_button" mnemonicParsing="false" onAction="#handleSolveButtonClick" text="Solve" HBox.hgrow="ALWAYS" />
+         <Label text="Timer:" />
+         <Label fx:id="timerLabel" text="00:00" />
          <padding>
             <Insets bottom="10.0" top="10.0" />
          </padding>

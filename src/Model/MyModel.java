@@ -60,8 +60,9 @@ public class MyModel implements IModel{
     // once a maze is generated, it is set as the current maze.
     public void generateGame(int width, int height) {
         AtomicReference<Maze> mazeRef = new AtomicReference<>(); // Use AtomicReference to hold the maze object
-        // reset current step
+        // reset variables from last maze
         currentStep = 0;
+        solToMaze = null;
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5400, new IClientStrategy() {
                 @Override
@@ -315,6 +316,9 @@ public class MyModel implements IModel{
 
     public boolean loadCurrentMazeFromFile(File file) {
         try {
+            // reset variables from last maze
+            currentStep = 0;
+            solToMaze = null;
             // create bytes array for maze
             byte savedMazeBytes[];
             // create file input stream, decompress maze and read it

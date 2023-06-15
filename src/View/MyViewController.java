@@ -750,34 +750,37 @@ public class MyViewController extends Application implements IView {
 
     // function takes in row and column, and fills the cell in the maze with yellow color
     public void markCell(int row, int col) {
-        double cellWidth = gc.getCanvas().getWidth() / viewModel.getMaze()[0].length;
-        double cellHeight = gc.getCanvas().getHeight() / viewModel.getMaze().length;
+        int mazeRows = viewModel.getMaze().length;
+        int mazeCols = viewModel.getMaze()[0].length;
 
-        double x = col * cellWidth;
-        double y = row * cellHeight;
+        double cellSize = Math.min(gc.getCanvas().getWidth() / mazeCols, gc.getCanvas().getHeight() / mazeRows);
+        double x = col * cellSize;
+        double y = row * cellSize;
 
         gc.setFill(Color.YELLOW);
-        gc.fillRect(x, y, cellWidth, cellHeight);
+        gc.fillRect(x, y, cellSize, cellSize);
     }
 
     // helper method to create a cell in the maze:
-    // 0 - passage
-    // 1 - wall
+// 0 - passage
+// 1 - wall
     private void drawMaze(int[][] maze) {
-        double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
-        double cellHeight = gc.getCanvas().getHeight() / maze.length;
+        int mazeRows = maze.length;
+        int mazeCols = maze[0].length;
 
-        for (int row = 0; row < maze.length; row++) {
-            for (int col = 0; col < maze[row].length; col++) {
-                double x = col * cellWidth;
-                double y = row * cellHeight;
+        double cellSize = Math.min(gc.getCanvas().getWidth() / mazeCols, gc.getCanvas().getHeight() / mazeRows);
+
+        for (int row = 0; row < mazeRows; row++) {
+            for (int col = 0; col < mazeCols; col++) {
+                double x = col * cellSize;
+                double y = row * cellSize;
 
                 if (maze[row][col] == 1) {
                     gc.setFill(Color.TRANSPARENT);
-                    gc.fillRect(x, y, cellWidth, cellHeight);
+                    gc.fillRect(x, y, cellSize, cellSize);
                 } else {
                     gc.setFill(Color.WHITE);
-                    gc.fillRect(x, y, cellWidth, cellHeight);
+                    gc.fillRect(x, y, cellSize, cellSize);
                 }
             }
         }
@@ -785,30 +788,34 @@ public class MyViewController extends Application implements IView {
 
     // function that takes the position of the player and sets the picture from resources in this position in the maze (which is the gridpane)
     private void drawPlayer(Image playerImage, int row, int col, int[][] maze) {
-        double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
-        double cellHeight = gc.getCanvas().getHeight() / maze.length;
+        int mazeRows = maze.length;
+        int mazeCols = maze[0].length;
 
-        double x = col * cellWidth;
-        double y = row * cellHeight;
+        double cellSize = Math.min(gc.getCanvas().getWidth() / mazeCols, gc.getCanvas().getHeight() / mazeRows);
+
+        double x = col * cellSize;
+        double y = row * cellSize;
 
         if (playerImage != null) {
             // set the background color for the cell
             gc.setFill(Color.LIGHTPINK); // color to pink
             // fill the cell with the background color
-            gc.fillRect(x, y, cellWidth, cellHeight);
+            gc.fillRect(x, y, cellSize, cellSize);
             // draw the player image in the cell
-            gc.drawImage(playerImage, x, y, cellWidth, cellHeight);
+            gc.drawImage(playerImage, x, y, cellSize, cellSize);
         } else {
             gc.setFill(Color.BLUE);
-            gc.fillRect(x, y, cellWidth, cellHeight);
+            gc.fillRect(x, y, cellSize, cellSize);
         }
     }
+
+
 
     // function that check if cell player wants to move to is a passage
     // if it is, move player to this cell
     // if it isn't, do nothing
     @Override
-    public void handlePlayMove(String key,Image playerImage) {
+    public void handlePlayMove(String key, Image playerImage) {
         // remove spaces from key name
         key = key.replaceAll("\\s+", "");
         int[][] maze = viewModel.getMaze();
@@ -855,17 +862,19 @@ public class MyViewController extends Application implements IView {
         if (viewModel.isPassage(newRow, newCol)) {
             viewModel.setPlayerPosition(newRow, newCol);
 
-            double cellWidth = gc.getCanvas().getWidth() / maze[0].length;
-            double cellHeight = gc.getCanvas().getHeight() / maze.length;
+            int mazeRows = maze.length;
+            int mazeCols = maze[0].length;
+
+            double cellSize = Math.min(gc.getCanvas().getWidth() / mazeCols, gc.getCanvas().getHeight() / mazeRows);
 
             // Clear the current cell
-            double currentX = currentCol * cellWidth;
-            double currentY = currentRow * cellHeight;
-            gc.clearRect(currentX, currentY, cellWidth, cellHeight);
+            double currentX = currentCol * cellSize;
+            double currentY = currentRow * cellSize;
+            gc.clearRect(currentX, currentY, cellSize, cellSize);
 
             // Redraw the white background in the current cell
             gc.setFill(Color.WHITE);
-            gc.fillRect(currentX, currentY, cellWidth, cellHeight);
+            gc.fillRect(currentX, currentY, cellSize, cellSize);
 
             // Draw the player in the new position
             drawPlayer(playerImage, newRow, newCol, maze);
